@@ -31,8 +31,6 @@ public class Messege {
     @OneToMany
     private List<Video> videos;
     @OneToMany
-    private List<File> files;
-    @OneToMany
     private List<Audio> audios;
 
     @OneToOne
