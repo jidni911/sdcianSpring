@@ -1,0 +1,14 @@
+package com.jidnivai.sdcian.sdcian.interfaces;
+
+import com.jidnivai.sdcian.sdcian.entity.User;
+
+public interface AuthServiceInt {
+
+    public User login(String username, String password);
+
+    public String forgotPassword(String email);
+
+    public String signup(User user);
+
+    
+}

@@ -8,4 +8,8 @@ import com.jidnivai.sdcian.sdcian.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findByUsername(String username);
+
+    User findByEmail(String email);
+
 }

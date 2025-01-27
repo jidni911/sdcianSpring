@@ -55,7 +55,7 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private User seller;
 
     @OneToMany

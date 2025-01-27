@@ -1,6 +1,5 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
-import java.io.File;
 import java.util.List;
 
 import jakarta.persistence.Entity;
