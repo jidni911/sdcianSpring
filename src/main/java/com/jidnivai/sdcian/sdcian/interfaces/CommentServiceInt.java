@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.entity.Comment;
 
@@ -14,9 +15,9 @@ public interface CommentServiceInt {
 
     void deleteComment(Long id);
 
-    List<Comment> getCommentsByPost(Long postId);
+    public Page<Comment> getCommentsByPost(Long postId, int page, int size);
 
-    List<Comment> getCommentsByUser(Long userId);
+    public Page<Comment> getCommentsByUser(Long userId, int page, int size);
 
     
 } 

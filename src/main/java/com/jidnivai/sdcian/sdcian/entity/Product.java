@@ -76,7 +76,7 @@ public class Product {
 
     private String stockStatus;//Availabe, Low , Out of Stock
 
-    private int quantityAvailable;
+    private int quantity;
 
     @OneToOne
     private Image mainImage;

@@ -32,7 +32,7 @@ public class OrderController {
     public Page<Order> getOrders(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return orderServiceInt.getOrders();
+        return orderServiceInt.getOrders(page, size);
     }
 
     @PostMapping
@@ -54,7 +54,7 @@ public class OrderController {
     public Page<Order> getOrdersByUser(@PathVariable Long userId,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return orderServiceInt.getOrdersByUser(userId);
+        return orderServiceInt.getOrdersByUser(userId, page, size);
     }
 
     @PutMapping("/{id}/status")

@@ -1,10 +1,10 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
-import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.entity.Role;
@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
-
 @RestController
 @RequestMapping("/role")
 public class RoleController {
@@ -25,8 +22,11 @@ public class RoleController {
     private RoleServiceInt roleService;
 
     @GetMapping("/{roleName}")
-    public List<User> getUsersByRoleName(@PathVariable String roleName) {
-        return roleService.getUsersByRoleName(roleName);
+    public Page<User> getUsersByRoleName(
+        @PathVariable String roleName,
+        @RequestParam(required = false, defaultValue = "0") int page,
+        @RequestParam(required = false, defaultValue = "10") int size) {
+        return roleService.getUsersByRoleName(roleName, page, size);
     }
 
     @GetMapping("/roleOf/{id}")
@@ -35,14 +35,13 @@ public class RoleController {
     }
 
     @PostMapping("/assign/{roleName}/to/{id}")
-    public Set<Role> assignRole(@PathVariable String roleName, @PathVariable String id) {
-        return roleService.assignRole(roleName, id);
+    public void assignRole(@PathVariable String roleName, @PathVariable Long id) {
+         roleService.assignRole(roleName, id);
     }
 
     @PostMapping("/remove/{roleName}/from/{id}")
-    public Set<Role> removeRole(@PathVariable String roleName, @PathVariable String id) {
-        return roleService.removeRole(roleName, id);
+    public void removeRole(@PathVariable String roleName, @PathVariable Long id) {
+        roleService.removeRole(roleName, id);
     }
-    
-    
+
 }

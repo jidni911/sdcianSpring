@@ -1,19 +1,20 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-import java.util.List;
 import java.util.Set;
+
+import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.entity.Role;
 import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface RoleServiceInt {
 
-    List<User> getUsersByRoleName(String roleName);
+    Page<User> getUsersByRoleName(String roleName, int page, int size);
 
     Set<Role> getRolesOfUser(String id);
 
-    Set<Role> assignRole(String roleName, String id);
+    void assignRole(String roleName, Long id);
 
-    Set<Role> removeRole(String roleName, String id);
+    void removeRole(String roleName, Long id);
 
 }

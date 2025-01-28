@@ -9,7 +9,7 @@ public interface OrderServiceInt {
 
     Order getOrder(Long id);
 
-    Page<Order> getOrders();
+    Page<Order> getOrders(int page, int size);
 
     Order createOrder(Order orderEntity);
 
@@ -17,7 +17,7 @@ public interface OrderServiceInt {
 
     void deleteOrder(Long id);
 
-    Page<Order> getOrdersByUser(Long userId);
+    Page<Order> getOrdersByUser(Long userId, int page, int size);
 
     Order updateOrderStatus(Long id, OrderStatus status);
 

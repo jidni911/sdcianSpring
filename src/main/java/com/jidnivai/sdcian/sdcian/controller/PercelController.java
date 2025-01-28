@@ -31,7 +31,7 @@ public class PercelController {
     public Page<Percel> getPercels(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return percelServiceInt.getPercels();
+        return percelServiceInt.getPercels(page, size);
     }
 
     @PostMapping

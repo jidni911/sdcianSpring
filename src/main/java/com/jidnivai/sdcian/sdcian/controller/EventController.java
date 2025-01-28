@@ -2,6 +2,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +33,7 @@ public class EventController {
     @GetMapping
     public Page<Event> getEvents(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
+            @RequestParam(defaultValue = "10") int size) {
         return eventServiceInt.getEvents();
     }
 
@@ -55,6 +55,29 @@ public class EventController {
     @PostMapping("/requestSponsor")
     public Sponsor requestToBeSponsor(@RequestBody User sponsor) {
         return eventServiceInt.requestToBeSponsor(sponsor);
+    }
+
+    @GetMapping("/future")
+    public Page<Event> getFutureEvents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+    }
+
+    @GetMapping("/past")
+    public Page<Event> getPastEvents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+    }
+
+    
+    @GetMapping("/user/{id}")
+    public Page<Event> getEventsByUser(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return eventServiceInt.getEventsByUser(id, PageRequest.of(page, size));
     }
 
 }

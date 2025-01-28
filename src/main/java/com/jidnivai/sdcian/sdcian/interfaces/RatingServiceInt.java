@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-import java.util.List;
+
+import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.entity.Rating;
 
@@ -8,7 +9,7 @@ public interface RatingServiceInt {
 
     Rating getRating(Long id);
 
-    List<Rating> getRatings();
+    Page<Rating> getRatings(int page, int size);
 
     Rating createRating(Rating rating);
 
@@ -16,8 +17,8 @@ public interface RatingServiceInt {
 
     void deleteRating(Long id);
 
-    List<Rating> getRatingsByProduct(Long id);
+    Page<Rating> getRatingsByProduct(Long id, int page, int size);
 
-    List<Rating> getRatingsByUser(Long userId);
+    Page<Rating> getRatingsByUser(Long userId, int page, int size);
 
 }

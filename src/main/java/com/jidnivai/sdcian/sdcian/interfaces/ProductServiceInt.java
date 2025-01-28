@@ -1,6 +1,5 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 
@@ -8,7 +7,7 @@ import com.jidnivai.sdcian.sdcian.entity.Product;
 
 public interface ProductServiceInt {
 
-    List<Product> getAll();
+    Page<Product> getAll(int page, int size);
 
     Product getById(Long id);
 

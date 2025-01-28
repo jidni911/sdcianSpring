@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.jidnivai.sdcian.sdcian.entity.Event;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
@@ -19,5 +20,9 @@ public interface EventServiceInt {
     void deleteEvent(Long id);
 
     Sponsor requestToBeSponsor(User sponsor);
+
+    Page<Event> getFutureEvents(PageRequest of);
+
+    Page<Event> getEventsByUser(Long id, PageRequest of);
 
 }
