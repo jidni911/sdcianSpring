@@ -8,15 +8,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.jidnivai.sdcian.sdcian.entity.Role;
-import com.jidnivai.sdcian.sdcian.entity.User;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, String> {
 
-    Page<User> findByName(String roleName, Pageable pageable);
+    // Finds roles by name (roleName)
+    Page<Role> findByNameContaining(String roleName, Pageable pageable);
 
-    Set<Role> findByUserId(String id);
+    // Finds roles by user ID, updated to Long
+    Set<Role> findByUsersId(Long userId);
 
-    Role findByRoleName(String roleName);
-
+    // Finds role by exact role name
+    Role findByName(String roleName);
 }

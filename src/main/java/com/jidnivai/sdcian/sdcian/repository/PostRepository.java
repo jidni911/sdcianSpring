@@ -10,8 +10,10 @@ import com.jidnivai.sdcian.sdcian.entity.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findByNameContaining(String name, Pageable pageable);
+    // Adjusted to search by postText instead of name
+    Page<Post> findByPostTextContaining(String postText, Pageable pageable);
 
-    Page<Post> findByCreatorId(Long id, Pageable pageable);
+    // Adjusted to search by creator's ID
+    Page<Post> findByCreatorId(Long creatorId, Pageable pageable);
 
 }

@@ -14,9 +14,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Role {
+
     @Id
-    private String name;
+    private String name; // Unique role name
 
     @ManyToMany
-    private List<User> users;
+    private List<User> users; // List of users associated with this role
+
 }
