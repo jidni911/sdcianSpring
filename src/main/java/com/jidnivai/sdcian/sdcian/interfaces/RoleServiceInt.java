@@ -11,7 +11,7 @@ public interface RoleServiceInt {
 
     Page<User> getUsersByRoleName(String roleName, int page, int size);
 
-    Set<Role> getRolesOfUser(String id);
+    Set<Role> getRolesOfUser(Long id);
 
     void assignRole(String roleName, Long id);
 

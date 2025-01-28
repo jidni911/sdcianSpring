@@ -42,7 +42,7 @@ public class PostService implements PostServiceInt {
     @Override
     public Page<Post> search(String name, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return postRepository.findByNameContaining(name, pageable);
+        return postRepository.findByPostTextContaining(name, pageable);
     }
 
     @Override

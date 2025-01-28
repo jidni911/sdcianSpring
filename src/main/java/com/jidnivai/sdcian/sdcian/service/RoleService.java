@@ -26,13 +26,13 @@ public class RoleService implements RoleServiceInt {
     }
 
     @Override
-    public Set<Role> getRolesOfUser(String id) {
-        return roleRepository.findByUserId(id);
+    public Set<Role> getRolesOfUser(Long id) {
+        return roleRepository.findByUsersId(id);
     }
 
     @Override
     public void assignRole(String roleName, Long id) {
-        Role role = roleRepository.findByRoleName(roleName);
+        Role role = roleRepository.findByName(roleName);
         User user = new User();
         user.setId(id);
         role.getUsers().add(user);
@@ -41,7 +41,7 @@ public class RoleService implements RoleServiceInt {
 
     @Override
     public void removeRole(String roleName, Long id) {
-        Role role = roleRepository.findByRoleName(roleName);
+        Role role = roleRepository.findByName(roleName);
         role.getUsers().removeIf(user -> user.getId().equals(id));
         roleRepository.save(role).getUsers();
     }
