@@ -1,21 +1,8 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "OpenAPI definition",
-    "version": "v0"
-  },
-  "servers": [
-    {
-      "url": "http://localhost",
-      "description": "Generated server url"
-    }
-  ],
   "paths": {
     "/user/{id}": {
       "get": {
-        "tags": [
-          "user-controller"
-        ],
+        "tags": ["user-controller"],
         "operationId": "getUser",
         "parameters": [
           {
@@ -42,9 +29,7 @@
         }
       },
       "put": {
-        "tags": [
-          "user-controller"
-        ],
+        "tags": ["user-controller"],
         "operationId": "updateUser",
         "parameters": [
           {
@@ -81,9 +66,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "user-controller"
-        ],
+        "tags": ["user-controller"],
         "operationId": "deleteUser",
         "parameters": [
           {
@@ -105,9 +88,7 @@
     },
     "/rating/{id}": {
       "get": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "getRating",
         "parameters": [
           {
@@ -134,9 +115,7 @@
         }
       },
       "put": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "updateRating",
         "parameters": [
           {
@@ -173,9 +152,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "deleteRating",
         "parameters": [
           {
@@ -197,9 +174,7 @@
     },
     "/product/{id}": {
       "get": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "getById",
         "parameters": [
           {
@@ -226,9 +201,7 @@
         }
       },
       "put": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "update",
         "parameters": [
           {
@@ -265,9 +238,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "delete",
         "parameters": [
           {
@@ -289,9 +260,7 @@
     },
     "/post/{id}": {
       "get": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "getPost",
         "parameters": [
           {
@@ -318,9 +287,7 @@
         }
       },
       "put": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "updatePost",
         "parameters": [
           {
@@ -357,9 +324,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "deletePost",
         "parameters": [
           {
@@ -381,9 +346,7 @@
     },
     "/percel/{id}": {
       "get": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "getPercel",
         "parameters": [
           {
@@ -410,9 +373,7 @@
         }
       },
       "put": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "updatePercel",
         "parameters": [
           {
@@ -449,9 +410,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "deletePercel",
         "parameters": [
           {
@@ -473,9 +432,7 @@
     },
     "/order/{id}": {
       "get": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "getOrder",
         "parameters": [
           {
@@ -502,9 +459,7 @@
         }
       },
       "put": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "updateOrder",
         "parameters": [
           {
@@ -541,9 +496,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "deleteOrder",
         "parameters": [
           {
@@ -565,9 +518,7 @@
     },
     "/order/{id}/status": {
       "put": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "updateOrderStatus",
         "parameters": [
           {
@@ -616,9 +567,7 @@
     },
     "/messege/{id}": {
       "get": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "getMessege",
         "parameters": [
           {
@@ -645,9 +594,7 @@
         }
       },
       "put": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "updateMessege",
         "parameters": [
           {
@@ -684,9 +631,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "deleteMessege",
         "parameters": [
           {
@@ -708,9 +653,7 @@
     },
     "/event/{id}": {
       "get": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "getEvent",
         "parameters": [
           {
@@ -737,9 +680,7 @@
         }
       },
       "put": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "updateEvent",
         "parameters": [
           {
@@ -776,9 +717,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "deleteEvent",
         "parameters": [
           {
@@ -800,9 +739,7 @@
     },
     "/comment/{id}": {
       "get": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "getComment",
         "parameters": [
           {
@@ -829,9 +766,7 @@
         }
       },
       "put": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "updateComment",
         "parameters": [
           {
@@ -868,9 +803,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "deleteComment",
         "parameters": [
           {
@@ -892,9 +825,7 @@
     },
     "/carts/{id}": {
       "get": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "getCartById",
         "parameters": [
           {
@@ -921,9 +852,7 @@
         }
       },
       "put": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "updateCart",
         "parameters": [
           {
@@ -960,9 +889,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "deleteCart",
         "parameters": [
           {
@@ -984,9 +911,7 @@
     },
     "/bugs/{id}": {
       "get": {
-        "tags": [
-          "bug-controller"
-        ],
+        "tags": ["bug-controller"],
         "operationId": "getBugById",
         "parameters": [
           {
@@ -1013,9 +938,7 @@
         }
       },
       "put": {
-        "tags": [
-          "bug-controller"
-        ],
+        "tags": ["bug-controller"],
         "operationId": "updateBug",
         "parameters": [
           {
@@ -1052,9 +975,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "bug-controller"
-        ],
+        "tags": ["bug-controller"],
         "operationId": "deleteBug",
         "parameters": [
           {
@@ -1076,9 +997,7 @@
     },
     "/user": {
       "get": {
-        "tags": [
-          "user-controller"
-        ],
+        "tags": ["user-controller"],
         "operationId": "getUsers",
         "responses": {
           "200": {
@@ -1097,9 +1016,7 @@
         }
       },
       "post": {
-        "tags": [
-          "user-controller"
-        ],
+        "tags": ["user-controller"],
         "operationId": "createUser",
         "requestBody": {
           "content": {
@@ -1127,9 +1044,7 @@
     },
     "/role/remove/{roleName}/from/{id}": {
       "post": {
-        "tags": [
-          "role-controller"
-        ],
+        "tags": ["role-controller"],
         "operationId": "removeRole",
         "parameters": [
           {
@@ -1159,9 +1074,7 @@
     },
     "/role/assign/{roleName}/to/{id}": {
       "post": {
-        "tags": [
-          "role-controller"
-        ],
+        "tags": ["role-controller"],
         "operationId": "assignRole",
         "parameters": [
           {
@@ -1191,9 +1104,7 @@
     },
     "/rating": {
       "get": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "getRatings",
         "parameters": [
           {
@@ -1231,9 +1142,7 @@
         }
       },
       "post": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "createRating",
         "requestBody": {
           "content": {
@@ -1261,9 +1170,7 @@
     },
     "/product/new": {
       "post": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "add",
         "requestBody": {
           "content": {
@@ -1291,9 +1198,7 @@
     },
     "/post": {
       "get": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "getPosts",
         "parameters": [
           {
@@ -1331,9 +1236,7 @@
         }
       },
       "post": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "savePost",
         "requestBody": {
           "content": {
@@ -1361,9 +1264,7 @@
     },
     "/percel": {
       "get": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "getPercels",
         "parameters": [
           {
@@ -1401,9 +1302,7 @@
         }
       },
       "post": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "createPercel",
         "requestBody": {
           "content": {
@@ -1431,9 +1330,7 @@
     },
     "/order": {
       "get": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "getOrders",
         "parameters": [
           {
@@ -1471,9 +1368,7 @@
         }
       },
       "post": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "createOrder",
         "requestBody": {
           "content": {
@@ -1501,9 +1396,7 @@
     },
     "/messege": {
       "get": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "getMesseges",
         "parameters": [
           {
@@ -1541,9 +1434,7 @@
         }
       },
       "post": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "createMessege",
         "requestBody": {
           "content": {
@@ -1571,9 +1462,7 @@
     },
     "/event": {
       "get": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "getEvents",
         "parameters": [
           {
@@ -1611,9 +1500,7 @@
         }
       },
       "post": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "addEvent",
         "requestBody": {
           "content": {
@@ -1641,9 +1528,7 @@
     },
     "/event/requestSponsor": {
       "post": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "requestToBeSponsor",
         "requestBody": {
           "content": {
@@ -1671,9 +1556,7 @@
     },
     "/comment": {
       "post": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "saveComment",
         "requestBody": {
           "content": {
@@ -1701,9 +1584,7 @@
     },
     "/carts": {
       "get": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "getAllCarts",
         "parameters": [
           {
@@ -1741,9 +1622,7 @@
         }
       },
       "post": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "createCart",
         "requestBody": {
           "content": {
@@ -1771,9 +1650,7 @@
     },
     "/bugs": {
       "get": {
-        "tags": [
-          "bug-controller"
-        ],
+        "tags": ["bug-controller"],
         "operationId": "getAllBugs",
         "parameters": [
           {
@@ -1811,9 +1688,7 @@
         }
       },
       "post": {
-        "tags": [
-          "bug-controller"
-        ],
+        "tags": ["bug-controller"],
         "operationId": "addBug",
         "requestBody": {
           "content": {
@@ -1841,9 +1716,7 @@
     },
     "/role/{roleName}": {
       "get": {
-        "tags": [
-          "role-controller"
-        ],
+        "tags": ["role-controller"],
         "operationId": "getUsersByRoleName",
         "parameters": [
           {
@@ -1891,9 +1764,7 @@
     },
     "/role/roleOf/{id}": {
       "get": {
-        "tags": [
-          "role-controller"
-        ],
+        "tags": ["role-controller"],
         "operationId": "getRole",
         "parameters": [
           {
@@ -1926,9 +1797,7 @@
     },
     "/rating/user/{userId}": {
       "get": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "getRatingsByUser",
         "parameters": [
           {
@@ -1977,9 +1846,7 @@
     },
     "/rating/product/{id}": {
       "get": {
-        "tags": [
-          "rating-controller"
-        ],
+        "tags": ["rating-controller"],
         "operationId": "getRatingsByProduct",
         "parameters": [
           {
@@ -2028,9 +1895,7 @@
     },
     "/product": {
       "get": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "getProducts",
         "parameters": [
           {
@@ -2070,9 +1935,7 @@
     },
     "/product/search/{name}": {
       "get": {
-        "tags": [
-          "product-controller"
-        ],
+        "tags": ["product-controller"],
         "operationId": "search",
         "parameters": [
           {
@@ -2120,9 +1983,7 @@
     },
     "/post/user/{id}": {
       "get": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "getPostsByUser",
         "parameters": [
           {
@@ -2171,9 +2032,7 @@
     },
     "/post/search/{name}": {
       "get": {
-        "tags": [
-          "post-controller"
-        ],
+        "tags": ["post-controller"],
         "operationId": "search_1",
         "parameters": [
           {
@@ -2221,9 +2080,7 @@
     },
     "/percel/sender/{id}": {
       "get": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "getPercelsBySender",
         "parameters": [
           {
@@ -2272,9 +2129,7 @@
     },
     "/percel/search/{name}": {
       "get": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "search_2",
         "parameters": [
           {
@@ -2322,9 +2177,7 @@
     },
     "/percel/rider/{id}": {
       "get": {
-        "tags": [
-          "percel-controller"
-        ],
+        "tags": ["percel-controller"],
         "operationId": "getPercelsByRider",
         "parameters": [
           {
@@ -2373,9 +2226,7 @@
     },
     "/order/user/{userId}": {
       "get": {
-        "tags": [
-          "order-controller"
-        ],
+        "tags": ["order-controller"],
         "operationId": "getOrdersByUser",
         "parameters": [
           {
@@ -2424,9 +2275,7 @@
     },
     "/messege/between/{senderId}/{receiverId}": {
       "get": {
-        "tags": [
-          "messege-controller"
-        ],
+        "tags": ["messege-controller"],
         "operationId": "getMessegesBetweenSenderAndReceiver",
         "parameters": [
           {
@@ -2484,9 +2333,7 @@
     },
     "/event/user/{id}": {
       "get": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "getEventsByUser",
         "parameters": [
           {
@@ -2535,9 +2382,7 @@
     },
     "/event/past": {
       "get": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "getPastEvents",
         "parameters": [
           {
@@ -2577,9 +2422,7 @@
     },
     "/event/future": {
       "get": {
-        "tags": [
-          "event-controller"
-        ],
+        "tags": ["event-controller"],
         "operationId": "getFutureEvents",
         "parameters": [
           {
@@ -2619,9 +2462,7 @@
     },
     "/comment/user/{userId}": {
       "get": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "getCommentsByUser",
         "parameters": [
           {
@@ -2670,9 +2511,7 @@
     },
     "/comment/post/{postId}": {
       "get": {
-        "tags": [
-          "comment-controller"
-        ],
+        "tags": ["comment-controller"],
         "operationId": "getCommentsByPost",
         "parameters": [
           {
@@ -2721,9 +2560,7 @@
     },
     "/carts/user/{userId}": {
       "get": {
-        "tags": [
-          "cart-controller"
-        ],
+        "tags": ["cart-controller"],
         "operationId": "getCartByUser",
         "parameters": [
           {
@@ -2752,9 +2589,7 @@
     },
     "/auth/signup": {
       "get": {
-        "tags": [
-          "auth-controller"
-        ],
+        "tags": ["auth-controller"],
         "operationId": "signup",
         "responses": {
           "200": {
@@ -2772,9 +2607,7 @@
     },
     "/auth/login": {
       "get": {
-        "tags": [
-          "auth-controller"
-        ],
+        "tags": ["auth-controller"],
         "operationId": "login",
         "responses": {
           "200": {
@@ -2792,9 +2625,7 @@
     },
     "/auth/forgot-password": {
       "get": {
-        "tags": [
-          "auth-controller"
-        ],
+        "tags": ["auth-controller"],
         "operationId": "forgotPassword",
         "responses": {
           "200": {
@@ -2848,11 +2679,7 @@
           },
           "gender": {
             "type": "string",
-            "enum": [
-              "MALE",
-              "FEMALE",
-              "NOT_SPECIFIED"
-            ]
+            "enum": ["MALE", "FEMALE", "NOT_SPECIFIED"]
           },
           "dob": {
             "type": "string",
@@ -3288,13 +3115,7 @@
           },
           "paymentMethod": {
             "type": "string",
-            "enum": [
-              "CASH_ON_DELIVERY",
-              "BKASH",
-              "NAGAD",
-              "ROCKET",
-              "CASH"
-            ]
+            "enum": ["CASH_ON_DELIVERY", "BKASH", "NAGAD", "ROCKET", "CASH"]
           },
           "totalAmount": {
             "type": "number",
@@ -3302,10 +3123,7 @@
           },
           "deliveryMethod": {
             "type": "string",
-            "enum": [
-              "HOME_DELIVERY",
-              "PICKUP"
-            ]
+            "enum": ["HOME_DELIVERY", "PICKUP"]
           },
           "deliveryAddress": {
             "type": "string"
@@ -3599,11 +3417,7 @@
           },
           "severity": {
             "type": "string",
-            "enum": [
-              "LOW",
-              "MEDIUM",
-              "HIGH"
-            ]
+            "enum": ["LOW", "MEDIUM", "HIGH"]
           },
           "steps": {
             "type": "string"
