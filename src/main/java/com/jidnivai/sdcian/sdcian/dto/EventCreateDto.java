@@ -3,23 +3,16 @@ package com.jidnivai.sdcian.sdcian.dto;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-
-import com.jidnivai.sdcian.sdcian.entity.Sponsor;
-import com.jidnivai.sdcian.sdcian.entity.User;
-
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @ToString
-public class EventDto {
-    private Long id;
+public class EventCreateDto {
 
     private String name;
 
@@ -39,9 +32,4 @@ public class EventDto {
     private Integer distanceInKM;
 
     private String description;
-
-    //TODO : Add OrganiserDTO
-    private User organiser;
-
-    private List<Sponsor> sponsor;
 }

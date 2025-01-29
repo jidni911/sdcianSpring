@@ -3,6 +3,8 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import com.jidnivai.sdcian.sdcian.dto.EventCreateDto;
+import com.jidnivai.sdcian.sdcian.dto.EventDto;
 import com.jidnivai.sdcian.sdcian.entity.Event;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -13,7 +15,7 @@ public interface EventServiceInt {
 
     Page<Event> getEvents();
 
-    Event addEvent(Event event);
+    EventDto addEvent(EventCreateDto eventCreateDto);
 
     Event updateEvent(Long id, Event event);
 

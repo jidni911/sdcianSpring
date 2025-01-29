@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.jidnivai.sdcian.sdcian.enums.Gender;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String fullName;
+    @Column(unique = true)
     private String username;
     private String email;
     private String password;

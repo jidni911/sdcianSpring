@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.EventCreateDto;
+import com.jidnivai.sdcian.sdcian.dto.EventDto;
 import com.jidnivai.sdcian.sdcian.entity.Event;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -40,8 +43,8 @@ public class EventController {
     }
 
     @PostMapping
-    public Event addEvent(@RequestBody Event event) {
-        return eventServiceInt.addEvent(event);
+    public ResponseEntity<EventDto> addEvent(@RequestBody EventCreateDto eventCreateDto) {
+        return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto));
     }
 
     @PutMapping("/{id}")

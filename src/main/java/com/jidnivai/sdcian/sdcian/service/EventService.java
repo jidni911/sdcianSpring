@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import com.jidnivai.sdcian.sdcian.dto.EventCreateDto;
+import com.jidnivai.sdcian.sdcian.dto.EventDto;
 import com.jidnivai.sdcian.sdcian.entity.Event;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -8,6 +10,7 @@ import com.jidnivai.sdcian.sdcian.repository.EventRepository;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,8 +34,13 @@ public class EventService implements EventServiceInt {
     }
 
     @Override
-    public Event addEvent(Event event) {
-        return eventRepository.save(event);
+    public EventDto addEvent(EventCreateDto eventCreateDto) {
+        Event event = new Event();
+        BeanUtils.copyProperties(eventCreateDto, event);
+        //TODO add user
+        EventDto eventDto = new EventDto();
+        BeanUtils.copyProperties(eventRepository.save(event), eventDto);
+        return eventDto;
     }
 
     @Override
