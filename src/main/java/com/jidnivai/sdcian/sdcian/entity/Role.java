@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,8 @@ public class Role {
     @Id
     private String name; // Unique role name
 
-    @ManyToMany
-    @JsonIgnore
-    private List<User> users; // List of users associated with this role
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore 
+    private List<User> users;
 
 }

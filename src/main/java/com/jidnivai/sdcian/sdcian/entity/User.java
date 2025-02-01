@@ -7,9 +7,14 @@ import com.jidnivai.sdcian.sdcian.enums.Gender;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -25,11 +30,11 @@ import lombok.ToString;
 @Table(name = "users")
 public class User {
 
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+    // public User(String username, String email, String password) {
+    //     this.username = username;
+    //     this.email = email;
+    //     this.password = password;
+    // }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -40,10 +45,14 @@ public class User {
     private String password;
 
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private LocalDate dob;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "role_users"
+    )
     private Set<Role> roles;
 
     private String phoneNumber;

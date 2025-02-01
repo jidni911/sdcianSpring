@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jidnivai.sdcian.sdcian.security.jwt.JwtUtils;
 import com.jidnivai.sdcian.sdcian.dto.LoginRequest;
+import com.jidnivai.sdcian.sdcian.dto.UserSignupDto;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 import com.jidnivai.sdcian.sdcian.repository.RoleRepository;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
@@ -29,9 +31,9 @@ import com.jidnivai.sdcian.sdcian.entity.Role;
 import jakarta.validation.Valid;
 
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.enums.Gender;
 import com.jidnivai.sdcian.sdcian.interfaces.AuthServiceInt;
 import com.jidnivai.sdcian.sdcian.dto.JwtResponse;
-import com.jidnivai.sdcian.sdcian.payload.request.SignupRequest;
 import com.jidnivai.sdcian.sdcian.payload.response.MessageResponse;
 
 @RestController
@@ -75,6 +77,12 @@ public class AuthController {
         user.setId(userDetails.getId());
         user.setUsername(userDetails.getUsername());
         user.setEmail(userDetails.getEmail());
+        user.setRoles(userDetails.getRoles());
+        user.setFullName(userDetails.getFullName());
+        user.setGender(userDetails.getGender());
+        user.setDob(userDetails.getDob());
+        user.setPhoneNumber(userDetails.getPhoneNumber());
+        user.setAddress(userDetails.getAddress());
 
         ResponseCookie jwtCookie = jwtUtil.generateJwtCookie(userDetails);
 
@@ -85,7 +93,10 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(
+        @Valid @RequestBody UserSignupDto signUpRequest,
+        @RequestParam(required = false) MultipartFile profilePicture
+        ) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
@@ -93,11 +104,23 @@ public class AuthController {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
+;
 
-        // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+        if(!signUpRequest.getPassword().equals(signUpRequest.getRetypePassword())){
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Passwords do not match!"));
+        }
+
+        User user = new User();
+
+        user.setFullName(signUpRequest.getFullName());
+        user.setUsername(signUpRequest.getUsername());
+        user.setEmail(signUpRequest.getEmail());
+        user.setPassword(encoder.encode(signUpRequest.getPassword()));
+        user.setGender(Gender.valueOf(signUpRequest.getGender().toUpperCase()));
+        user.setDob(signUpRequest.getDob());
+        user.setPhoneNumber(signUpRequest.getPhoneNumber());
+        user.setAddress(signUpRequest.getAddress());
+        //TODO - Handle profile picture upload separately
 
         // Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();

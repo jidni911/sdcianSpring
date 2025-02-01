@@ -1,7 +1,9 @@
 package com.jidnivai.sdcian.sdcian.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jidnivai.sdcian.sdcian.entity.Role;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.enums.Gender;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,13 +13,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
-@Setter@ToString
+@Setter
+@ToString
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
 
@@ -27,18 +32,46 @@ public class UserDetailsImpl implements UserDetails {
 
   private String email;
 
+  private String phoneNumber;
+
+  private String address;
+
+  private Set<Role> roles;
+
+  private String fullName;
+
+  private Gender gender;
+
+  private LocalDate dob;
+
   @JsonIgnore
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImpl(Long id,String username, String email, String password,
-                         Collection<? extends GrantedAuthority> authorities) {
+  public UserDetailsImpl(
+      Long id,
+      String username,
+      String email,
+      String password,
+      String phoneNumber,
+      String address,
+      Set<Role> roles,
+      String fullName,
+      Gender gender,
+      LocalDate dob,
+      Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.username = username;
     this.email = email;
     this.password = password;
     this.authorities = authorities;
+    this.phoneNumber = phoneNumber;
+    this.address = address;
+    this.roles = roles;
+    this.fullName = fullName;
+    this.gender = gender;
+    this.dob = dob;
   }
 
   public static UserDetailsImpl build(User user) {
@@ -50,7 +83,13 @@ public class UserDetailsImpl implements UserDetails {
         user.getId(),
         user.getUsername(),
         user.getEmail(),
-        user.getPassword(), 
+        user.getPassword(),
+        user.getPhoneNumber(),
+        user.getAddress(),
+        user.getRoles(),
+        user.getFullName(),
+        user.getGender(),
+        user.getDob(),
         authorities);
   }
 

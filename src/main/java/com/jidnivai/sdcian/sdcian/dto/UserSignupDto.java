@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +16,7 @@ import jakarta.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSignUpDto {
+public class UserSignupDto {
 
     @NotBlank(message = "Full name is required")
     @Size(min = 3, message = "Full name must be at least 3 characters")
@@ -54,5 +53,5 @@ public class UserSignUpDto {
     private String address;
 
     // For profile picture, if you're using file upload, use MultipartFile.
-    private MultipartFile profilePicture;
+    // private MultipartFile profilePicture;
 }

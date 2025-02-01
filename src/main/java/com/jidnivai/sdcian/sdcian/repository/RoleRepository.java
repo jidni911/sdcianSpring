@@ -17,7 +17,7 @@ public interface RoleRepository extends JpaRepository<Role, String> {
     Page<Role> findByNameContaining(String roleName, Pageable pageable);
 
     // Finds roles by user ID, updated to Long
-    Set<Role> findByUsersId(Long userId);
+    Set<Role> findByUsersId(Long userId);//TODO there are two different tables
 
     // Finds role by exact role name
     Role findByName(String roleName);

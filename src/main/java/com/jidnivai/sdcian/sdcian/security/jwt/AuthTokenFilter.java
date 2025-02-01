@@ -61,6 +61,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         // Collections.list(request.getHeaderNames())
         //     .forEach(name -> System.out.println(name + ": " + request.getHeader(name)));
         
+        
         String username = null;
         String jwtToken = null;
 

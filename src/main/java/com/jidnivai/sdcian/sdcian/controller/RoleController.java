@@ -31,13 +31,13 @@ public class RoleController {
 
     @GetMapping("/roleOf/{id}")
     public Set<Role> getRole(@PathVariable Long id) {
-        System.out.println(id);
+        // System.out.println(id);
         return roleService.getRolesOfUser(id);
     }
 
     @PostMapping("/assign/{roleName}/to/{id}")
     public void assignRole(@PathVariable String roleName, @PathVariable Long id) {
-         roleService.assignRole(roleName, id);
+        roleService.assignRole(roleName, id);
     }
 
     @PostMapping("/remove/{roleName}/from/{id}")
