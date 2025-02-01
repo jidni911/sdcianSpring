@@ -2,6 +2,8 @@ package com.jidnivai.sdcian.sdcian.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -19,6 +21,7 @@ public class Role {
     private String name; // Unique role name
 
     @ManyToMany
+    @JsonIgnore
     private List<User> users; // List of users associated with this role
 
 }

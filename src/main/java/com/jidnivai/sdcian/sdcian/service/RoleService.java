@@ -27,6 +27,7 @@ public class RoleService implements RoleServiceInt {
 
     @Override
     public Set<Role> getRolesOfUser(Long id) {
+        // System.out.println(roleRepository.findByUsersId(id));
         return roleRepository.findByUsersId(id);
     }
 

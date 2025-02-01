@@ -1,53 +1,144 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jidnivai.sdcian.sdcian.config.jwt.JwtUtil;
-import com.jidnivai.sdcian.sdcian.dto.AuthResponse;
+import com.jidnivai.sdcian.sdcian.security.jwt.JwtUtils;
 import com.jidnivai.sdcian.sdcian.dto.LoginRequest;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
+import com.jidnivai.sdcian.sdcian.repository.RoleRepository;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
+import com.jidnivai.sdcian.sdcian.entity.Role;
+
+import jakarta.validation.Valid;
+
+import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.dto.JwtResponse;
+import com.jidnivai.sdcian.sdcian.payload.request.SignupRequest;
+import com.jidnivai.sdcian.sdcian.payload.response.MessageResponse;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    // Log in , log out, sign up forgot password TODO rework
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtils jwtUtil;
 
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                        loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtUtil.generateToken((UserDetails) authentication.getPrincipal());
 
-        return ResponseEntity.ok(new AuthResponse(token));
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User user = new User();
+
+        // List<String> roles = userDetails.getAuthorities().stream()
+        // .map(GrantedAuthority::getAuthority)
+        // .toList();
+        user.setId(userDetails.getId());
+        user.setUsername(userDetails.getUsername());
+        user.setEmail(userDetails.getEmail());
+
+        ResponseCookie jwtCookie = jwtUtil.generateJwtCookie(userDetails);
+
+        String token = jwtUtil.generateJwtToken(userDetails);
+
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .body(new JwtResponse(user, token));
     }
 
-    @GetMapping("/signup")
-    public String signup() {
-        return "signup";
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        // Create new user's account
+        User user = new User(signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()));
+
+        // Set<String> strRoles = signUpRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+        Role role = new Role();
+        role.setName("ROLE_USER");
+        roles.add(roleRepository.save(role));
+
+        // if (strRoles == null) {
+        //     Role userRole = roleRepository.findById(ERole.ROLE_USER.toString())
+        //             .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        //     roles.add(userRole);
+        // } else {
+        //     strRoles.forEach(role -> {
+        //         switch (role) {
+        //             case "admin":
+        //                 Role adminRole = roleRepository.findById(ERole.ROLE_ADMIN.toString())
+        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        //                 roles.add(adminRole);
+        //                 break;
+        //             case "mod":
+        //                 Role modRole = roleRepository.findById(ERole.ROLE_MODERATOR.toString())
+        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        //                 roles.add(modRole);
+        //                 break;
+        //             default:
+        //                 Role userRole = roleRepository.findById(ERole.ROLE_USER.toString())
+        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        //                 roles.add(userRole);
+        //         }
+        //     });
+        // }
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+    @PostMapping("/signout")
+    public ResponseEntity<?> logoutUser() {
+        ResponseCookie cookie = jwtUtil.getCleanJwtCookie();
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body(new MessageResponse("You've been signed out!"));
+    }
+
+    // forgot password TODO rework
 
     @GetMapping("/forgot-password")
     public String forgotPassword() {
