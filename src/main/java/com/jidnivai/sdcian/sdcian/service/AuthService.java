@@ -1,14 +1,46 @@
-// package com.jidnivai.sdcian.sdcian.service;
+package com.jidnivai.sdcian.sdcian.service;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import com.jidnivai.sdcian.sdcian.entity.User;
-// import com.jidnivai.sdcian.sdcian.interfaces.AuthServiceInt;
-// import com.jidnivai.sdcian.sdcian.repository.UserRepository;
+import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.interfaces.AuthServiceInt;
+import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
-// @Service
-// public class AuthService implements AuthServiceInt {
+@Service
+public class AuthService implements AuthServiceInt {
+
+    @Autowired
+    private UserRepository userRepository;
+    @Override
+    public User login(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public String forgotPassword(String email) {
+        //TODO 
+        return null;
+    }
+
+    @Override
+    public String signup(User user) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'signup'");
+    }
+
+
+    @Override
+    public Boolean checkUsernameAvailability(String username) {
+        return !userRepository.existsByUsernameIgnoreCase(username);
+    }
+
+    
+    @Override
+    public Boolean checkEmailAvailability(String email) {
+        return !userRepository.existsByEmailIgnoreCase(email);
+    }
+}
 
 //     //TODO rework
 //     @Autowired

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.security.jwt.JwtUtils;
@@ -28,6 +29,7 @@ import com.jidnivai.sdcian.sdcian.entity.Role;
 import jakarta.validation.Valid;
 
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.interfaces.AuthServiceInt;
 import com.jidnivai.sdcian.sdcian.dto.JwtResponse;
 import com.jidnivai.sdcian.sdcian.payload.request.SignupRequest;
 import com.jidnivai.sdcian.sdcian.payload.response.MessageResponse;
@@ -51,6 +53,9 @@ public class AuthController {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    AuthServiceInt authServiceInt;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -142,6 +147,17 @@ public class AuthController {
 
     @GetMapping("/forgot-password")
     public String forgotPassword() {
-        return "forgot-password";
+        return authServiceInt.forgotPassword("email");
+    }
+
+     @GetMapping("/checkUsernameAvailability")
+    public Boolean checkUsernameAvailability(@RequestParam String username){
+        return authServiceInt.checkUsernameAvailability(username);
+    }
+
+    
+    @GetMapping("/checkEmailAvailability")
+    public Boolean checkEmailAvailability(@RequestParam String email){
+        return authServiceInt.checkEmailAvailability(email);
     }
 }

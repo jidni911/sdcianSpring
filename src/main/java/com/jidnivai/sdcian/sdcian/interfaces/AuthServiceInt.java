@@ -10,5 +10,9 @@ public interface AuthServiceInt {
 
     public String signup(User user);
 
+    public Boolean checkUsernameAvailability(String username);
+
+    public Boolean checkEmailAvailability(String email);
+
     
 }
