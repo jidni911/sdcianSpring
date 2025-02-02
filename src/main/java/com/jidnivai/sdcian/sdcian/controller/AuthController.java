@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,8 +90,9 @@ public class AuthController {
 
         String token = jwtUtil.generateJwtToken(userDetails);
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new JwtResponse(user, token));
+        return ResponseEntity.ok()
+            .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+            .body(new JwtResponse(user, token));
     }
 
     @PostMapping("/signup")
@@ -182,5 +185,11 @@ public class AuthController {
     @GetMapping("/checkEmailAvailability")
     public Boolean checkEmailAvailability(@RequestParam String email){
         return authServiceInt.checkEmailAvailability(email);
+    }
+
+    @GetMapping("/test")
+    public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl user) { 
+        System.out.println(user);
+        return user;
     }
 }
