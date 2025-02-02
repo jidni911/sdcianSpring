@@ -23,6 +23,7 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     @JsonIgnore 
+    @ToString.Exclude
     private List<User> users;
 
 }

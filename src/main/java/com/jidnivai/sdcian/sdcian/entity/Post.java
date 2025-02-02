@@ -28,6 +28,8 @@ public class Post {
 
     private String postText;
 
+    private String location;
+
     @OneToMany
     private List<Image> postImage;
 

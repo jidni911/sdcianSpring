@@ -15,6 +15,8 @@ public class NewPostDto {
 
     private String postText;
 
+    private String location;
+
     private List<Long> postImage;
 
     private List<Long> postVideo;

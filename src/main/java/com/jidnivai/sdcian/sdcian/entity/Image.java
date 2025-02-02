@@ -28,6 +28,7 @@ public class Image {
     private String name;
 
     @Transient
+    @ToString.Exclude
     protected byte[] imageBytes;
 
     private String description;

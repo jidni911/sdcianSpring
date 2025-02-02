@@ -54,11 +54,7 @@ public class BugController {
         bugServiceInt.deleteBug(id);
     }
 
-    @GetMapping("/test")
-    public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl user) { 
-        System.out.println(user);
-        return user;
-    }
+    
 }
 
 

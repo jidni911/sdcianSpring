@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
 import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
 
@@ -36,7 +37,7 @@ public class PostController {
     }
 
     @PostMapping
-    public Post savePost(@RequestBody Post post) {
+    public Post savePost(@RequestBody NewPostDto newPostDto) {
         return postServiceInt.savePost(post);
     }
 

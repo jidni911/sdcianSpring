@@ -1,6 +1,12 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-//TODO rethink
+import org.springframework.web.multipart.MultipartFile;
+
+import com.jidnivai.sdcian.sdcian.dto.ImageUploadResponse;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
+
 public interface FileServiceInt {
+
+    ImageUploadResponse uploadImage(MultipartFile image, UserDetailsImpl user);
 
 }

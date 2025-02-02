@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "sdcian.app.images-upload-path",
+  "type": "java.lang.String",
+  "description": "A description for 'sdcian.app.images-upload-path'"
+}]}
