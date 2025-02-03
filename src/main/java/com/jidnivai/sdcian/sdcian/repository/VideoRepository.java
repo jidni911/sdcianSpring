@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.jidnivai.sdcian.sdcian.entity.Video;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video, Long> {   
+public interface VideoRepository extends JpaRepository<Video, Long> {
 
 }

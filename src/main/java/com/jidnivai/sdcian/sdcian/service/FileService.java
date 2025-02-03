@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jidnivai.sdcian.sdcian.dto.ImageUploadResponse;
+import com.jidnivai.sdcian.sdcian.dto.VideoUploadResponse;
 import com.jidnivai.sdcian.sdcian.entity.Image;
+import com.jidnivai.sdcian.sdcian.entity.Video;
 import com.jidnivai.sdcian.sdcian.interfaces.FileServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
+import com.jidnivai.sdcian.sdcian.repository.VideoRepository;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @Service
@@ -23,14 +26,20 @@ public class FileService implements FileServiceInt {
     ImageRepository imageRepository;
 
     @Autowired
+    VideoRepository videoRepository;
+
+    @Autowired
     UserService userService;
 
     @Value("${sdcian.app.images-upload-path}")
-    String folder;
+    String imageFolder;
+
+    @Value("${sdcian.app.videos-upload-path}")
+    String videoFolder;
 
     @Override
     public ImageUploadResponse uploadImage(MultipartFile image, UserDetailsImpl user) {
-        String userFolder = folder + user.getUsername() + "/";
+        String userFolder = imageFolder + user.getUsername() + "/";
         String fileName = user.getUsername() + "_" + System.currentTimeMillis() + "_" + image.getOriginalFilename();
 
         try {
@@ -55,6 +64,39 @@ public class FileService implements FileServiceInt {
             String imageUrl = "/images/" + user.getUsername() + "/" + fileName;
 
             return new ImageUploadResponse(img.getId(), imageUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public VideoUploadResponse uploadVideo(MultipartFile video, UserDetailsImpl user) {
+        String userFolder = videoFolder + user.getUsername() + "/";
+        String fileName = user.getUsername() + "_" + System.currentTimeMillis() + "_" + video.getOriginalFilename();
+
+        try {
+            // Ensure directory exists
+            Path userPath = Paths.get(userFolder);
+            if (!Files.exists(userPath)) {
+                Files.createDirectories(userPath);
+            }
+
+            // Write file
+            Path filePath = userPath.resolve(fileName);
+            Files.write(filePath, video.getBytes());
+
+            // Save to database
+            Video vid = new Video();
+            vid.setUser(userService.getUser(user.getId()));
+            vid.setName(fileName);
+            vid.setPath(userFolder + fileName);
+            vid = videoRepository.save(vid);
+
+            // Generate the URL (adjust the base URL as needed)
+            String videoUrl = "/videos/" + user.getUsername() + "/" + fileName;
+
+            return new VideoUploadResponse(vid.getId(), videoUrl);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

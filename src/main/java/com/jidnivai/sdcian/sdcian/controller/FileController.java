@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jidnivai.sdcian.sdcian.dto.ImageUploadResponse;
+import com.jidnivai.sdcian.sdcian.dto.VideoUploadResponse;
 import com.jidnivai.sdcian.sdcian.interfaces.FileServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
@@ -25,6 +26,14 @@ public class FileController {
             @AuthenticationPrincipal UserDetailsImpl user) {
         return fileServiceInt.uploadImage(image, user);
     }
+
+@PostMapping("/uploadVideo")
+public VideoUploadResponse uploadVideo(@RequestParam MultipartFile video,
+        @AuthenticationPrincipal UserDetailsImpl user) {
+    // Implement the method in FileServiceInt interface and service class
+    return fileServiceInt.uploadVideo(video, user);
+}
+
 
     // @GetMapping("/test")
     // public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl
