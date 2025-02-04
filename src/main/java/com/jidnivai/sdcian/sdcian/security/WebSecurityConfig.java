@@ -76,7 +76,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                         auth.requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/videos/**").permitAll()
-                                // .requestMatchers("/**").permitAll()
+                        .requestMatchers("/invoice/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 
                                 .requestMatchers("/swagger-ui/**").permitAll()

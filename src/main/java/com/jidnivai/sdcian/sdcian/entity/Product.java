@@ -19,6 +19,12 @@ import lombok.ToString;
 @ToString
 public class Product {
 
+    public Product(int i, String string, int j) {
+        id = (long) i;
+        name = string;
+        price = j;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
