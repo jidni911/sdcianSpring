@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.UserServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
@@ -66,6 +67,12 @@ public class UserService implements UserServiceInt {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Image getProfilePictureOf(Long id) {
+        User user = getUser(id);
+        return user.getProfilePicture();
     }
 
     

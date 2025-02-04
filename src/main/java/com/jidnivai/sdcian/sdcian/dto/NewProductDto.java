@@ -1,22 +1,15 @@
 package com.jidnivai.sdcian.sdcian.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
-import com.jidnivai.sdcian.sdcian.entity.Image;
-
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @ToString
-public class ProductDto {
-
-    private Long id;
+public class NewProductDto {
 
     private String name;
 
@@ -30,31 +23,22 @@ public class ProductDto {
 
     private double discountPrice;
 
-    private String stockStatus;// Availabe, Low , Out of Stock
+    private String stockStatus;//Availabe, Low , Out of Stock
 
     private int quantity;
 
+    
+    private Long mainImageId;
 
-    private Image mainImage;
-
-    private List<Image> galleryImages;
+    private List<Long> galleryImagesId;
 
     private String dimensions;
-
+    
     private String weight;
-
-
-    private UserDto seller;
-
-    private Float ratings;
-
-    private int reviews;
 
     private List<String> tags;
 
     private String origin;
 
     private List<String> features;
-
-    private LocalDateTime addedDate;
 }

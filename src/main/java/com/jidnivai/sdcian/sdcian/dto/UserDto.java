@@ -1,64 +1,39 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.dto;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-import org.springframework.beans.BeanUtils;
-
-import com.jidnivai.sdcian.sdcian.dto.UserDto;
+import com.jidnivai.sdcian.sdcian.entity.Image;
+import com.jidnivai.sdcian.sdcian.entity.Role;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@Table(name = "users")
-public class User {
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String fullName;
-    @Column(unique = true)
     private String username;
     private String email;
-    private String password;
-
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private LocalDate dob;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "role_users"
-    )
+ 
     private Set<Role> roles;
 
     private String phoneNumber;
     private String address;
-    @OneToOne
     private Image profilePicture;
     
-    @OneToOne
     private Image coverPicture;
     private String about;
     private String website;
@@ -75,9 +50,4 @@ public class User {
     private String whatsapp;
     private String discord;
     private String reddit;
-    public UserDto toDto() {
-        UserDto userDto = new UserDto();
-        BeanUtils.copyProperties(this, userDto);
-        return userDto;
-    }
 }

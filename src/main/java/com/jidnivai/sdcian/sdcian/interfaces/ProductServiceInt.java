@@ -3,7 +3,10 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
 
+import com.jidnivai.sdcian.sdcian.dto.NewProductDto;
+import com.jidnivai.sdcian.sdcian.dto.ProductDto;
 import com.jidnivai.sdcian.sdcian.entity.Product;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 public interface ProductServiceInt {
 
@@ -11,7 +14,7 @@ public interface ProductServiceInt {
 
     Product getById(Long id);
 
-    Product add(Product product);
+    ProductDto add(NewProductDto newProductDto, UserDetailsImpl user);
 
     Product update(Long id, Product product);
 
@@ -21,5 +24,6 @@ public interface ProductServiceInt {
     Page<Product> getProductsByCategory( int page, int size);
 
     Page<Product> search(String name, int page, int size);
+
 
 }

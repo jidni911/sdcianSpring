@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Image {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private User user;
     
     private String path;
@@ -34,6 +37,7 @@ public class Image {
     private String description;
     
     @ManyToOne
+    @JsonIgnore
     private Post post;
 
 }

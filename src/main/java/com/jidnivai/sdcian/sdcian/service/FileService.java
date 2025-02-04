@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -101,6 +102,14 @@ public class FileService implements FileServiceInt {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Image> getImages(List<Long> galleryImagesId) {
+        return imageRepository.findAllById(galleryImagesId);
+    }
+
+    public Image getImage(Long mainImageId) {
+        return imageRepository.findById(mainImageId).orElse(null);
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.UserServiceInt;
 
@@ -46,6 +47,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
+    }
+
+    
+    @GetMapping("/getProfilePictureOf/{id}")
+    public Image getProfilePictureOf(@PathVariable Long id){
+        return userService.getProfilePictureOf(id);
     }
 
 }
