@@ -2,6 +2,7 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
 
+import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
 
 public interface PostServiceInt {
@@ -10,7 +11,7 @@ public interface PostServiceInt {
 
     Page<Post> getPosts(int page, int size);
 
-    Post savePost(Post post);
+    Post savePost(NewPostDto newPostDto, Long userId);
 
     Page<Post> search(String name, int page, int size);
 

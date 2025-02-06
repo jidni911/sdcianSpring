@@ -27,13 +27,12 @@ public class FileController {
         return fileServiceInt.uploadImage(image, user);
     }
 
-@PostMapping("/uploadVideo")
-public VideoUploadResponse uploadVideo(@RequestParam MultipartFile video,
-        @AuthenticationPrincipal UserDetailsImpl user) {
-    // Implement the method in FileServiceInt interface and service class
-    return fileServiceInt.uploadVideo(video, user);
-}
-
+    @PostMapping("/uploadVideo")//TODO update 
+    public VideoUploadResponse uploadVideo(@RequestParam MultipartFile video,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        // Implement the method in FileServiceInt interface and service class
+        return fileServiceInt.uploadVideo(video, user);
+    }
 
     // @GetMapping("/test")
     // public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl

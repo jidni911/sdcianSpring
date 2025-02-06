@@ -28,6 +28,8 @@ public class Image {
     
     private String path;
 
+    private String url;
+
     private String name;
 
     @Transient
@@ -35,9 +37,5 @@ public class Image {
     protected byte[] imageBytes;
 
     private String description;
-    
-    @ManyToOne
-    @JsonIgnore
-    private Post post;
 
 }

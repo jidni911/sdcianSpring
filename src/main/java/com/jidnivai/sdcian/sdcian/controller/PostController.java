@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
 import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/post")
@@ -37,8 +39,8 @@ public class PostController {
     }
 
     @PostMapping
-    public Post savePost(@RequestBody NewPostDto newPostDto) {
-        return postServiceInt.savePost(post);
+    public Post savePost(@RequestBody NewPostDto newPostDto,@AuthenticationPrincipal UserDetailsImpl user) {
+        return postServiceInt.savePost(newPostDto,user.getId());
     }
 
     @PutMapping("/{id}")

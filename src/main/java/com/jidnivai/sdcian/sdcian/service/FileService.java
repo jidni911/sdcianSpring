@@ -32,6 +32,11 @@ public class FileService implements FileServiceInt {
     @Autowired
     UserService userService;
 
+
+    
+// sdcian.app.images-upload-path=src/main/resources/static/images/
+
+// sdcian.app.videos-upload-path=src/main/resources/static/videos/
     @Value("${sdcian.app.images-upload-path}")
     String imageFolder;
 
@@ -59,6 +64,7 @@ public class FileService implements FileServiceInt {
             img.setUser(userService.getUser(user.getId()));
             img.setName(fileName);
             img.setPath(userFolder + fileName);
+            img.setUrl("/images/" + user.getUsername() + "/" + fileName);
             img = imageRepository.save(img);
 
             // Generate the URL (adjust the base URL as needed)
@@ -92,6 +98,7 @@ public class FileService implements FileServiceInt {
             vid.setUser(userService.getUser(user.getId()));
             vid.setName(fileName);
             vid.setPath(userFolder + fileName);
+            vid.setUrl("/videos/" + user.getUsername() + "/" + fileName);
             vid = videoRepository.save(vid);
 
             // Generate the URL (adjust the base URL as needed)

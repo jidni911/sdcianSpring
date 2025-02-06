@@ -4,7 +4,6 @@ package com.jidnivai.sdcian.sdcian.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,9 @@ public class ProductController {
     @GetMapping
     public Page<Product> getProducts(
             @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "10") int size) {
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+                System.out.println(user.getFullName() + " is getting all products");
         return productService.getAll( page, size);
     }
 

@@ -22,11 +22,10 @@ public class Video {
 
     private String path;
     private String name;
+    private String url;
     @Transient
     protected byte[] videoBytes;
     private String description;
-    @ManyToOne
-    private Post post;
 
     @ManyToOne
     private User user;

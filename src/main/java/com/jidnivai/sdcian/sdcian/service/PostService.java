@@ -1,8 +1,11 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
 import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.PostRepository;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +27,10 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public Post savePost(Post post) {
+    public Post savePost(NewPostDto newPostDto, Long userId) {
+        Post post = new Post();
+        BeanUtils.copyProperties(newPostDto, post);
+
         return postRepository.save(post);
     }
 
