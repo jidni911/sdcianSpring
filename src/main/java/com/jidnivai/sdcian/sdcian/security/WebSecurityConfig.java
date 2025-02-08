@@ -34,7 +34,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //prePostEnabled = true) // by default
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
-    private static final String[] PUBLIC_URLS = {"/swagger-ui/**", "/v3/api-docs/**", "/api/auth/**", "/registerNewUser", "/api/test/**", "/signup", "/testController/**", "/updateUser",};
+    // private static final String[] PUBLIC_URLS = {"/swagger-ui/**", "/v3/api-docs/**", "/api/auth/**", "/registerNewUser", "/api/test/**", "/signup", "/testController/**", "/updateUser",};
     @Autowired
     UserDetailsServiceImpl userDetailsService;
     // @Value("${spring.console.path}")

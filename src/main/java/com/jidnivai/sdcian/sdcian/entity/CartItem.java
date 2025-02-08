@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,5 +27,6 @@ public class CartItem {
 
     @ManyToOne
     @ToString.Exclude
+    @JsonIgnore
     private Cart cart;
 }

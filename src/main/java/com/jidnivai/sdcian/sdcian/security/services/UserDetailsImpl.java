@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jidnivai.sdcian.sdcian.entity.Role;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
+import com.jidnivai.sdcian.sdcian.enums.UserStatus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +47,8 @@ public class UserDetailsImpl implements UserDetails {
   @JsonIgnore
   private String password;
 
+  private UserStatus status;
+
   private Collection<? extends GrantedAuthority> authorities;
 
   public UserDetailsImpl(
@@ -59,6 +62,7 @@ public class UserDetailsImpl implements UserDetails {
       String fullName,
       Gender gender,
       LocalDate dob,
+      UserStatus status,
       Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.username = username;
@@ -71,6 +75,7 @@ public class UserDetailsImpl implements UserDetails {
     this.fullName = fullName;
     this.gender = gender;
     this.dob = dob;
+    this.status = status;
   }
 
   public static UserDetailsImpl build(User user) {
@@ -89,6 +94,7 @@ public class UserDetailsImpl implements UserDetails {
         user.getFullName(),
         user.getGender(),
         user.getDob(),
+        user.getStatus(),
         authorities);
   }
 

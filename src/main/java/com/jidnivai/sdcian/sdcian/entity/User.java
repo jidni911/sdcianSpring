@@ -5,9 +5,12 @@ import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jidnivai.sdcian.sdcian.dto.UserDto;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
+import com.jidnivai.sdcian.sdcian.enums.UserStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -40,6 +43,7 @@ public class User {
     @Column(unique = true)
     private String username;
     private String email;
+    @JsonIgnore
     private String password;
 
 
@@ -47,10 +51,8 @@ public class User {
     private Gender gender;
     private LocalDate dob;
     
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "role_users"
-    )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "role_users")
     private Set<Role> roles;
 
     private String phoneNumber;
@@ -60,6 +62,10 @@ public class User {
     
     @OneToOne
     private Image coverPicture;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status = UserStatus.INACTIVE;
+
     private String about;
     private String website;
     private String facebook;
@@ -79,5 +85,10 @@ public class User {
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(this, userDto);
         return userDto;
+    }
+
+    public void removeRole(Role role) {
+        this.roles.remove(role);
+        role.getUsers().remove(this); // Ensure bidirectional consistency
     }
 }

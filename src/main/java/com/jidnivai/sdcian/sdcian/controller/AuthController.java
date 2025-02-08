@@ -155,6 +155,7 @@ public class AuthController {
         //     });
         // }
 
+        user = userRepository.save(user);
         user.setRoles(roles);
         userRepository.save(user);
 

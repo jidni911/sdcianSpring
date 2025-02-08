@@ -1,5 +1,6 @@
 package com.jidnivai.sdcian.sdcian.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public interface RoleRepository extends JpaRepository<Role, String> {
     Set<Role> findByUsersId(Long userId);//TODO there are two different tables
 
     // Finds role by exact role name
-    Role findByName(String roleName);
+    Optional<Role> findByName(String roleName);
 
     Page<User> findByName(String roleName, Pageable pageable);
 }

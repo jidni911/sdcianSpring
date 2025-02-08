@@ -1,51 +1,129 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.jidnivai.sdcian.sdcian.dto.CartDto;
+import com.jidnivai.sdcian.sdcian.dto.UserDto;
 import com.jidnivai.sdcian.sdcian.entity.Cart;
+import com.jidnivai.sdcian.sdcian.entity.CartItem;
+import com.jidnivai.sdcian.sdcian.entity.Product;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.CartRepository;
+import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
+import com.jidnivai.sdcian.sdcian.repository.UserRepository;
+
 
 @Service
 public class CartService implements CartServiceInt {
-//TODO rethink cart item
 
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ProductRepository productRepository;
     @Override
-    public Page<Cart> getAllCarts(int page, int size) {
-        return cartRepository.findAll(PageRequest.of(page, size));
+    public Page<CartDto> getAllCarts(int page, int size, Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow(); 
+        if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))){ 
+            Page<Cart> carts = cartRepository.findAll(PageRequest.of(page, size));
+            return carts.map(cart -> {
+                CartDto cartDto = new CartDto();
+                BeanUtils.copyProperties(cart, cartDto);
+                UserDto userDto = new UserDto();
+                BeanUtils.copyProperties(cart.getUser(), userDto);
+                cartDto.setUserDto(userDto);
+                return cartDto;
+            });
+        } else{
+            return null;
+        }
+
+        
     }
 
     @Override
-    public Cart getCartById(Long id) {
-        return cartRepository.findById(id).orElseThrow();
+    public CartDto getCartById(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        Optional<Cart> optionalCart = cartRepository.findById(id);
+        if (optionalCart.isPresent()) {
+            Cart cart = optionalCart.get();
+            CartDto cartDto = new CartDto();
+            BeanUtils.copyProperties(cart, cartDto);
+            UserDto userDto = new UserDto();
+            BeanUtils.copyProperties(cart.getUser(), userDto);
+            cartDto.setUserDto(userDto);
+            return cartDto;
+        } else {
+            Cart cart = new Cart();
+            cart.setId(id);
+            cart.setUser(user);
+            cart =  cartRepository.save(cart);
+            CartDto cartDto = new CartDto();
+            BeanUtils.copyProperties(cart, cartDto);
+            UserDto userDto = new UserDto();
+            BeanUtils.copyProperties(cart.getUser(), userDto);
+            cartDto.setUserDto(userDto);
+            return cartDto;
+        }
+
+    }
+    @Override
+    public CartDto addtoCart(Long productId, Long id) {
+        Cart cart = cartRepository.findById(id).orElseThrow();// Getting the cart
+        CartItem cartItem = new CartItem();
+        cartItem.setProduct(productRepository.findById(productId).orElseThrow());
+        cartItem.setQuantity(1);
+        cartItem.setCart(cart);
+        cart.getItems().add(cartItem);
+        cart = cartRepository.save(cart);//Updated cart
+        CartDto cartDto = new CartDto();
+        BeanUtils.copyProperties(cart, cartDto);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(cart.getUser(), userDto);
+        cartDto.setUserDto(userDto);
+        return cartDto;
     }
 
     @Override
-    public Cart saveCart(Cart newCart) {
-        return cartRepository.save(newCart);
+    public void deleteFromCart(Long[] productId, Long id) {
+        Cart cart = cartRepository.findById(id).orElseThrow();
+        for (Long pId : productId) {
+            cart.getItems().removeIf(item -> item.getProduct().getId().equals(pId));
+        }
+        cartRepository.save(cart);
     }
 
     @Override
-    public Cart updateCart(Long id, Cart updatedCart) {
-        Cart cart = getCartById(id);
-        cart.setItems(updatedCart.getItems());
-        cart.setUser(updatedCart.getUser());
-        return cartRepository.save(cart);
+    public void checkout(Long[] productIds, Long id) {
+        //TODO generate order
+        deleteFromCart(productIds, id);
     }
 
     @Override
-    public void deleteCart(Long id) {
-        cartRepository.deleteById(id);
-    }
-
-    @Override
-    public Cart getCartByUser(Long userId) {
-        return cartRepository.findByUser_Id(userId).orElseThrow();
+    public CartDto setQuantity(Long itemId, int quantity, Long id) {
+        Cart cart = cartRepository.findById(id).orElseThrow();
+        CartItem cartItem = cart.getItems().stream().filter(item -> item.getId().equals(itemId)).findFirst().orElseThrow();
+        Product product = cartItem.getProduct();
+        if (quantity >0 && quantity < product.getQuantity()) {
+            cartItem.setQuantity(quantity);
+            cart = cartRepository.save(cart);
+        }
+        CartDto cartDto = new CartDto();
+        BeanUtils.copyProperties(cart, cartDto);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(cart.getUser(), userDto);
+        cartDto.setUserDto(userDto);
+        return cartDto;
     }
 
 }

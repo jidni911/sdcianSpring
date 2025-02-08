@@ -1,5 +1,6 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,13 +37,18 @@ public class RoleController {
     }
 
     @PostMapping("/assign/{roleName}/to/{id}")
-    public void assignRole(@PathVariable String roleName, @PathVariable Long id) {
-        roleService.assignRole(roleName, id);
+    public Set<Role> assignRole(@PathVariable String roleName, @PathVariable Long id) {
+        return roleService.assignRole(roleName, id);
     }
 
     @PostMapping("/remove/{roleName}/from/{id}")
-    public void removeRole(@PathVariable String roleName, @PathVariable Long id) {
-        roleService.removeRole(roleName, id);
+    public Set<Role> removeRole(@PathVariable String roleName, @PathVariable Long id) {
+        return roleService.removeRole(roleName, id);
+    }
+
+    @GetMapping
+    public List<Role> getRoles() {
+        return roleService.getRoles();
     }
 
 }

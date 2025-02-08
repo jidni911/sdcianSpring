@@ -61,7 +61,7 @@ public class FileService implements FileServiceInt {
 
             // Save to database
             Image img = new Image();
-            img.setUser(userService.getUser(user.getId()));
+            img.setUser(userService.getUser(user.getId(), user.getId()));
             img.setName(fileName);
             img.setPath(userFolder + fileName);
             img.setUrl("/images/" + user.getUsername() + "/" + fileName);
@@ -95,7 +95,7 @@ public class FileService implements FileServiceInt {
 
             // Save to database
             Video vid = new Video();
-            vid.setUser(userService.getUser(user.getId()));
+            vid.setUser(userService.getUser(user.getId(), user.getId()));
             vid.setName(fileName);
             vid.setPath(userFolder + fileName);
             vid.setUrl("/videos/" + user.getUsername() + "/" + fileName);
@@ -115,8 +115,8 @@ public class FileService implements FileServiceInt {
         return imageRepository.findAllById(galleryImagesId);
     }
 
-    public Image getImage(Long mainImageId) {
-        return imageRepository.findById(mainImageId).orElse(null);
+    @Override
+    public Image getImage(Long id) {
+        return imageRepository.findById(id).orElse(null);
     }
-
 }

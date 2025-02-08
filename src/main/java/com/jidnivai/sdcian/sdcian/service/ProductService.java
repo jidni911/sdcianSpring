@@ -30,17 +30,30 @@ public class ProductService implements ProductServiceInt {
 	private FileService fileService;
 
 	@Override
-	public Page<Product> getAll(int page, int size) {
+	public Page<ProductDto> getAll(int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
-		return productRepository.findAll(pageable);
+		// return productRepository.findAll(pageable);
+
+		Page<Product> products = productRepository.findAll(pageable);
+		return products.map(product -> {
+			ProductDto productDto = new ProductDto();
+			BeanUtils.copyProperties(product, productDto);
+			productDto.setSeller(product.getSeller().toDto());
+			return productDto;
+		});
 	}
 
 	
 
 	@Override
-	public Product getById(Long id) {
+	public ProductDto getById(Long id) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
-		return optionalProduct.isPresent() ? optionalProduct.get() : null;
+		Product product = optionalProduct.isPresent() ? optionalProduct.get() : null;
+
+		ProductDto productDto = new ProductDto();
+		BeanUtils.copyProperties(product, productDto);
+		productDto.setSeller(product.getSeller().toDto());		
+		return productDto;
 	}
 
 	@Override
@@ -51,7 +64,7 @@ public class ProductService implements ProductServiceInt {
 
 		product.setMainImage(fileService.getImage(newProductDto.getMainImageId()));
 		product.setGalleryImages(fileService.getImages(newProductDto.getGalleryImagesId()));
-		product.setSeller(userService.getUser(user.getId()));
+		product.setSeller(userService.getUser(user.getId(), user.getId()));
 		product.setAddedDate(LocalDateTime.now());
 		product =  productRepository.save(product);
 
@@ -64,16 +77,20 @@ public class ProductService implements ProductServiceInt {
 	}
 
 	@Override
-	public Product update(Long id, Product product) {
+	public ProductDto update(Long id, ProductDto productDto) {
 		Product existingProduct = productRepository.findById(id).orElse(null);
 		if (existingProduct == null) {
 			return null;
 		}
-		existingProduct.setName(product.getName());
-		existingProduct.setPrice(product.getPrice());
-		existingProduct.setDescription(product.getDescription());
-		existingProduct.setQuantity(product.getQuantity());
-		return productRepository.save(existingProduct);
+
+		BeanUtils.copyProperties(productDto, existingProduct);
+
+		Product updatedProduct = productRepository.save(existingProduct);
+
+		ProductDto updatedProductDto = new ProductDto();
+		BeanUtils.copyProperties(updatedProduct, updatedProductDto);
+		updatedProductDto.setSeller(updatedProduct.getSeller().toDto());
+		return updatedProductDto;
 	}
 
 	@Override
@@ -84,15 +101,31 @@ public class ProductService implements ProductServiceInt {
 	}
 
     @Override
-    public Page<Product> getProductsByCategory(int page, int size) {
+    public Page<ProductDto> getProductsByCategory(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return productRepository.findByCategory("category", pageable);
+        // return productRepository.findByCategory("category", pageable);
+
+		Page<Product> products = productRepository.findByCategory("category", pageable);
+		return products.map(product -> {
+			ProductDto productDto = new ProductDto();
+			BeanUtils.copyProperties(product, productDto);
+			productDto.setSeller(product.getSeller().toDto());
+			return productDto;
+		});
     }
 
     @Override
-    public Page<Product> search(String name, int page, int size) {
+    public Page<ProductDto> search(String name, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return productRepository.findByNameContaining(name, pageable);
+        // return productRepository.findByNameContaining(name, pageable);
+
+		Page<Product> products = productRepository.findByNameContaining(name, pageable);
+		return products.map(product -> {
+			ProductDto productDto = new ProductDto();
+			BeanUtils.copyProperties(product, productDto);
+			productDto.setSeller(product.getSeller().toDto());
+			return productDto;
+		});
     }
 
 }

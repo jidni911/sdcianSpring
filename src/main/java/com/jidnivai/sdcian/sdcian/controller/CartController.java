@@ -2,18 +2,19 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jidnivai.sdcian.sdcian.entity.Cart;
+import com.jidnivai.sdcian.sdcian.dto.CartDto;
 import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/carts")
@@ -22,36 +23,48 @@ public class CartController {
     @Autowired
     CartServiceInt cartService;
 
+    @GetMapping("/all")
+    public Page<CartDto> getAllCarts(@RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return cartService.getAllCarts(page, size, user.getId());
+    }
+
     @GetMapping
-    public Page<Cart> getAllCarts(
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "10") int size) {
-        return cartService.getAllCarts(page, size);
+    public CartDto getCartById(@AuthenticationPrincipal UserDetailsImpl user) {
+        return cartService.getCartById(user.getId());
     }
 
-    @GetMapping("/{id}")
-    public Cart getCartById(@PathVariable Long id) {
-        return cartService.getCartById(id);
+    @PostMapping("/add/{productId}")
+    public CartDto addtoCart(@PathVariable Long productId, @AuthenticationPrincipal UserDetailsImpl user) {
+        return cartService.addtoCart(productId, user.getId());
     }
 
-    @PostMapping
-    public Cart createCart(@RequestBody Cart newCart) {
-        return cartService.saveCart(newCart);
+    // @PutMapping("/{id}")
+    // public Cart updateCart(@PathVariable Long id, @RequestBody Cart updatedCart)
+    // {
+    // return cartService.updateCart(id, updatedCart);
+    // }
+
+    @DeleteMapping("/remove")
+    public void removeFromCart(@RequestParam Long[] productId, @AuthenticationPrincipal UserDetailsImpl user) {
+        cartService.deleteFromCart(productId, user.getId());
     }
 
-    @PutMapping("/{id}")
-    public Cart updateCart(@PathVariable Long id, @RequestBody Cart updatedCart) {
-        return cartService.updateCart(id, updatedCart);
+    @GetMapping("/setQuantity/{itemId}/{quantity}")
+    public CartDto setQuantity(@PathVariable Long itemId, @PathVariable int quantity,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return cartService.setQuantity(itemId, quantity, user.getId());
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteCart(@PathVariable Long id) {
-        cartService.deleteCart(id);
+    @PostMapping("/checkout")
+    public void checkout(@RequestBody Long[] productIds, @AuthenticationPrincipal UserDetailsImpl user) {
+        cartService.checkout(productIds, user.getId());
     }
 
-    @GetMapping("/user/{userId}")
-    public Cart getCartByUser(@PathVariable Long userId) {
-        return cartService.getCartByUser(userId);
-    }
+    // @GetMapping("/user/{userId}")
+    // public Cart getCartByUser(@PathVariable Long userId) {
+    // return cartService.getCartByUser(userId);
+    // }
 
 }

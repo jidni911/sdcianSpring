@@ -6,6 +6,7 @@ import java.util.Set;
 import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Role;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
+import com.jidnivai.sdcian.sdcian.enums.UserStatus;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,6 +36,8 @@ public class UserDto {
     private Image profilePicture;
     
     private Image coverPicture;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
     private String about;
     private String website;
     private String facebook;

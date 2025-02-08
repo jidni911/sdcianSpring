@@ -5,7 +5,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsServiceImpl;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
@@ -90,8 +87,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String parseJwt(HttpServletRequest request) {
-        String jwt = jwtUtils.getJwtFromCookies(request);
-        return jwt;
-    }
+    // private String parseJwt(HttpServletRequest request) {
+    //     String jwt = jwtUtils.getJwtFromCookies(request);
+    //     return jwt;
+    // }
 }

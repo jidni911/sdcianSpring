@@ -2,21 +2,21 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
 
-import com.jidnivai.sdcian.sdcian.entity.Cart;
+import com.jidnivai.sdcian.sdcian.dto.CartDto;
 
 public interface CartServiceInt {
 
-    Page<Cart> getAllCarts(int page, int size);
+    Page<CartDto> getAllCarts(int page, int size, Long userId);
 
-    Cart getCartById(Long id);
+    CartDto getCartById(Long id);
 
-    Cart saveCart(Cart newCart);
+    CartDto addtoCart(Long productId, Long id);
 
-    Cart updateCart(Long id, Cart updatedCart);
+    void deleteFromCart(Long[] productId, Long id);
 
-    void deleteCart(Long id);
+    void checkout(Long[] productIds, Long id);
 
-    Cart getCartByUser(Long userId);
+    CartDto setQuantity(Long itemId, int quantity, Long id);
 
 
 }

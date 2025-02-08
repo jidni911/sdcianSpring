@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.NewProductDto;
 import com.jidnivai.sdcian.sdcian.dto.ProductDto;
-import com.jidnivai.sdcian.sdcian.entity.Product;
 import com.jidnivai.sdcian.sdcian.interfaces.ProductServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
@@ -28,16 +27,15 @@ public class ProductController {
     private ProductServiceInt productService;
 
     @GetMapping
-    public Page<Product> getProducts(
+    public Page<ProductDto> getProducts(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
-                System.out.println(user.getFullName() + " is getting all products");
         return productService.getAll( page, size);
     }
 
     @GetMapping("/{id}")
-    public Product getById(@PathVariable Long id) {
+    public ProductDto getById(@PathVariable Long id) {
         return productService.getById(id);
     }
 
@@ -48,7 +46,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public Product update(@PathVariable Long id, @RequestBody Product product) {
+    public ProductDto update(@PathVariable Long id, @RequestBody ProductDto product) {
         return productService.update(id, product);
     }
 
@@ -58,7 +56,7 @@ public class ProductController {
     }
 
     @GetMapping("/search/{name}")
-    public Page<Product> search(@PathVariable String name,
+    public Page<ProductDto> search(@PathVariable String name,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
         return productService.search(name, page, size);
