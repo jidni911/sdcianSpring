@@ -30,10 +30,10 @@ public class Post {
 
     private String location;
 
-    @OneToMany
+    @ManyToMany
     private List<Image> postImage;
 
-    @OneToMany
+    @ManyToMany
     private List<Video> postVideo;
 
     @ManyToOne

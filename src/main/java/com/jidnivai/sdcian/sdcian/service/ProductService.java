@@ -48,12 +48,15 @@ public class ProductService implements ProductServiceInt {
 	@Override
 	public ProductDto getById(Long id) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
-		Product product = optionalProduct.isPresent() ? optionalProduct.get() : null;
-
-		ProductDto productDto = new ProductDto();
-		BeanUtils.copyProperties(product, productDto);
-		productDto.setSeller(product.getSeller().toDto());		
-		return productDto;
+		if (optionalProduct.isEmpty()) {
+			return null;
+		} else {
+			Product product = optionalProduct.get();
+			ProductDto productDto = new ProductDto();
+			BeanUtils.copyProperties(product, productDto);
+			productDto.setSeller(product.getSeller().toDto());
+			return productDto;
+		}
 	}
 
 	@Override

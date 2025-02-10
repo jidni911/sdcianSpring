@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,5 +30,7 @@ public class Video {
     private String description;
 
     @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
     private User user;
 }

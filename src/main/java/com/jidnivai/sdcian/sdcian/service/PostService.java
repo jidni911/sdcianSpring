@@ -3,7 +3,11 @@ package com.jidnivai.sdcian.sdcian.service;
 import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
 import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
+import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.PostRepository;
+import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
+import com.jidnivai.sdcian.sdcian.repository.UserRepository;
+import com.jidnivai.sdcian.sdcian.repository.VideoRepository;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,19 @@ public class PostService implements PostServiceInt {
     @Autowired
     private PostRepository postRepository;
 
-   
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    ImageRepository imageRepository;
+
+    @Autowired
+    VideoRepository videoRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+
 
     @Override
     public Post getPost(Long id) {
@@ -30,6 +46,15 @@ public class PostService implements PostServiceInt {
     public Post savePost(NewPostDto newPostDto, Long userId) {
         Post post = new Post();
         BeanUtils.copyProperties(newPostDto, post);
+        post.setCreator(userRepository.findById(userId).orElseThrow());
+        post.setPostImage(imageRepository.findAllById(newPostDto.getPostImage()));
+        post.setPostVideo(videoRepository.findAllById(newPostDto.getPostVideo()));
+        post.setProducts(productRepository.findAllById(newPostDto.getProducts()));
+        if (newPostDto.getSharedPostId() != null) {
+            post.setSharedPost(postRepository.findById(newPostDto.getSharedPostId()).orElse(null));
+            
+        }
+        // System.out.println(post);
 
         return postRepository.save(post);
     }

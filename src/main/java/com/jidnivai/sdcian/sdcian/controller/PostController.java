@@ -40,6 +40,8 @@ public class PostController {
 
     @PostMapping
     public Post savePost(@RequestBody NewPostDto newPostDto,@AuthenticationPrincipal UserDetailsImpl user) {
+        // System.out.println(newPostDto);
+        // return null;
         return postServiceInt.savePost(newPostDto,user.getId());
     }
 

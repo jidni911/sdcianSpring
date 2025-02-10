@@ -58,9 +58,11 @@ public class User {
     private String phoneNumber;
     private String address;
     @OneToOne
+    @ToString.Exclude
     private Image profilePicture;
     
     @OneToOne
+    @ToString.Exclude
     private Image coverPicture;
 
     @Enumerated(EnumType.STRING)
