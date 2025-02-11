@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.CartDto;
+import com.jidnivai.sdcian.sdcian.entity.CartItem;
 import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
@@ -40,15 +43,11 @@ public class CartController {
         return cartService.addtoCart(productId, user.getId());
     }
 
-    // @PutMapping("/{id}")
-    // public Cart updateCart(@PathVariable Long id, @RequestBody Cart updatedCart)
-    // {
-    // return cartService.updateCart(id, updatedCart);
-    // }
+
 
     @DeleteMapping("/remove")
-    public void removeFromCart(@RequestParam Long[] productId, @AuthenticationPrincipal UserDetailsImpl user) {
-        cartService.deleteFromCart(productId, user.getId());
+    public void removeFromCart(@RequestParam Long[] itemid, @AuthenticationPrincipal UserDetailsImpl user) {
+        cartService.deleteFromCart(itemid, user.getId());
     }
 
     @GetMapping("/setQuantity/{itemId}/{quantity}")
@@ -62,9 +61,11 @@ public class CartController {
         cartService.checkout(productIds, user.getId());
     }
 
-    // @GetMapping("/user/{userId}")
-    // public Cart getCartByUser(@PathVariable Long userId) {
-    // return cartService.getCartByUser(userId);
-    // }
+    @GetMapping("/items")
+    public List<CartItem> getCartItems(
+            @RequestParam List<Long> itemIds, // change to @RequestParam
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return cartService.getCartItems(itemIds, user.getId());
+    }
 
 }

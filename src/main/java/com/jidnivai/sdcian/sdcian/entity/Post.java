@@ -1,5 +1,6 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -59,6 +62,22 @@ public class Post {
     private boolean isDeleted = false;
 
     private boolean isArchived = false;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+
 
 
 

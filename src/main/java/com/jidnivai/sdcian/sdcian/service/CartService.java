@@ -1,5 +1,6 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -95,10 +96,10 @@ public class CartService implements CartServiceInt {
     }
 
     @Override
-    public void deleteFromCart(Long[] productId, Long id) {
+    public void deleteFromCart(Long[] itemids, Long id) {
         Cart cart = cartRepository.findById(id).orElseThrow();
-        for (Long pId : productId) {
-            cart.getItems().removeIf(item -> item.getProduct().getId().equals(pId));
+        for (Long itemid : itemids) {
+            cart.getItems().removeIf(item -> item.getId().equals(itemid));
         }
         cartRepository.save(cart);
     }
@@ -124,6 +125,12 @@ public class CartService implements CartServiceInt {
         BeanUtils.copyProperties(cart.getUser(), userDto);
         cartDto.setUserDto(userDto);
         return cartDto;
+    }
+
+    @Override
+    public List<CartItem> getCartItems(List<Long> itemIds, Long id) {
+        Cart cart = cartRepository.findById(id).orElseThrow();
+        return cart.getItems().stream().filter(item -> itemIds.contains(item.getId())).toList();
     }
 
 }
