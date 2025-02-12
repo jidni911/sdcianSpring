@@ -2,6 +2,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.entity.Order;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/order")
@@ -36,8 +39,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order orderEntity) {
-        return orderServiceInt.createOrder(orderEntity);
+    public Order createOrder(@RequestBody NewOrderDto newOrderDto,@AuthenticationPrincipal UserDetailsImpl user) {
+        return orderServiceInt.createOrder(newOrderDto, user.getId());
     }
 
     @PutMapping("/{id}")

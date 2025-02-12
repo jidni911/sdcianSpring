@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,7 +43,7 @@ public class Post {
     @ManyToOne
     private Post sharedPost;
 
-    @OneToMany
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     @ManyToMany

@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.NewCommentDto;
 import com.jidnivai.sdcian.sdcian.entity.Comment;
 import com.jidnivai.sdcian.sdcian.interfaces.CommentServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/comment")
@@ -29,8 +32,10 @@ public class CommentController {
     }
 
     @PostMapping
-    public Comment saveComment(@RequestBody Comment comment) {
-        return commentServiceInt.saveComment(comment);
+    public Comment saveComment(
+        @RequestBody NewCommentDto newCommentDto,
+        @AuthenticationPrincipal UserDetailsImpl user) {
+        return commentServiceInt.saveComment(newCommentDto, user.getId());
     }
 
     @PutMapping("/{id}")
