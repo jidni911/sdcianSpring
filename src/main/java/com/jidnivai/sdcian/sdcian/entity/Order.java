@@ -59,7 +59,4 @@ public class Order {
 
     @OneToMany
     private List<OrderItem> orderItems;
-
-    
-    
 }

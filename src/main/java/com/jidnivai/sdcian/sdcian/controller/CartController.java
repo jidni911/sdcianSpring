@@ -41,9 +41,7 @@ public class CartController {
     @PostMapping("/add/{productId}")
     public CartDto addtoCart(@PathVariable Long productId, @AuthenticationPrincipal UserDetailsImpl user) {
         return cartService.addtoCart(productId, user.getId());
-    }
-
-
+    }   
 
     @DeleteMapping("/remove")
     public void removeFromCart(@RequestParam Long[] itemid, @AuthenticationPrincipal UserDetailsImpl user) {
