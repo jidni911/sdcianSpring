@@ -16,6 +16,8 @@ public class EventCreateDto {
 
     private String name;
 
+    private Long coverImage;
+
     private LocalDate date;
 
     @Enumerated(EnumType.STRING)

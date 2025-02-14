@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import com.jidnivai.sdcian.sdcian.entity.Event;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.EventServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/event")
@@ -43,8 +45,11 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<EventDto> addEvent(@RequestBody EventCreateDto eventCreateDto) {
-        return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto));
+    public ResponseEntity<EventDto> addEvent(
+        @RequestBody EventCreateDto eventCreateDto,
+        @AuthenticationPrincipal UserDetailsImpl user
+    ) {
+        return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto, user.getId()));
     }
 
     @PutMapping("/{id}")

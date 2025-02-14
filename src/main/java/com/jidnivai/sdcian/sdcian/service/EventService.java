@@ -3,10 +3,13 @@ package com.jidnivai.sdcian.sdcian.service;
 import com.jidnivai.sdcian.sdcian.dto.EventCreateDto;
 import com.jidnivai.sdcian.sdcian.dto.EventDto;
 import com.jidnivai.sdcian.sdcian.entity.Event;
+import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.EventServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.EventRepository;
+import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
+import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
 import java.time.LocalDate;
 
@@ -22,6 +25,10 @@ public class EventService implements EventServiceInt {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    ImageRepository imageRepository;
 
     @Override
     public Event getEvent(Long id) {
@@ -34,10 +41,14 @@ public class EventService implements EventServiceInt {
     }
 
     @Override
-    public EventDto addEvent(EventCreateDto eventCreateDto) {
+    public EventDto addEvent(EventCreateDto eventCreateDto, Long userId) {
         Event event = new Event();
         BeanUtils.copyProperties(eventCreateDto, event);
-        //TODO add user
+        event.setOrganiser(userRepository.findById(userId).orElseThrow());
+        if(eventCreateDto.getCoverImage() != null) {
+            Image image = imageRepository.findById(eventCreateDto.getCoverImage()).orElseThrow();
+            event.setCoverImage(image);
+        }
         EventDto eventDto = new EventDto();
         BeanUtils.copyProperties(eventRepository.save(event), eventDto);
         return eventDto;

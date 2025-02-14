@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
-import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,6 +20,8 @@ import lombok.ToString;
 @ToString
 public class EventDto {
     private Long id;
+
+    private Image coverImage;
 
     private String name;
 
@@ -40,8 +42,7 @@ public class EventDto {
 
     private String description;
 
-    //TODO : Add OrganiserDTO
-    private User organiser;
+    private UserDto organiser;
 
     private List<Sponsor> sponsor;
 }

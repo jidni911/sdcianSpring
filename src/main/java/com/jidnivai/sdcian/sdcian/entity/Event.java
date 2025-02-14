@@ -14,6 +14,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,6 +32,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    private Image coverImage;
     private String name;
 
     private LocalDate date;
@@ -54,4 +58,24 @@ public class Event {
 
     @ManyToMany
     private List<Sponsor> sponsor;
+
+    @ManyToMany
+    private List<User> sponsorShipRequests;
+
+    
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    
+    @PrePersist
+    private void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

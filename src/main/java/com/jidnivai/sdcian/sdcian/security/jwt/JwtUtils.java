@@ -17,6 +17,7 @@ import org.springframework.web.util.WebUtils;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -86,9 +87,15 @@ public class JwtUtils {
 
 
     final Claims claims = Jwts.claims().setSubject(user.getUsername());
-    claims.put("roles", new ArrayList<>(user.getAuthorities().stream()
+    List<String> roles = new ArrayList<>(user.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
-            .collect(Collectors.toList())));
+            .collect(Collectors.toList()));
+    claims.put("roles", roles);
+    // List<String> roles = new ArrayList<>();
+    // for (GrantedAuthority authority : user.getAuthorities()) {
+    //   roles.add(authority.getAuthority());
+    // }
+    claims.put("roles", roles);
     claims.put("id", user.getId()!=null?user.getId():0);
     claims.put("user_name", user.getUsername()!=null?user.getUsername():"0");
 //    claims.put("email", user.getEmail()!=null?user.getEmail():"");
