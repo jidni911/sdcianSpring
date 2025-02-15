@@ -33,7 +33,7 @@ public class Order {
     String phoneNumber;
     String userName;
     String email;
-    String phone;
+    // String phone;
     String address;
     String paymentMethod;
     String paymentNumber;

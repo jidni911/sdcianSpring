@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import java.time.LocalDateTime;
+
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 
 import jakarta.persistence.Entity;
@@ -9,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,6 +39,28 @@ public class OrderItem {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.PENDING;
+
+    @ManyToOne
+    private User seller;
+
+    @ManyToOne
+    private User customer;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+    
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+    
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
 
     
 }

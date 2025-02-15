@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.entity.Order;
+import com.jidnivai.sdcian.sdcian.entity.OrderItem;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
@@ -31,11 +32,14 @@ public class OrderController {
         return orderServiceInt.getOrder(id);
     }
 
-    @GetMapping
-    public Page<Order> getOrders(
+    @GetMapping("/seller")
+    public Page<OrderItem> getOrdersForSeller(
             @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "10") int size) {
-        return orderServiceInt.getOrders(page, size);
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = true) OrderStatus status,
+            @AuthenticationPrincipal UserDetailsImpl user
+            ) {
+        return orderServiceInt.getOrdersForSeller(page, size, status, user.getId());
     }
 
     @PostMapping

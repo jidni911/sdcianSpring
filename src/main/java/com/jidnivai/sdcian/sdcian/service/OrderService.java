@@ -13,8 +13,10 @@ import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.entity.CartItem;
 import com.jidnivai.sdcian.sdcian.entity.Order;
 import com.jidnivai.sdcian.sdcian.entity.OrderItem;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
+import com.jidnivai.sdcian.sdcian.repository.OrderItemRepository;
 import com.jidnivai.sdcian.sdcian.repository.OrderRepository;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
@@ -29,6 +31,9 @@ public class OrderService implements OrderServiceInt {
 
     @Autowired
     CartService cartService;
+
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     @Override
     public Order getOrder(Long id) {
@@ -46,8 +51,10 @@ public class OrderService implements OrderServiceInt {
             OrderItem orderItem = new OrderItem();
             orderItem.setProduct(cartItem.getProduct());
             orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setPrice(cartItem.getProduct().getPrice());
+            orderItem.setPrice(cartItem.getProduct().getDiscountPrice()==0?cartItem.getProduct().getPrice():cartItem.getProduct().getDiscountPrice());
             orderItem.setOrder(order);
+            orderItem.setSeller(cartItem.getProduct().getSeller());
+            orderItem.setCustomer(order.getUser());
             orderItems.add(orderItem);
         }
         order.setOrderItems(orderItems);
@@ -72,8 +79,10 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public Page<Order> getOrders(int page, int size) {
-        return orderRepository.findAll(PageRequest.of(page, size));
+    public Page<OrderItem> getOrdersForSeller(int page, int size,  OrderStatus status, Long sellerId) {
+        User seller = userRepository.findById(sellerId).orElseThrow();
+        Page<OrderItem> orderItems = orderItemRepository.findBySellerAndStatus(seller, status, (PageRequest.of(page, size)));
+        return orderItems;
     }
 
     @Override

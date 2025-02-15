@@ -1,0 +1,13 @@
+package com.jidnivai.sdcian.sdcian.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.jidnivai.sdcian.sdcian.entity.OrderItem;
+import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
+
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+    Page<OrderItem> findBySellerAndStatus(User seller, OrderStatus status, PageRequest of);
+}

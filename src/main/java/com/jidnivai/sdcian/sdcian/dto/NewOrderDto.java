@@ -15,7 +15,7 @@ public class NewOrderDto {
     String phoneNumber;
     String userName;
     String email;
-    String phone;
+    // String phone;
     String address;
     String paymentMethod;
     String paymentNumber;
