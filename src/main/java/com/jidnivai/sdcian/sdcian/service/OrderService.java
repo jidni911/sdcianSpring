@@ -10,14 +10,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
+import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
 import com.jidnivai.sdcian.sdcian.entity.CartItem;
 import com.jidnivai.sdcian.sdcian.entity.Order;
 import com.jidnivai.sdcian.sdcian.entity.OrderItem;
+import com.jidnivai.sdcian.sdcian.entity.Product;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
+import com.jidnivai.sdcian.sdcian.payload.response.OperationResult;
 import com.jidnivai.sdcian.sdcian.repository.OrderItemRepository;
 import com.jidnivai.sdcian.sdcian.repository.OrderRepository;
+import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
 @Service
@@ -35,6 +39,9 @@ public class OrderService implements OrderServiceInt {
     @Autowired
     OrderItemRepository orderItemRepository;
 
+    @Autowired
+    ProductRepository productRepository;
+
     @Override
     public Order getOrder(Long id) {
         return orderRepository.findById(id).orElse(null);
@@ -51,7 +58,8 @@ public class OrderService implements OrderServiceInt {
             OrderItem orderItem = new OrderItem();
             orderItem.setProduct(cartItem.getProduct());
             orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setPrice(cartItem.getProduct().getDiscountPrice()==0?cartItem.getProduct().getPrice():cartItem.getProduct().getDiscountPrice());
+            orderItem.setPrice(cartItem.getProduct().getDiscountPrice() == 0 ? cartItem.getProduct().getPrice()
+                    : cartItem.getProduct().getDiscountPrice());
             orderItem.setOrder(order);
             orderItem.setSeller(cartItem.getProduct().getSeller());
             orderItem.setCustomer(order.getUser());
@@ -65,10 +73,10 @@ public class OrderService implements OrderServiceInt {
     public Order updateOrder(Long id, Order orderDetails) {
         // Order order = orderRepository.findById(id).orElse(null);
         // if (order != null) {
-        //     order.setOrderNumber(orderDetails.getOrderNumber());
-        //     order.setStatus(orderDetails.getStatus());
-        //     // update other fields as needed
-        //     return orderRepository.save(order);
+        // order.setOrderNumber(orderDetails.getOrderNumber());
+        // order.setStatus(orderDetails.getStatus());
+        // // update other fields as needed
+        // return orderRepository.save(order);
         // }
         return null;
     }
@@ -79,9 +87,10 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public Page<OrderItem> getOrdersForSeller(int page, int size,  OrderStatus status, Long sellerId) {
+    public Page<OrderItem> getOrdersForSeller(int page, int size, OrderStatus status, Long sellerId) {
         User seller = userRepository.findById(sellerId).orElseThrow();
-        Page<OrderItem> orderItems = orderItemRepository.findBySellerAndStatus(seller, status, (PageRequest.of(page, size)));
+        Page<OrderItem> orderItems = orderItemRepository.findBySellerAndStatus(seller, status,
+                (PageRequest.of(page, size)));
         return orderItems;
     }
 
@@ -91,15 +100,96 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public Order updateOrderStatus(Long id, OrderStatus status) {
-        // Order order = orderRepository.findById(id).orElse(null);
-        // if (order != null) {
-        //     order.setStatus(status);
-        //     return orderRepository.save(order);
-        // }
-        return null;
+    public OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, Long userId) {
+
+        OrderItem orderItem = orderItemRepository.findById(orderItemStatusDto.getId()).orElse(null);
+        if (orderItem == null) {
+
+            return new OperationResult(false, "Order item not found");
+        }
+        if (!orderItem.getSeller().getId().equals(userId) && !orderItem.getCustomer().getId().equals(userId)) {
+            return new OperationResult(false, "Not authorized");
+        }
+        if (orderItemStatusDto.getCurrentStatus() != orderItem.getStatus()) {
+            return new OperationResult(false, "Status mismatch");
+        }
+
+        switch (orderItemStatusDto.getCurrentStatus()) {
+        case PENDING:
+            if (orderItemStatusDto.isContinuation()) {
+                if (userId.equals(orderItem.getSeller().getId())) {
+                    orderItem.setStatus(OrderStatus.PROCESSING);
+                    orderItemRepository.save(orderItem);
+                } else {
+                    return new OperationResult(false, "Not Permitted");
+                }
+            } else {
+                if (userId.equals(orderItem.getSeller().getId())) {
+                    orderItem.setStatus(OrderStatus.REJECTED);
+                    orderItemRepository.save(orderItem);
+                } else {
+                    orderItem.setStatus(OrderStatus.CANCELLED);
+                    orderItemRepository.save(orderItem);
+                }
+            }
+            break;
+        case PROCESSING:
+            if (userId.equals(orderItem.getSeller().getId())) {
+                if (orderItemStatusDto.isContinuation()) {
+                    Product product = orderItem.getProduct();
+                    if(product.getQuantity() - orderItem.getQuantity() >= 0){
+                        product.setQuantity(product.getQuantity() - orderItem.getQuantity());
+                    } else {
+                        return new OperationResult(false, "Out of stock");
+                    }
+                    productRepository.save(product);
+                    orderItem.setStatus(OrderStatus.OUT_FOR_DELIVERY);
+                } else {
+                    orderItem.setStatus(OrderStatus.REJECTED);
+                }
+                orderItemRepository.save(orderItem);
+            } else {
+                return new OperationResult(false, "Not Permitted");
+            }
+
+            break;
+        case OUT_FOR_DELIVERY:
+            if (userId.equals(orderItem.getSeller().getId())) {
+                if (orderItemStatusDto.isContinuation()) {
+                    orderItem.setStatus(OrderStatus.COMPLETED);
+                } else {
+                    Product product = orderItem.getProduct();
+                    product.setQuantity(product.getQuantity() + orderItem.getQuantity());
+                    productRepository.save(product);
+                    orderItem.setStatus(OrderStatus.REFUSED);
+                }
+                orderItemRepository.save(orderItem);
+            } else {
+                return new OperationResult(false, "Not Permitted");
+            }
+
+            break;
+        case COMPLETED:
+        case CANCELLED:
+        case REJECTED:
+        case REFUSED:
+            return new OperationResult(false, "Order is already " + orderItem.getStatus());
+        default:
+            return new OperationResult(false, "Invalid status");
+        }
+
+        return new OperationResult(true, "Success");
     }
 
-   
-}
+    @Override
+    public List<OrderItem> getOrderItems(Long orderItemId, Long sellerId) {
+        User seller = userRepository.findById(sellerId).orElseThrow();
+        OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow();
+        Order order = orderItem.getOrder();
+        List<OrderItem> orderItems = orderItemRepository.findByOrderAndSeller(order, seller);
+        return orderItems;
+    }
 
+    
+
+}

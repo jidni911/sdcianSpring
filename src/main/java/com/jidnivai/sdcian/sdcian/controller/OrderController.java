@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
+import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
 import com.jidnivai.sdcian.sdcian.entity.Order;
 import com.jidnivai.sdcian.sdcian.entity.OrderItem;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
+import com.jidnivai.sdcian.sdcian.payload.response.OperationResult;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
@@ -31,6 +35,12 @@ public class OrderController {
     public Order getOrder(@PathVariable Long id) {
         return orderServiceInt.getOrder(id);
     }
+
+    @GetMapping("memo/{orderItemId}")
+    public List<OrderItem> getOrderItems(@PathVariable Long orderItemId, @AuthenticationPrincipal UserDetailsImpl user) {
+        return orderServiceInt.getOrderItems(orderItemId, user.getId());
+    }
+    
 
     @GetMapping("/seller")
     public Page<OrderItem> getOrdersForSeller(
@@ -64,9 +74,13 @@ public class OrderController {
         return orderServiceInt.getOrdersByUser(userId, page, size);
     }
 
-    @PutMapping("/{id}/status")
-    public Order updateOrderStatus(@PathVariable Long id, @RequestParam("status") OrderStatus status) {
-        return orderServiceInt.updateOrderStatus(id, status);
+    @PostMapping("updateStatus")
+    public OperationResult updateOrderItemStatus(
+            @RequestBody(required = true) OrderItemStatusDto orderItemStatusDto,
+            @AuthenticationPrincipal UserDetailsImpl user
+    ) {
+        // System.out.println(orderItemStatusDto);
+        return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getId());
     }
 
 }

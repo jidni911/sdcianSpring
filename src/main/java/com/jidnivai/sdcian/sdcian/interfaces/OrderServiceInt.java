@@ -1,11 +1,15 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
+import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
 import com.jidnivai.sdcian.sdcian.entity.Order;
 import com.jidnivai.sdcian.sdcian.entity.OrderItem;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
+import com.jidnivai.sdcian.sdcian.payload.response.OperationResult;
 
 public interface OrderServiceInt {
 
@@ -21,6 +25,8 @@ public interface OrderServiceInt {
 
     Page<Order> getOrdersByUser(Long userId, int page, int size);
 
-    Order updateOrderStatus(Long id, OrderStatus status);
+    OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, Long userId);
+
+    List<OrderItem> getOrderItems(Long orderItemId, Long id);
 
 }
