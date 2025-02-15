@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.jidnivai.sdcian.sdcian.dto.NewProductDto;
 import com.jidnivai.sdcian.sdcian.dto.ProductDto;
 import com.jidnivai.sdcian.sdcian.entity.Product;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.ProductServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
@@ -130,6 +131,23 @@ public class ProductService implements ProductServiceInt {
 			return productDto;
 		});
     }
+
+
+
+	@Override
+	public Page<ProductDto> sellerSearch(String name, int page, int size, Long id) {
+		User user = userService.getUser(id, id);
+		Pageable pageable = PageRequest.of(page, size);
+        // return productRepository.findByNameContaining(name, pageable);
+
+		Page<Product> products = productRepository.findBySellerAndNameContaining(user,name, pageable);
+		return products.map(product -> {
+			ProductDto productDto = new ProductDto();
+			BeanUtils.copyProperties(product, productDto);
+			productDto.setSeller(product.getSeller().toDto());
+			return productDto;
+		});
+	}
 
 }
 

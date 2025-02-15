@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -50,9 +51,26 @@ public class Order {
 
     private LocalDateTime createdAt;
 
+    @Transient
+    private double serviceCharge;
+
+    @Transient
+    private double deliveryCharge;
+
+    @Transient
+    private double discount;
+
+    @Transient
+    private double subTotal;
+
+    @Transient
+    private double total;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
+
+    
 
 }

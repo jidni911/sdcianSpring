@@ -62,4 +62,14 @@ public class ProductController {
         return productService.search(name, page, size);
     }
 
+    @GetMapping("/sellerSearch/{name}")
+    public Page<ProductDto> sellerSearch(@PathVariable String name,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return productService.sellerSearch(name, page, size, user.getId());
+    }
+
+    // sellerSearch
+
 }

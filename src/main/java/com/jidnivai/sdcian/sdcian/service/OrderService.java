@@ -1,5 +1,6 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.jidnivai.sdcian.sdcian.dto.ConfirmOrderRequestDto;
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
 import com.jidnivai.sdcian.sdcian.entity.CartItem;
@@ -23,6 +26,8 @@ import com.jidnivai.sdcian.sdcian.repository.OrderItemRepository;
 import com.jidnivai.sdcian.sdcian.repository.OrderRepository;
 import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
+
+import net.sf.jasperreports.engine.JRException;
 
 @Service
 public class OrderService implements OrderServiceInt {
@@ -41,6 +46,9 @@ public class OrderService implements OrderServiceInt {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    JasperService jasperService;
 
     @Override
     public Order getOrder(Long id) {
@@ -186,8 +194,47 @@ public class OrderService implements OrderServiceInt {
         User seller = userRepository.findById(sellerId).orElseThrow();
         OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow();
         Order order = orderItem.getOrder();
-        List<OrderItem> orderItems = orderItemRepository.findByOrderAndSeller(order, seller);
+        List<OrderItem> orderItems = orderItemRepository.findByOrderAndSellerAndStatus(order, seller, OrderStatus.PROCESSING);
         return orderItems;
+    }
+
+    @Override
+    public ResponseEntity<byte[]> confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto, Long id) throws JRException, IOException {
+        User seller = userRepository.findById(id).orElseThrow();
+        Order order = null;
+        double subTotal = 0d;
+        // System.out.println(confirmOrderRequestDto);
+        List<OrderItem> orderItems = confirmOrderRequestDto.getOrderItems();
+        List<OrderItem> foundOrderItems = new ArrayList<>();
+        for (OrderItem orderItem : orderItems) {
+            OrderItem foundOrderItem = orderItemRepository.findById(orderItem.getId()).orElse(null);
+            if (foundOrderItem == null) {
+                return null;
+            }
+            if (!foundOrderItem.getSeller().getId().equals(seller.getId())) {
+                return null;
+            }
+            if (foundOrderItem.getStatus() != OrderStatus.PROCESSING) {
+                return null;
+            }
+            foundOrderItem.setStatus(OrderStatus.OUT_FOR_DELIVERY);
+            foundOrderItem.setPrice(orderItem.getPrice());
+            foundOrderItem.setQuantity(orderItem.getQuantity());
+            foundOrderItems.add(foundOrderItem);
+            subTotal += foundOrderItem.getPrice() * foundOrderItem.getQuantity();
+        }
+        orderItemRepository.saveAll(foundOrderItems);//TODO handle new items
+
+        order = foundOrderItems.get(0).getOrder();
+        order.setServiceCharge(confirmOrderRequestDto.getServiceCharge());
+        order.setDeliveryCharge(confirmOrderRequestDto.getDeliveryCharge());
+        order.setDiscount(confirmOrderRequestDto.getDiscount());
+        order.setSubTotal(subTotal);
+        order.setTotal(subTotal + order.getServiceCharge() + order.getDeliveryCharge() - order.getDiscount());
+
+        
+        return jasperService.memo(order, foundOrderItems);
+
     }
 
     

@@ -1,9 +1,11 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.ConfirmOrderRequestDto;
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
 import com.jidnivai.sdcian.sdcian.entity.Order;
@@ -23,6 +26,8 @@ import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.interfaces.OrderServiceInt;
 import com.jidnivai.sdcian.sdcian.payload.response.OperationResult;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
+
+import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @RequestMapping("/order")
@@ -83,4 +88,10 @@ public class OrderController {
         return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getId());
     }
 
+    
+    @PostMapping("/confirm")
+    public ResponseEntity<byte[]> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException  {
+        return orderServiceInt.confirmOrder(confirmOrderRequestDto, user.getId());
+    }
+    
 }

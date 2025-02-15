@@ -24,5 +24,7 @@ public interface ProductServiceInt {
 
     Page<ProductDto> search(String name, int page, int size);
 
+    Page<ProductDto> sellerSearch(String name, int page, int size, Long id);
+
 
 }
