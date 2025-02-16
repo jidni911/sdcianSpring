@@ -223,7 +223,7 @@ public class OrderService implements OrderServiceInt {
             foundOrderItems.add(foundOrderItem);
             subTotal += foundOrderItem.getPrice() * foundOrderItem.getQuantity();
         }
-        orderItemRepository.saveAll(foundOrderItems);//TODO handle new items
+        // orderItemRepository.saveAll(foundOrderItems);//TODO handle new items
 
         order = foundOrderItems.get(0).getOrder();
         order.setServiceCharge(confirmOrderRequestDto.getServiceCharge());

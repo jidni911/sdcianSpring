@@ -132,7 +132,19 @@ public class JasperService {
 
     private Map<String, Object> createParameters(Order order, User seller) {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("total", order.getTotal());
+        parameters.put("Total", order.getTotal());
+        parameters.put("SubTotal", order.getSubTotal());
+        parameters.put("shopName", seller.getFullName());
+        parameters.put("shopAddress", seller.getAddress());
+        parameters.put("shopNumber", seller.getPhoneNumber());
+        parameters.put("shopMail", seller.getEmail());
+        parameters.put("customerName", order.getUserName());
+        parameters.put("customerNumber", order.getPhoneNumber());
+        parameters.put("customerAddress", order.getAddress());
+        parameters.put("orderNumber", order.getId());
+        parameters.put("serviceCharge", order.getServiceCharge());
+        parameters.put("deliveryCharge", order.getDeliveryCharge());
+        parameters.put("discount", order.getDiscount());
         return parameters;
     }
 

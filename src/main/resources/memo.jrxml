@@ -16,7 +16,7 @@
 		<parameterDescription><![CDATA[shopMail]]></parameterDescription>
 		<defaultValueExpression><![CDATA["demo@demo.demo"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="orderNumber" class="java.lang.String" isForPrompting="false">
+	<parameter name="orderNumber" class="java.lang.Long" isForPrompting="false">
 		<defaultValueExpression><![CDATA["1234"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="customerName" class="java.lang.String" isForPrompting="false">
@@ -39,6 +39,9 @@
 	</parameter>
 	<parameter name="Total" class="java.lang.Double" isForPrompting="false">
 		<defaultValueExpression><![CDATA[$V{subTotal} + $P{serviceCharge} +$P{deliveryCharge} -$P{discount}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SubTotal" class="java.lang.Double" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[]]>
@@ -63,7 +66,7 @@
 		<band height="161" splitType="Stretch">
 			<image>
 				<reportElement x="180" y="0" width="40" height="40" uuid="04247809-aac4-46ae-8ee0-5351481272a5"/>
-				<imageExpression><![CDATA["C:/Users/LeftSword/Desktop/0055070.png"]]></imageExpression>
+				<imageExpression><![CDATA["0055070.png"]]></imageExpression>
 			</image>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement x="280" y="140" width="275" height="14" uuid="07005fb3-d4f1-4201-b55f-7ae5f9548f16"/>
@@ -238,7 +241,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{productDetails}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="300" y="0" width="73" height="30" uuid="4cc9f2e3-14da-44e9-99ed-072d7779f90e">
@@ -251,7 +254,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="373" y="0" width="82" height="30" uuid="d263a962-bad9-45cd-a938-edd67bb30db2">
@@ -264,7 +267,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="455" y="0" width="100" height="30" uuid="28a1c566-5bd9-4314-a043-cc7fe9b2c6fb">
@@ -277,7 +280,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="50" height="30" uuid="a477d737-9dda-489e-a0a7-39c383ed1cdd"/>
@@ -334,7 +337,7 @@
 			<textField>
 				<reportElement x="455" y="0" width="98" height="20" uuid="bd267950-88f0-4d9f-b898-9d2c8d00b406"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$V{subTotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{SubTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="455" y="20" width="100" height="20" uuid="79c531c2-cd21-4fb5-b526-b087319e2098"/>
