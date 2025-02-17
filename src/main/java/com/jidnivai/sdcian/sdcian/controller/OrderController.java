@@ -58,7 +58,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody NewOrderDto newOrderDto,@AuthenticationPrincipal UserDetailsImpl user) {
+    public ResponseEntity<byte[]> createOrder(@RequestBody NewOrderDto newOrderDto,@AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
         return orderServiceInt.createOrder(newOrderDto, user.getId());
     }
 

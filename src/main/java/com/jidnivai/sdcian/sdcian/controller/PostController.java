@@ -68,4 +68,10 @@ public class PostController {
             @RequestParam(required = false, defaultValue = "10") int size) {
         return postServiceInt.getPostsByUser(id, page, size);
     }
+
+    
+    @PostMapping("/like/{postId}")
+    public Post likePost(@PathVariable Long postId,@AuthenticationPrincipal UserDetailsImpl user){
+        return postServiceInt.likePost(postId,user.getId());
+    }
 }

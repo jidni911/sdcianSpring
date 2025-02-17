@@ -22,7 +22,7 @@ public interface OrderServiceInt {
 
     Page<OrderItem> getOrdersForSeller(int page, int size,  OrderStatus status, Long userId);
 
-    Order createOrder(NewOrderDto newOrderDto, Long userId);
+    ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, Long userId) throws JRException, IOException;
 
     Order updateOrder(Long id, Order orderEntity);
 

@@ -56,7 +56,7 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public Order createOrder(NewOrderDto newOrderDto, Long userId) {
+    public ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, Long userId) throws JRException, IOException {
         Order order = new Order();
         BeanUtils.copyProperties(newOrderDto, order);
         order.setUser(userRepository.findById(userId).orElseThrow());
@@ -74,7 +74,8 @@ public class OrderService implements OrderServiceInt {
             orderItems.add(orderItem);
         }
         order.setOrderItems(orderItems);
-        return orderRepository.save(order);
+        order = orderRepository.save(order);
+        return jasperService.memo(order, order.getOrderItems());
     }
 
     @Override

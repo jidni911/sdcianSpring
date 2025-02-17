@@ -19,4 +19,6 @@ public interface PostServiceInt {
 
     Page<Post> getPostsByUser(Long id, int page, int size);
 
+    Post likePost(Long postId, Long id);
+
 }

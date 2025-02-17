@@ -2,6 +2,7 @@ package com.jidnivai.sdcian.sdcian.service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewPostDto;
 import com.jidnivai.sdcian.sdcian.entity.Post;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.PostRepository;
@@ -15,7 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class PostService implements PostServiceInt {
@@ -35,8 +35,6 @@ public class PostService implements PostServiceInt {
     @Autowired
     ProductRepository productRepository;
 
-
-
     @Override
     public Post getPost(Long id) {
         return postRepository.findById(id).orElseThrow();
@@ -52,7 +50,7 @@ public class PostService implements PostServiceInt {
         post.setProducts(productRepository.findAllById(newPostDto.getProducts()));
         if (newPostDto.getSharedPostId() != null) {
             post.setSharedPost(postRepository.findById(newPostDto.getSharedPostId()).orElse(null));
-            
+
         }
         // System.out.println(post);
 
@@ -81,5 +79,16 @@ public class PostService implements PostServiceInt {
         Pageable pageable = PageRequest.of(page, size);
         return postRepository.findByCreatorId(id, pageable);
     }
-}
 
+    @Override
+    public Post likePost(Long postId, Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(postId).orElseThrow();
+        if (post.getLikers().contains(user)) {
+            post.getLikers().remove(user);
+        } else {
+            post.getLikers().add(user);
+        }
+        return postRepository.save(post);
+    }
+}

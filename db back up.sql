@@ -617,7 +617,18 @@ insert  into `order_item`(`id`,`price`,`quantity`,`status`,`order_id`,`product_i
 (332,900,1,'PENDING',209,3,1,1,'2025-02-16 03:59:23.633386','2025-02-16 03:59:23.633386'),
 (333,900,1,'PENDING',209,4,1,1,'2025-02-16 03:59:23.633386','2025-02-16 03:59:23.633386'),
 (352,900,1,'PENDING',252,1,1,1,'2025-02-16 04:27:18.423521','2025-02-16 04:27:18.423521'),
-(353,900,3,'PENDING',252,3,1,1,'2025-02-16 04:27:18.423521','2025-02-16 04:27:18.423521');
+(353,900,3,'PENDING',252,3,1,1,'2025-02-16 04:27:18.423521','2025-02-16 04:27:18.423521'),
+(402,900,3,'PENDING',302,3,1,1,'2025-02-17 15:43:47.716660','2025-02-17 15:43:47.716660'),
+(403,900,1,'PENDING',302,4,1,1,'2025-02-17 15:43:47.717165','2025-02-17 15:43:47.717165'),
+(452,900,1,'PENDING',352,1,1,1,'2025-02-17 18:10:54.712072','2025-02-17 18:10:54.712072'),
+(453,900,3,'PENDING',352,3,1,1,'2025-02-17 18:10:54.713107','2025-02-17 18:10:54.713107'),
+(454,900,1,'PENDING',352,4,1,1,'2025-02-17 18:10:54.713107','2025-02-17 18:10:54.713107'),
+(455,900,1,'PENDING',353,1,1,1,'2025-02-17 18:11:12.790556','2025-02-17 18:11:12.790556'),
+(456,900,3,'PENDING',353,3,1,1,'2025-02-17 18:11:12.790556','2025-02-17 18:11:12.790556'),
+(457,900,1,'PENDING',353,4,1,1,'2025-02-17 18:11:12.790556','2025-02-17 18:11:12.790556'),
+(458,900,1,'PENDING',354,1,1,1,'2025-02-17 18:13:03.196396','2025-02-17 18:13:03.196396'),
+(459,900,3,'PENDING',354,3,1,1,'2025-02-17 18:13:03.196396','2025-02-17 18:13:03.196396'),
+(460,900,1,'PENDING',354,4,1,1,'2025-02-17 18:13:03.196396','2025-02-17 18:13:03.196396');
 
 /*Table structure for table `order_item_seq` */
 
@@ -630,7 +641,7 @@ CREATE TABLE `order_item_seq` (
 /*Data for the table `order_item_seq` */
 
 insert  into `order_item_seq`(`next_val`) values 
-(451);
+(551);
 
 /*Table structure for table `orders` */
 
@@ -682,7 +693,11 @@ insert  into `orders`(`id`,`address`,`created_at`,`email`,`name`,`payment`,`paym
 (207,'123 Demo Street, Demo City','2025-02-16 03:59:17.547543','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
 (208,'123 Demo Street, Demo City','2025-02-16 03:59:21.205430','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
 (209,'123 Demo Street, Demo City','2025-02-16 03:59:23.632390','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
-(252,'123 Demo Street, Demo City','2025-02-16 04:27:18.419218','demo@example.com','Demo User2',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1);
+(252,'123 Demo Street, Demo City','2025-02-16 04:27:18.419218','demo@example.com','Demo User2',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
+(302,'123 Demo Street, Demo City','2025-02-17 15:43:47.687288','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
+(352,'123 Demo Street, Demo City','2025-02-17 18:10:54.690586','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
+(353,'123 Demo Street, Demo City','2025-02-17 18:11:12.790556','demo@example.com','Demo User',0,'bkash','1234567890',NULL,'1234567890','abcyzx','demoUser',1),
+(354,NULL,'2025-02-17 18:13:03.196396',NULL,NULL,0,'bkash',NULL,NULL,NULL,'abcyzx',NULL,1);
 
 /*Table structure for table `orders_seq` */
 
@@ -695,7 +710,7 @@ CREATE TABLE `orders_seq` (
 /*Data for the table `orders_seq` */
 
 insert  into `orders_seq`(`next_val`) values 
-(351);
+(451);
 
 /*Table structure for table `percel` */
 
@@ -820,6 +835,15 @@ CREATE TABLE `post_likers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `post_likers` */
+
+insert  into `post_likers`(`post_id`,`likers_id`) values 
+(1,1),
+(2,1),
+(52,1),
+(102,1),
+(252,1),
+(302,1),
+(303,1);
 
 /*Table structure for table `post_post_image` */
 
