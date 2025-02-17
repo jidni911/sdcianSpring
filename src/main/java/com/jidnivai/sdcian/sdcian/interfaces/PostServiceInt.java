@@ -15,10 +15,12 @@ public interface PostServiceInt {
 
     Page<Post> search(String name, int page, int size);
 
-    void deletePost(Long id);
+    void deletePost(Long id, Long userId);
 
     Page<Post> getPostsByUser(Long id, int page, int size);
 
     Post likePost(Long postId, Long id);
+
+    void reportPost(Long id, Long userId);
 
 }

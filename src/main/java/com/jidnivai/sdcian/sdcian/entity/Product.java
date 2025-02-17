@@ -66,11 +66,11 @@ public class Product {
 
     private int reviews;
 
-    private List<String> tags;
+    private String tags;
 
     private String origin;
 
-    private List<String> features;
+    private String features;
 
     private LocalDateTime addedDate;
 

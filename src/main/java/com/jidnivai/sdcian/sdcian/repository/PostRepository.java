@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     // Adjusted to search by creator's ID
     Page<Post> findByCreatorId(Long creatorId, Pageable pageable);
 
+    Page<Post> findAllByIsDeleted(boolean b, Pageable pageable);
+
 }

@@ -4,7 +4,6 @@ package com.jidnivai.sdcian.sdcian.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,10 +49,7 @@ public class PostController {
         return updatePost(id, post);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
-        postServiceInt.deletePost(id);
-    }
+    
 
     @GetMapping("/search/{name}")
     public Page<Post> search(@PathVariable String name,
@@ -74,4 +70,16 @@ public class PostController {
     public Post likePost(@PathVariable Long postId,@AuthenticationPrincipal UserDetailsImpl user){
         return postServiceInt.likePost(postId,user.getId());
     }
+
+    @GetMapping("delete/{id}")
+    public void delete(@PathVariable Long id,@AuthenticationPrincipal UserDetailsImpl user) {
+        postServiceInt.deletePost(id,user.getId());
+    }
+
+    @GetMapping("report/{id}")
+    public void report(@PathVariable Long id,@AuthenticationPrincipal UserDetailsImpl user) {
+        postServiceInt.reportPost(id,user.getId());
+    }
+    
+    
 }

@@ -50,6 +50,9 @@ public class Post {
     private List<User> likers;
 
     @ManyToMany
+    private List<User> reporter;
+
+    @ManyToMany
     private List<User> shares;
 
     @ManyToMany

@@ -58,14 +58,19 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public void deletePost(Long id) {
-        postRepository.deleteById(id);
+    public void deletePost(Long id, Long userId) {
+        Post post = postRepository.findById(id).orElseThrow();
+        if (post.getCreator().getId() != userId) {
+            return;
+        }
+        post.setDeleted(true);
+        postRepository.save(post);
     }
 
     @Override
     public Page<Post> getPosts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return postRepository.findAll(pageable);
+        return postRepository.findAllByIsDeleted(false, pageable);//TODO set other method for is Deleted
     }
 
     @Override
@@ -90,5 +95,13 @@ public class PostService implements PostServiceInt {
             post.getLikers().add(user);
         }
         return postRepository.save(post);
+    }
+
+    @Override
+    public void reportPost(Long id, Long userId) {
+        Post post = postRepository.findById(id).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
+        post.getReporter().add(user);
+        postRepository.save(post);
     }
 }
