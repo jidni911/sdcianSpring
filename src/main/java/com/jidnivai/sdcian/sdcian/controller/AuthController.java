@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -193,5 +194,11 @@ public class AuthController {
         return user;
     }
 
-  
+    @GetMapping("/allUserNames")
+    public List<String> getMethodName() {
+        return authServiceInt.getAllUserNames();
+    }
+    
+
+
 }

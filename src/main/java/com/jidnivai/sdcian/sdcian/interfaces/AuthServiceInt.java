@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
+import java.util.List;
+
 import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface AuthServiceInt {
@@ -13,6 +15,8 @@ public interface AuthServiceInt {
     public Boolean checkUsernameAvailability(String username);
 
     public Boolean checkEmailAvailability(String email);
+
+    public List<String> getAllUserNames();
 
     
 }

@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,12 @@ public class AuthService implements AuthServiceInt {
     public Boolean checkEmailAvailability(String email) {
         return !userRepository.existsByEmailIgnoreCase(email);
     }
+
+    @Override
+    public List<String> getAllUserNames() {
+        return userRepository.findAllUsernames();
+    }
+    
 }
 
 //     //TODO rework

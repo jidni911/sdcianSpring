@@ -27,53 +27,50 @@ public class UserController {
     @Autowired
     private UserServiceInt userService;
 
-    
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id,@AuthenticationPrincipal UserDetailsImpl user){
-        return userService.getUser(id,user.getId());
+    public User getUser(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
+        return userService.getUser(id, user.getId());
     }
 
     @GetMapping
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userService.getUsers();
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user){
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id){
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 
-    
     @GetMapping("/getProfilePictureOf/{id}")
-    public Image getProfilePictureOf(@PathVariable Long id){
+    public Image getProfilePictureOf(@PathVariable Long id) {
         return userService.getProfilePictureOf(id);
     }
 
-    
     @PostMapping("/changeProfilePicture")
-    public Image changeProfilePicture(@RequestParam MultipartFile image,@AuthenticationPrincipal UserDetailsImpl user){
+    public Image changeProfilePicture(@RequestParam MultipartFile image,
+            @AuthenticationPrincipal UserDetailsImpl user) {
         return userService.changeProfilePicture(user, image);
     }
+
     @PostMapping("/changeCoverPicture")
-    public Image changeCoverPicture(@RequestParam MultipartFile image,@AuthenticationPrincipal UserDetailsImpl user){
+    public Image changeCoverPicture(@RequestParam MultipartFile image, @AuthenticationPrincipal UserDetailsImpl user) {
         return userService.changeCoverPicture(user, image);
     }
 
-@GetMapping("/me")
-public User getMySelf(@AuthenticationPrincipal UserDetailsImpl user) {
-    return userService.getUser(user.getId(), user.getId());
-}
-
-    
+    @GetMapping("/me")
+    public User getMySelf(@AuthenticationPrincipal UserDetailsImpl user) {
+        return userService.getUser(user.getId(), user.getId());
+    }
 
 }
