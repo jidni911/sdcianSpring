@@ -1,23 +1,26 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 @Getter
 @Setter
 @ToString
 public class Messege {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,10 +35,10 @@ public class Messege {
     @OneToMany
     private List<Audio> audios;
 
-    @OneToOne
+    @ManyToOne
     private User sender;
 
-    @OneToOne
+    @ManyToOne
     private User receiver;
 
     private boolean isRead = false;
@@ -51,7 +54,7 @@ public class Messege {
     private boolean isStarred = false;
 
     private boolean isSent = false;
-    
+
     private boolean isDraft = false;
 
     private boolean isTrash = false;
@@ -69,5 +72,18 @@ public class Messege {
     private boolean isDeletedForReceiver = false;
 
     private boolean isDeletedForBoth = false;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
 }

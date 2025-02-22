@@ -6,7 +6,7 @@ import com.jidnivai.sdcian.sdcian.entity.Messege;
 
 public interface MessegeServiceInt {
 
-    Page<Messege> getMesseges();
+    Page<Messege> getMesseges(Long userId, int page, int size);
 
     Messege getMessege(Long id);
 

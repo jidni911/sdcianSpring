@@ -36,8 +36,8 @@ public class EventService implements EventServiceInt {
     }
 
     @Override
-    public Page<Event> getEvents() {
-        return eventRepository.findAll(PageRequest.of(0, 10));
+    public Page<Event> getEvents(Long userId, PageRequest of) {
+        return eventRepository.findAll(of);
     }
 
     @Override

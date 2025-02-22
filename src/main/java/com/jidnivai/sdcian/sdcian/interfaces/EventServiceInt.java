@@ -13,7 +13,7 @@ public interface EventServiceInt {
 
     Event getEvent(Long id);
 
-    Page<Event> getEvents();
+    Page<Event> getEvents( Long userId, PageRequest of);
 
     EventDto addEvent(EventCreateDto eventCreateDto, Long userId);
 

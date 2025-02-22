@@ -6,8 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.entity.Messege;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.MessegeRepository;
+import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
 @Service
 public class MessegeService implements MessegeServiceInt {
@@ -15,9 +17,13 @@ public class MessegeService implements MessegeServiceInt {
     @Autowired
     private MessegeRepository messegeRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
-    public Page<Messege> getMesseges() {
-        return messegeRepository.findAll(PageRequest.of(0, 10));
+    public Page<Messege> getMesseges( Long userId, int page, int size) {
+        User user = userRepository.findById(userId).orElseThrow();
+        return messegeRepository.findAllBySenderOrReceiver(user, user, PageRequest.of(page, size));
     }
 
     @Override

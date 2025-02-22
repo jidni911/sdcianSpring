@@ -2,6 +2,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
+import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
 @RequestMapping("/messege")
@@ -25,8 +27,9 @@ public class MessegeController {
     @GetMapping
     public Page<Messege> getMesseges(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return messegeServiceInt.getMesseges();
+            @RequestParam(defaultValue = "20") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return messegeServiceInt.getMesseges(user.getId(),page,size);
     }
 
     @GetMapping("/{id}")

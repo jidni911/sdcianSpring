@@ -40,8 +40,9 @@ public class EventController {
     @GetMapping
     public Page<Event> getEvents(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return eventServiceInt.getEvents();
+            @RequestParam(defaultValue = "10") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        return eventServiceInt.getEvents(user.getId(), PageRequest.of(page, size));
     }
 
     @PostMapping
