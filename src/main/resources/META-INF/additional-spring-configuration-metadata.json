@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "sdcian.app.images-upload-path",
+    "type": "java.lang.String",
+    "description": "A description for 'sdcian.app.images-upload-path'"
+  },
+  {
+    "name": "sdcian.app.videos-upload-path",
+    "type": "java.lang.String",
+    "description": "A description for 'sdcian.app.videos-upload-path'"
+  }
+]}
