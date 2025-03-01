@@ -17,7 +17,8 @@ public class CorsConfig {
                         // .allowedOrigins("**") // Allow all
                         .allowedOrigins(
                             "https://jidni911.github.io/",
-                            "http://localhost:4200"
+                            "http://localhost:4200",
+                            "http://192.168.1.9:4200/"
                             )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*") // Allow all headers
