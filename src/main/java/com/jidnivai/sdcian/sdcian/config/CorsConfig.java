@@ -16,9 +16,9 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         // .allowedOrigins("**") // Allow all
                         .allowedOrigins(
-                            "https://jidni911.github.io/",
                             "http://localhost:4200",
-                            "http://192.168.1.9:4200/"
+                            "http://192.168.1.9:4200/",
+                            "https://jidni911.github.io"
                             )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*") // Allow all headers
