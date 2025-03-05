@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
@@ -25,10 +26,11 @@ public class MessegeController {
     MessegeServiceInt messegeServiceInt;
 
     @GetMapping
-    public Page<Messege> getMesseges(
+    public Page<Chat> getMesseges(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
+                System.out.println(user);
         return messegeServiceInt.getMesseges(user.getId(),page,size);
     }
 

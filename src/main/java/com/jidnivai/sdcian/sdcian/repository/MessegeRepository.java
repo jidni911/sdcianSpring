@@ -11,8 +11,8 @@ import com.jidnivai.sdcian.sdcian.entity.User;
 @Repository
 public interface MessegeRepository extends JpaRepository<Messege, Long> {
 
-    Page<Messege> findBySenderAndReceiver(Long senderId, Long receiverId, PageRequest of);
+    // Page<Messege> findBySenderAndReceiver(Long senderId, Long receiverId, PageRequest of);
 
-    Page<Messege> findAllBySenderOrReceiver(User user, User user2, PageRequest of);
+    // Page<Messege> findAllBySenderOrReceiver(User user, User user2, PageRequest of);
 
 }

@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,9 @@ public class Messege {
 
     private String message;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Chat chat;
+
     @OneToMany
     private List<Image> images;
     @OneToMany
@@ -38,40 +42,37 @@ public class Messege {
     @ManyToOne
     private User sender;
 
-    @ManyToOne
-    private User receiver;
-
     private boolean isRead = false;
 
     private boolean isDeleted = false;
 
-    private boolean isArchived = false;
-
-    private boolean isSpam = false;
-
-    private boolean isImportant = false;
-
-    private boolean isStarred = false;
-
     private boolean isSent = false;
+    // private boolean isPinned = false;
+    // private boolean isArchived = false;
 
-    private boolean isDraft = false;
+    // private boolean isSpam = false;
 
-    private boolean isTrash = false;
+    // private boolean isImportant = false;
 
-    private boolean isMuted = false;
+    // private boolean isStarred = false;
 
-    private boolean isBlocked = false;
 
-    private boolean isDeletedForAll = false;
+    // private boolean isDraft = false;
 
-    private boolean isPinned = false;
+    // private boolean isTrash = false;
 
-    private boolean isDeletedForSender = false;
+    // private boolean isMuted = false;
 
-    private boolean isDeletedForReceiver = false;
+    // private boolean isBlocked = false;
 
-    private boolean isDeletedForBoth = false;
+    // private boolean isDeletedForAll = false;
+
+
+    // private boolean isDeletedForSender = false;
+
+    // private boolean isDeletedForReceiver = false;
+
+    // private boolean isDeletedForBoth = false;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

@@ -2,11 +2,12 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
 
+import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 
 public interface MessegeServiceInt {
 
-    Page<Messege> getMesseges(Long userId, int page, int size);
+    Page<Chat> getMesseges(Long userId, int page, int size);
 
     Messege getMessege(Long id);
 

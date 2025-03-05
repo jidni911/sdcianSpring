@@ -198,6 +198,11 @@ public class AuthController {
     public List<String> getMethodName() {
         return authServiceInt.getAllUserNames();
     }
+
+    @GetMapping("/echo")
+    public ResponseEntity<Boolean> echo() {
+        return ResponseEntity.ok(true);
+    }
     
 
 
