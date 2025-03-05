@@ -19,4 +19,6 @@ public interface MessegeServiceInt {
 
     Page<Messege> getMessegesBetweenSenderAndReceiver(Long senderId, Long receiverId);
 
+    Page<Messege> getMessagesInChat(Long id, Long id2, int page, int size);
+
 }

@@ -34,6 +34,16 @@ public class MessegeController {
         return messegeServiceInt.getMesseges(user.getId(),page,size);
     }
 
+    @GetMapping("/chat/{id}")
+    public Page<Messege> getMessagesInChat(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "20") int size,
+        @PathVariable Long id,
+        @AuthenticationPrincipal UserDetailsImpl user) {
+        return messegeServiceInt.getMessagesInChat(id,user.getId(),page,size);
+    }
+    
+
     @GetMapping("/{id}")
     public Messege getMessege(@PathVariable Long id) {
         return messegeServiceInt.getMessege(id);

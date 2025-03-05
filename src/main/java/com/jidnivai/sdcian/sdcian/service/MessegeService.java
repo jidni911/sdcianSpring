@@ -102,4 +102,20 @@ public class MessegeService implements MessegeServiceInt {
         // PageRequest.of(0, 10));
         return null;// TODO
     }
+
+    @Override
+    public Page<Messege> getMessagesInChat(Long chatId, Long userId, int page, int size) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return null;
+        }
+        Chat chat = chatRepository.findById(chatId).orElse(null);
+        if (chat == null) {
+            return null;
+        }
+        if(!chat.getMembers().contains(user)) {
+            return null;
+        }
+        return messegeRepository.findByChat(chat, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "createdAt")));
+    }
 }
