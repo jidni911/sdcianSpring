@@ -42,6 +42,9 @@ public class Chat {
     @ManyToOne
     private User creator;
 
+    private String lastMessage;
+    private LocalDateTime lastMessageTime;
+
     // @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
     // private List<Messege> messages;
 

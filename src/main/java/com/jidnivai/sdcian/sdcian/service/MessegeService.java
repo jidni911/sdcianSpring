@@ -55,6 +55,8 @@ public class MessegeService implements MessegeServiceInt {
         demoChat1.setRequestedMembers(List.of(user));
         demoChat1.setCreatedAt(LocalDateTime.now().minusDays(2));
         demoChat1.setUpdatedAt(LocalDateTime.now().minusHours(1));
+        demoChat1.setLastMessage("Hello!");
+        demoChat1.setLastMessageTime(LocalDateTime.now().minusHours(1));
         
         Chat demoChat2 = new Chat();
         demoChat2.setId(2L);
@@ -65,6 +67,8 @@ public class MessegeService implements MessegeServiceInt {
         demoChat2.setRequestedMembers(List.of(user));
         demoChat2.setCreatedAt(LocalDateTime.now().minusDays(5));
         demoChat2.setUpdatedAt(LocalDateTime.now().minusMinutes(30));
+        demoChat2.setLastMessage("Hi!");
+        demoChat2.setLastMessageTime(LocalDateTime.now().minusMinutes(30));
 
         demoChats.add(demoChat1);
         demoChats.add(demoChat2);
@@ -109,13 +113,71 @@ public class MessegeService implements MessegeServiceInt {
         if (user == null) {
             return null;
         }
-        Chat chat = chatRepository.findById(chatId).orElse(null);
-        if (chat == null) {
+        // Chat chat = chatRepository.findById(chatId).orElse(null);
+        // if (chat == null) {
+        //     return null;
+        // }
+        // if(!chat.getMembers().contains(user)) {
+        //     return null;
+        // } //TODO uncomment
+
+        // Page<Messege> messeges = messegeRepository.findByChat(chat, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "createdAt")));
+        // if(messeges.getContent().size() > 0) {
+        //     return messeges;
+        // }
+
+        List<Messege> demoMesseges = new ArrayList<>();
+
+        Messege demoMessege1 = new Messege();
+        demoMessege1.setId(1L);
+        demoMessege1.setMessage("Hello!");
+        // demoMessege1.setChat(chat);
+        demoMessege1.setSender(user);
+        demoMessege1.setCreatedAt(LocalDateTime.now().minusDays(2));
+        demoMessege1.setUpdatedAt(LocalDateTime.now().minusHours(1));
+
+        Messege demoMessege2 = new Messege();
+        demoMessege2.setId(2L);
+        demoMessege2.setMessage("Hi!");
+        // demoMessege2.setChat(chat);
+        demoMessege2.setSender(user);
+        demoMessege2.setSent(true);
+        demoMessege2.setCreatedAt(LocalDateTime.now().minusDays(5));
+        demoMessege2.setUpdatedAt(LocalDateTime.now().minusMinutes(30));
+
+        demoMesseges.add(demoMessege1);
+        demoMesseges.add(demoMessege2);
+
+        return new PageImpl<>(demoMesseges, PageRequest.of(page, size), demoMesseges.size());
+
+    }
+
+    @Override
+    public Page<User> getSuggestions(String query, Long id, int page, int size) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
             return null;
         }
-        if(!chat.getMembers().contains(user)) {
+        Page<User> users = userRepository.findByFullNameContainingOrUsernameContainingOrEmailContaining(query,query,query,PageRequest.of(page, size));
+        return users;
+
+    }
+
+    @Override
+    public Chat newChat(String name, List<Long> ids, Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
             return null;
         }
-        return messegeRepository.findByChat(chat, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "createdAt")));
+        List<User> users = userRepository.findAllById(ids);
+        Chat chat = new Chat();
+        chat.setName(name);
+        chat.setMembers(users);
+        chat.getMembers().add(user);
+        chat.setRequestedMembers(new ArrayList<>());
+        chat.setCreator(user);
+        chat.setLastMessage("");
+        chat.setLastMessageTime(LocalDateTime.now());
+        return chatRepository.save(chat);
     }
 }

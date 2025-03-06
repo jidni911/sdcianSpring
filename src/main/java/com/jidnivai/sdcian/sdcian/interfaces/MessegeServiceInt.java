@@ -1,9 +1,12 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface MessegeServiceInt {
 
@@ -20,5 +23,9 @@ public interface MessegeServiceInt {
     Page<Messege> getMessegesBetweenSenderAndReceiver(Long senderId, Long receiverId);
 
     Page<Messege> getMessagesInChat(Long id, Long id2, int page, int size);
+
+    Page<User> getSuggestions(String param, Long id, int page, int size);
+
+    Chat newChat(String name,List<Long> ids, Long userId);
 
 }

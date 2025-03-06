@@ -3,6 +3,8 @@ package com.jidnivai.sdcian.sdcian.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -21,6 +24,7 @@ import jakarta.persistence.PreUpdate;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Messege {
 
     @Id
@@ -30,6 +34,8 @@ public class Messege {
     private String message;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonIgnore
     private Chat chat;
 
     @OneToMany
@@ -85,6 +91,15 @@ public class Messege {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public Messege(Long id,String message, Chat chat,  User sender, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.message = message;
+        this.chat = chat;
+        this.sender = sender;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
@@ -30,8 +33,8 @@ public class MessegeController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
-                System.out.println(user);
-        return messegeServiceInt.getMesseges(user.getId(),page,size);
+                Page<Chat> messeges = messegeServiceInt.getMesseges(user.getId(),page,size);
+        return messeges;
     }
 
     @GetMapping("/chat/{id}")
@@ -40,7 +43,8 @@ public class MessegeController {
         @RequestParam(defaultValue = "20") int size,
         @PathVariable Long id,
         @AuthenticationPrincipal UserDetailsImpl user) {
-        return messegeServiceInt.getMessagesInChat(id,user.getId(),page,size);
+            Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id,user.getId(),page,size);
+        return messeges;
     }
     
 
@@ -72,5 +76,22 @@ public class MessegeController {
             @RequestParam(required = false, defaultValue = "10") int size) {
         return messegeServiceInt.getMessegesBetweenSenderAndReceiver(senderId, receiverId);
     }
+
+    @GetMapping("/newChatSuggestions/{param}")
+    public Page<User> getSuggestions(
+        @PathVariable String param,
+        @RequestParam(required = false, defaultValue = "0") int page,
+        @RequestParam(required = false, defaultValue = "10") int size,
+        @AuthenticationPrincipal UserDetailsImpl user
+    ) {
+        return messegeServiceInt.getSuggestions(param.trim(),user.getId(),page,size);
+    }
+
+    @GetMapping("/newChat")
+    public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids, @AuthenticationPrincipal UserDetailsImpl user) {
+        return messegeServiceInt.newChat(name,ids, user.getId());
+    }
+    
+    
 
 }

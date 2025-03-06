@@ -137,6 +137,89 @@ CREATE TABLE `cart_item_seq` (
 insert  into `cart_item_seq`(`next_val`) values 
 (251);
 
+/*Table structure for table `chat` */
+
+DROP TABLE IF EXISTS `chat`;
+
+CREATE TABLE `chat` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `is_group` bit(1) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `creator_id` bigint DEFAULT NULL,
+  `group_image_id` bigint DEFAULT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `updated_at` datetime(6) DEFAULT NULL,
+  `last_message_id` bigint DEFAULT NULL,
+  `last_message` varchar(255) DEFAULT NULL,
+  `last_message_time` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKb1ejj8ly97668wqohrj3n2r6g` (`creator_id`),
+  KEY `FK4g8l141s4k4oywomjhhp385ub` (`group_image_id`),
+  KEY `FKfis0e31kifmviy0qyyub5jqm2` (`last_message_id`),
+  CONSTRAINT `FK4g8l141s4k4oywomjhhp385ub` FOREIGN KEY (`group_image_id`) REFERENCES `image` (`id`),
+  CONSTRAINT `FKb1ejj8ly97668wqohrj3n2r6g` FOREIGN KEY (`creator_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKfis0e31kifmviy0qyyub5jqm2` FOREIGN KEY (`last_message_id`) REFERENCES `messege` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `chat` */
+
+insert  into `chat`(`id`,`is_group`,`name`,`creator_id`,`group_image_id`,`created_at`,`updated_at`,`last_message_id`,`last_message`,`last_message_time`) values 
+(1,'\0','Demo User',52,NULL,'2025-03-06 12:30:20.582304','2025-03-06 12:30:20.582304',NULL,'','2025-03-06 12:30:20.582304'),
+(2,'\0','Jidni Khan',52,NULL,'2025-03-06 12:38:01.449189','2025-03-06 12:38:01.449353',NULL,'','2025-03-06 12:38:01.449189'),
+(3,'\0','Demo User',52,NULL,'2025-03-06 12:44:24.057337','2025-03-06 12:44:24.057337',NULL,'','2025-03-06 12:44:24.056999');
+
+/*Table structure for table `chat_members` */
+
+DROP TABLE IF EXISTS `chat_members`;
+
+CREATE TABLE `chat_members` (
+  `chat_id` bigint NOT NULL,
+  `members_id` bigint NOT NULL,
+  KEY `FKejh3xk8tktifvk858ypgtqft5` (`members_id`),
+  KEY `FKcjnigrgwbin0pdph6mdphhp6i` (`chat_id`),
+  CONSTRAINT `FKcjnigrgwbin0pdph6mdphhp6i` FOREIGN KEY (`chat_id`) REFERENCES `chat` (`id`),
+  CONSTRAINT `FKejh3xk8tktifvk858ypgtqft5` FOREIGN KEY (`members_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `chat_members` */
+
+insert  into `chat_members`(`chat_id`,`members_id`) values 
+(1,1),
+(2,52),
+(3,1),
+(3,52),
+(1,52);
+
+/*Table structure for table `chat_messages` */
+
+DROP TABLE IF EXISTS `chat_messages`;
+
+CREATE TABLE `chat_messages` (
+  `chat_id` bigint NOT NULL,
+  `messages_id` bigint NOT NULL,
+  UNIQUE KEY `UKmrq0rmc439okhdws2rxsjjhdn` (`messages_id`),
+  KEY `FKb27mi3082eolv7k6tavhgq3wc` (`chat_id`),
+  CONSTRAINT `FKb27mi3082eolv7k6tavhgq3wc` FOREIGN KEY (`chat_id`) REFERENCES `chat` (`id`),
+  CONSTRAINT `FKs0fdc1u0qkde13bus4lsujhuw` FOREIGN KEY (`messages_id`) REFERENCES `messege` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `chat_messages` */
+
+/*Table structure for table `chat_requested_members` */
+
+DROP TABLE IF EXISTS `chat_requested_members`;
+
+CREATE TABLE `chat_requested_members` (
+  `chat_id` bigint NOT NULL,
+  `requested_members_id` bigint NOT NULL,
+  KEY `FKqooaqm85fv6a0o6vrmg0id7p3` (`requested_members_id`),
+  KEY `FKq7fw2nr00u6q6gcmlirf46yvk` (`chat_id`),
+  CONSTRAINT `FKq7fw2nr00u6q6gcmlirf46yvk` FOREIGN KEY (`chat_id`) REFERENCES `chat` (`id`),
+  CONSTRAINT `FKqooaqm85fv6a0o6vrmg0id7p3` FOREIGN KEY (`requested_members_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `chat_requested_members` */
+
 /*Table structure for table `comment` */
 
 DROP TABLE IF EXISTS `comment`;
@@ -550,11 +633,14 @@ CREATE TABLE `messege` (
   `sender_id` bigint DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `updated_at` datetime(6) DEFAULT NULL,
+  `chat_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK61aa6yc88cjlpi7ykr66knk5x` (`receiver_id`),
   UNIQUE KEY `UK8f2ldfa5t3t50ynfp8jq78kkq` (`sender_id`),
+  KEY `FKthey05rcl96h50moqkvlpoc2n` (`chat_id`),
   CONSTRAINT `FK1p85unqtqwupp899tq8mkut8j` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `FK9tt2ik57o7bmatdu6m8sct02g` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `FK9tt2ik57o7bmatdu6m8sct02g` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKthey05rcl96h50moqkvlpoc2n` FOREIGN KEY (`chat_id`) REFERENCES `chat` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `messege` */
@@ -1457,7 +1543,8 @@ insert  into `role_users`(`users_id`,`roles_name`) values
 (48,'ROLE_USER'),
 (49,'ROLE_USER'),
 (50,'ROLE_USER'),
-(51,'ROLE_USER');
+(51,'ROLE_USER'),
+(52,'ROLE_USER');
 
 /*Table structure for table `sponsor` */
 
@@ -1581,7 +1668,8 @@ insert  into `users`(`id`,`about`,`address`,`discord`,`dob`,`email`,`facebook`,`
 (48,NULL,'Uttara, Dhaka, Bangladesh',NULL,'1988-03-03','azad.hossain@example.com',NULL,'Azad Hossain','MALE',NULL,NULL,NULL,'$2a$10$hAEfLA93rhFdlweKz9CGvuyDFVsm8QYzH0bPlfN9QUbMufYhFRgbm','01912901236',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'azadhossain',NULL,NULL,NULL,NULL,NULL),
 (49,NULL,'Mirpur, Dhaka, Bangladesh',NULL,'1987-10-10','ziaur.rahman@example.com',NULL,'Ziaur Rahman','MALE',NULL,NULL,NULL,'$2a$10$CxgH7pNcoc.9z03d44BAbuLNB9cU3KyuBRlg6S.yBvZWyiM3QRB5G','01913901236',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'ziaurrahman',NULL,NULL,NULL,NULL,NULL),
 (50,NULL,'Dhanmondi, Dhaka, Bangladesh',NULL,'1993-07-07','farzana.begum@example.com',NULL,'Farzana Begum','FEMALE',NULL,NULL,NULL,'$2a$10$qxC7igLeAum3bd2RFNyS5eVAxSSkAvxBJVuSPEs6QMo86r9DUgg9q','01913890125',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'farzanabegum',NULL,NULL,NULL,NULL,NULL),
-(51,NULL,'Mohammadpur, Dhaka, Bangladesh',NULL,'1995-05-05','rumana.akter@example.com',NULL,'Rumana Akter','FEMALE',NULL,NULL,NULL,'$2a$10$wnB/13ztbeZmvjsWzEIaS.BwmXcL78g0Soxny0LILOcI5vbXej1Nq','01914012347',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'rumanaakter',NULL,NULL,NULL,NULL,NULL);
+(51,NULL,'Mohammadpur, Dhaka, Bangladesh',NULL,'1995-05-05','rumana.akter@example.com',NULL,'Rumana Akter','FEMALE',NULL,NULL,NULL,'$2a$10$wnB/13ztbeZmvjsWzEIaS.BwmXcL78g0Soxny0LILOcI5vbXej1Nq','01914012347',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'rumanaakter',NULL,NULL,NULL,NULL,NULL),
+(52,NULL,'Keraniganj Dhaka',NULL,'2000-12-27','gidni441@gmail.com',NULL,'Jidni Khan','MALE',NULL,NULL,NULL,'$2a$10$AErCLfN077Z/bggJXKidcev0L4EonxuI3mGd05Ow.RLolgO3Tp4Ay','01719987447',NULL,NULL,NULL,'INACTIVE',NULL,NULL,NULL,'jidni',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `users_seq` */
 
@@ -1594,7 +1682,7 @@ CREATE TABLE `users_seq` (
 /*Data for the table `users_seq` */
 
 insert  into `users_seq`(`next_val`) values 
-(101);
+(151);
 
 /*Table structure for table `video` */
 
