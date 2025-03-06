@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jidnivai.sdcian.sdcian.dto.NewMessageDto;
 import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -40,7 +41,7 @@ public class MessegeController {
     @GetMapping("/chat/{id}")
     public Page<Messege> getMessagesInChat(
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "20") int size,
+        @RequestParam(defaultValue = "100") int size,
         @PathVariable Long id,
         @AuthenticationPrincipal UserDetailsImpl user) {
             Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id,user.getId(),page,size);
@@ -54,8 +55,8 @@ public class MessegeController {
     }
 
     @PostMapping
-    public Messege createMessege(@RequestBody Messege messege) {
-        return messegeServiceInt.createMessege(messege);
+    public Messege createMessege(@RequestBody NewMessageDto newMessageDto,@AuthenticationPrincipal UserDetailsImpl user) {
+        return messegeServiceInt.createMessege(newMessageDto, user.getId());
     }
 
     @PutMapping("/{id}")

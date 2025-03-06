@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.jidnivai.sdcian.sdcian.dto.NewMessageDto;
 import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -57,7 +58,7 @@ public class MessegeService implements MessegeServiceInt {
         demoChat1.setUpdatedAt(LocalDateTime.now().minusHours(1));
         demoChat1.setLastMessage("Hello!");
         demoChat1.setLastMessageTime(LocalDateTime.now().minusHours(1));
-        
+
         Chat demoChat2 = new Chat();
         demoChat2.setId(2L);
         demoChat2.setName("Demo Chat 2");
@@ -82,7 +83,24 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Messege createMessege(Messege messege) {
+    public Messege createMessege(NewMessageDto newMessageDto, Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            return null;
+        }
+        Chat chat = chatRepository.findById(newMessageDto.getChatId()).orElse(null);
+        if (chat == null) {
+            return null;
+        }
+        if (!chat.getMembers().contains(user)) {
+            return null;
+        }
+        Messege messege = new Messege();
+        messege.setSender(user);
+        messege.setMessage(newMessageDto.getMessege());
+        messege.setChat(chat);
+        chat.setLastMessage(newMessageDto.getMessege());
+        chat.setLastMessageTime(LocalDateTime.now());
         return messegeRepository.save(messege);
     }
 
@@ -113,43 +131,18 @@ public class MessegeService implements MessegeServiceInt {
         if (user == null) {
             return null;
         }
-        // Chat chat = chatRepository.findById(chatId).orElse(null);
-        // if (chat == null) {
-        //     return null;
-        // }
-        // if(!chat.getMembers().contains(user)) {
-        //     return null;
-        // } //TODO uncomment
+        Chat chat = chatRepository.findById(chatId).orElse(null);
+        if (chat == null) {
+            return null;
+        }
+        if (!chat.getMembers().contains(user)) {
+            return null;
+        }
 
-        // Page<Messege> messeges = messegeRepository.findByChat(chat, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "createdAt")));
-        // if(messeges.getContent().size() > 0) {
-        //     return messeges;
-        // }
+        Page<Messege> messeges = messegeRepository.findByChat(chat,
+                PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "createdAt")));
 
-        List<Messege> demoMesseges = new ArrayList<>();
-
-        Messege demoMessege1 = new Messege();
-        demoMessege1.setId(1L);
-        demoMessege1.setMessage("Hello!");
-        // demoMessege1.setChat(chat);
-        demoMessege1.setSender(user);
-        demoMessege1.setCreatedAt(LocalDateTime.now().minusDays(2));
-        demoMessege1.setUpdatedAt(LocalDateTime.now().minusHours(1));
-
-        Messege demoMessege2 = new Messege();
-        demoMessege2.setId(2L);
-        demoMessege2.setMessage("Hi!");
-        // demoMessege2.setChat(chat);
-        demoMessege2.setSender(user);
-        demoMessege2.setSent(true);
-        demoMessege2.setCreatedAt(LocalDateTime.now().minusDays(5));
-        demoMessege2.setUpdatedAt(LocalDateTime.now().minusMinutes(30));
-
-        demoMesseges.add(demoMessege1);
-        demoMesseges.add(demoMessege2);
-
-        return new PageImpl<>(demoMesseges, PageRequest.of(page, size), demoMesseges.size());
-
+        return messeges;
     }
 
     @Override
@@ -158,7 +151,8 @@ public class MessegeService implements MessegeServiceInt {
         if (user == null) {
             return null;
         }
-        Page<User> users = userRepository.findByFullNameContainingOrUsernameContainingOrEmailContaining(query,query,query,PageRequest.of(page, size));
+        Page<User> users = userRepository.findByFullNameContainingOrUsernameContainingOrEmailContaining(query, query,
+                query, PageRequest.of(page, size));
         return users;
 
     }

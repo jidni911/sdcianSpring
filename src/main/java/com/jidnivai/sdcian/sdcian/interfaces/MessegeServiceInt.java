@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.jidnivai.sdcian.sdcian.dto.NewMessageDto;
 import com.jidnivai.sdcian.sdcian.entity.Chat;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.entity.User;
@@ -14,7 +15,7 @@ public interface MessegeServiceInt {
 
     Messege getMessege(Long id);
 
-    Messege createMessege(Messege messege);
+    Messege createMessege(NewMessageDto newMessageDto, Long userId);
 
     Messege updateMessege(Long id, Messege messege);
 
