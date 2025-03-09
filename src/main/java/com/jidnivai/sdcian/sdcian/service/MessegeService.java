@@ -101,6 +101,7 @@ public class MessegeService implements MessegeServiceInt {
         messege.setChat(chat);
         chat.setLastMessage(newMessageDto.getMessege());
         chat.setLastMessageTime(LocalDateTime.now());
+        chat.setMessegeCount(chat.getMessegeCount() + 1);
         return messegeRepository.save(messege);
     }
 

@@ -27,14 +27,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
+// @EnableWebSecurity
 @EnableMethodSecurity
-//(securedEnabled = true,
-//jsr250Enabled = true,
-//prePostEnabled = true) // by default
+// (securedEnabled = true,
+// jsr250Enabled = true,
+// prePostEnabled = true) // by default
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
-    // private static final String[] PUBLIC_URLS = {"/swagger-ui/**", "/v3/api-docs/**", "/api/auth/**", "/registerNewUser", "/api/test/**", "/signup", "/testController/**", "/updateUser",};
+    // private static final String[] PUBLIC_URLS = {"/swagger-ui/**",
+    // "/v3/api-docs/**", "/api/auth/**", "/registerNewUser", "/api/test/**",
+    // "/signup", "/testController/**", "/updateUser",};
     @Autowired
     UserDetailsServiceImpl userDetailsService;
     // @Value("${spring.console.path}")
@@ -72,20 +74,21 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/auth/**").permitAll()
+                .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/videos/**").permitAll()
                         .requestMatchers("/invoice/**").permitAll()
-                                .requestMatchers("/**").permitAll()
-                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                
-                                .requestMatchers("/swagger-ui/**").permitAll()
-                                .requestMatchers("/v3/api-docs/**").permitAll()
-                                .anyRequest().authenticated()
-                );
-        
-        // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'
+                        .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .anyRequest().authenticated());
+
+        // fix H2 database console: Refused to display ' in a frame because it set
+        // 'X-Frame-Options' to 'deny'
         http.headers(headers -> headers.frameOptions(frameOption -> frameOption.sameOrigin()));
 
         http.authenticationProvider(authenticationProvider());
@@ -95,24 +98,17 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         return http.build();
     }
 
-
     private SecurityScheme createAPIKeyScheme() {
-        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
-                .bearerFormat("JWT")
-                .scheme("bearer");
+        return new SecurityScheme().type(SecurityScheme.Type.HTTP).bearerFormat("JWT").scheme("bearer");
     }
 
     @Bean
     public OpenAPI openAPI() {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement().
-                        addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes
-                        ("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("My REST API")
-                        .description("JWT Test API")
-                        .version("1.0").contact(new Contact().name("Saiful")
-                                .email( "https://www.linkedin.com/in/saiful93/").url("gmsaiful71@gmail.com"))
-                        .license(new License().name("License of API")
-                                .url("API license URL")));
+        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
+                .info(new Info().title("My REST API").description("JWT Test API").version("1.0")
+                        .contact(new Contact().name("Saiful").email("https://www.linkedin.com/in/saiful93/")
+                                .url("gmsaiful71@gmail.com"))
+                        .license(new License().name("License of API").url("API license URL")));
     }
 }
