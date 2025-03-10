@@ -41,7 +41,7 @@ public class MessegeService implements MessegeServiceInt {
 
         Page<Chat> chats = chatRepository.findByMembersContaining(user,
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt")));
-        if (chats.getContent().size() > 0) {
+        if (!chats.getContent().isEmpty()) {
 
             return chats;
         }

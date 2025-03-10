@@ -34,6 +34,9 @@ public class MessegeController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
+                if (user == null) {
+                    return null;
+                }
                 Page<Chat> messeges = messegeServiceInt.getMesseges(user.getId(),page,size);
         return messeges;
     }
