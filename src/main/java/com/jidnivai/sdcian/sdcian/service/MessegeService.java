@@ -46,40 +46,39 @@ public class MessegeService implements MessegeServiceInt {
 
         Page<Chat> chats = chatRepository.findByMembersContaining(user,
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt")));
-        if (!chats.getContent().isEmpty()) {
-
+        
             return chats;
-        }
-        List<Chat> demoChats = new ArrayList<>();
+        
+        // List<Chat> demoChats = new ArrayList<>();
 
-        Chat demoChat1 = new Chat();
-        demoChat1.setId(1L);
-        demoChat1.setName("Demo Chat 1");
-        demoChat1.setGroup(false);
-        demoChat1.setCreator(user);
-        demoChat1.setMembers(List.of(user)); // Assuming a single member
-        demoChat1.setRequestedMembers(List.of(user));
-        demoChat1.setCreatedAt(LocalDateTime.now().minusDays(2));
-        demoChat1.setUpdatedAt(LocalDateTime.now().minusHours(1));
-        demoChat1.setLastMessage("Hello!");
-        demoChat1.setLastMessageTime(LocalDateTime.now().minusHours(1));
+        // Chat demoChat1 = new Chat();
+        // demoChat1.setId(1L);
+        // demoChat1.setName("Demo Chat 1");
+        // demoChat1.setGroup(false);
+        // demoChat1.setCreator(user);
+        // demoChat1.setMembers(List.of(user)); // Assuming a single member
+        // demoChat1.setRequestedMembers(List.of(user));
+        // demoChat1.setCreatedAt(LocalDateTime.now().minusDays(2));
+        // demoChat1.setUpdatedAt(LocalDateTime.now().minusHours(1));
+        // demoChat1.setLastMessage("Hello!");
+        // demoChat1.setLastMessageTime(LocalDateTime.now().minusHours(1));
 
-        Chat demoChat2 = new Chat();
-        demoChat2.setId(2L);
-        demoChat2.setName("Demo Chat 2");
-        demoChat2.setGroup(true);
-        demoChat2.setCreator(user);
-        demoChat2.setMembers(List.of(user));
-        demoChat2.setRequestedMembers(List.of(user));
-        demoChat2.setCreatedAt(LocalDateTime.now().minusDays(5));
-        demoChat2.setUpdatedAt(LocalDateTime.now().minusMinutes(30));
-        demoChat2.setLastMessage("Hi!");
-        demoChat2.setLastMessageTime(LocalDateTime.now().minusMinutes(30));
+        // Chat demoChat2 = new Chat();
+        // demoChat2.setId(2L);
+        // demoChat2.setName("Demo Chat 2");
+        // demoChat2.setGroup(true);
+        // demoChat2.setCreator(user);
+        // demoChat2.setMembers(List.of(user));
+        // demoChat2.setRequestedMembers(List.of(user));
+        // demoChat2.setCreatedAt(LocalDateTime.now().minusDays(5));
+        // demoChat2.setUpdatedAt(LocalDateTime.now().minusMinutes(30));
+        // demoChat2.setLastMessage("Hi!");
+        // demoChat2.setLastMessageTime(LocalDateTime.now().minusMinutes(30));
 
-        demoChats.add(demoChat1);
-        demoChats.add(demoChat2);
+        // demoChats.add(demoChat1);
+        // demoChats.add(demoChat2);
 
-        return new PageImpl<>(demoChats, PageRequest.of(page, size), demoChats.size());
+        // return new PageImpl<>(demoChats, PageRequest.of(page, size), demoChats.size());
     }
 
     @Override
