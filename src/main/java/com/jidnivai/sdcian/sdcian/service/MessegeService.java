@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewMessageDto;
 import com.jidnivai.sdcian.sdcian.entity.Chat;
+import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ChatRepository;
+import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.MessegeRepository;
 import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 
@@ -31,6 +33,9 @@ public class MessegeService implements MessegeServiceInt {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ImageRepository imageRepository;
 
     @Override
     public Page<Chat> getMesseges(Long userId, int page, int size) {
@@ -159,7 +164,7 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Chat newChat(String name, List<Long> ids, Long userId) {
+    public Chat newChat(String name, List<Long> ids,Long imageId, Long userId) {
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
             return null;
@@ -173,6 +178,15 @@ public class MessegeService implements MessegeServiceInt {
         chat.setCreator(user);
         chat.setLastMessage("");
         chat.setLastMessageTime(LocalDateTime.now());
+        if (imageId != null) {
+            Image image = imageRepository.findById(imageId).orElse(null);
+            if (image != null) {
+                chat.setGroupImage(image);
+            }
+            
+        }else{
+            chat.setGroupImage(user.getProfilePicture());
+        }
         return chatRepository.save(chat);
     }
 }

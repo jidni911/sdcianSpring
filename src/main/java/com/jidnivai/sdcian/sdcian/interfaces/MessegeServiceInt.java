@@ -27,6 +27,6 @@ public interface MessegeServiceInt {
 
     Page<User> getSuggestions(String param, Long id, int page, int size);
 
-    Chat newChat(String name,List<Long> ids, Long userId);
+    Chat newChat(String name,List<Long> ids,Long imageId, Long userId);
 
 }

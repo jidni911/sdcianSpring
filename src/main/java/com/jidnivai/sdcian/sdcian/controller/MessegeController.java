@@ -92,8 +92,8 @@ public class MessegeController {
     }
 
     @GetMapping("/newChat")
-    public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids, @AuthenticationPrincipal UserDetailsImpl user) {
-        return messegeServiceInt.newChat(name,ids, user.getId());
+    public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids,@RequestParam(required = false) Long imageId, @AuthenticationPrincipal UserDetailsImpl user) {
+        return messegeServiceInt.newChat(name,ids,imageId, user.getId());
     }
     
     

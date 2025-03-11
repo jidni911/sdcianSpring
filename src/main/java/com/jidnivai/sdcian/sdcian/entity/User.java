@@ -21,6 +21,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -67,6 +69,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status = UserStatus.INACTIVE;
+
+    @ManyToOne
+    private Audio profileMusic;
 
     private String about;
     private String website;

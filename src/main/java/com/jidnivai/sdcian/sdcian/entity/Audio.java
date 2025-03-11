@@ -26,6 +26,8 @@ public class Audio {
     
     private String path;
 
+    private String url;//TODO controller, Service, DTO
+
     private String name;
 
     @Transient
@@ -33,7 +35,7 @@ public class Audio {
 
     private String description;
     
-    @ManyToOne
-    private Post post;
+    // @ManyToOne
+    // private Post post;
 
 }
