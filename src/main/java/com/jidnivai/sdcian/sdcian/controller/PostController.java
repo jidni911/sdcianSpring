@@ -41,7 +41,12 @@ public class PostController {
     public Post savePost(@RequestBody NewPostDto newPostDto,@AuthenticationPrincipal UserDetailsImpl user) {
         // System.out.println(newPostDto);
         // return null;
-        return postServiceInt.savePost(newPostDto,user.getId());
+        try {
+            return postServiceInt.savePost(newPostDto, user.getId());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
