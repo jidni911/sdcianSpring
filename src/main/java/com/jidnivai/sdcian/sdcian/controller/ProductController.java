@@ -1,6 +1,5 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,39 +26,73 @@ public class ProductController {
     private ProductServiceInt productService;
 
     @GetMapping
-    public Page<ProductDto> getProducts(
-            @RequestParam(required = false, defaultValue = "0") int page,
+    public Page<ProductDto> getProducts(@RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        return productService.getAll( page, size);
+        try {
+            return productService.getAll(page, size);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/{id}")
     public ProductDto getById(@PathVariable Long id) {
-        return productService.getById(id);
+        try {
+            return productService.getById(id);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping()
-    public ProductDto add(@RequestBody NewProductDto newProductDto,@AuthenticationPrincipal UserDetailsImpl user) {
+    public ProductDto add(@RequestBody NewProductDto newProductDto, @AuthenticationPrincipal UserDetailsImpl user) {
         // System.out.println(user);
-        return productService.add(newProductDto, user);
+        try {
+            return productService.add(newProductDto, user);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public ProductDto update(@PathVariable Long id, @RequestBody ProductDto product) {
-        return productService.update(id, product);
+        try {
+            return productService.update(id, product);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        productService.delete(id);
+        try {
+            productService.delete(id);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/search/{name}")
     public Page<ProductDto> search(@PathVariable String name,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return productService.search(name, page, size);
+        try {
+            return productService.search(name, page, size);
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/sellerSearch/{name}")
@@ -67,7 +100,13 @@ public class ProductController {
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        return productService.sellerSearch(name, page, size, user.getId());
+        try {
+            return productService.sellerSearch(name, page, size, user.getId());
+
+        } catch (Exception e) {
+            System.out.println("ProductController: " + e.getMessage());
+            return null;
+        }
     }
 
     // sellerSearch

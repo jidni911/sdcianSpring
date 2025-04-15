@@ -30,72 +30,106 @@ public class MessegeController {
     MessegeServiceInt messegeServiceInt;
 
     @GetMapping
-    public Page<Chat> getMesseges(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size,
-            @AuthenticationPrincipal UserDetailsImpl user) {
-                if (user == null) {
-                    return null;
-                }
-                Page<Chat> messeges = messegeServiceInt.getMesseges(user.getId(),page,size);
-        return messeges;
+    public Page<Chat> getMesseges(@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size, @AuthenticationPrincipal UserDetailsImpl user) {
+        if (user == null) {
+            return null;
+        }
+        try {
+            Page<Chat> messeges = messegeServiceInt.getMesseges(user.getId(), page, size);
+            return messeges;
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/chat/{id}")
-    public Page<Messege> getMessagesInChat(
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "100") int size,
-        @PathVariable Long id,
-        @AuthenticationPrincipal UserDetailsImpl user) {
-            Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id,user.getId(),page,size);
-        return messeges;
+    public Page<Messege> getMessagesInChat(@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "100") int size, @PathVariable Long id,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id, user.getId(), page, size);
+            return messeges;
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
-    
 
     @GetMapping("/{id}")
     public Messege getMessege(@PathVariable Long id) {
-        return messegeServiceInt.getMessege(id);
+        try {
+            return messegeServiceInt.getMessege(id);
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
-    public Messege createMessege(@RequestBody NewMessageDto newMessageDto,@AuthenticationPrincipal UserDetailsImpl user) {
-        return messegeServiceInt.createMessege(newMessageDto, user.getId());
+    public Messege createMessege(@RequestBody NewMessageDto newMessageDto,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            return messegeServiceInt.createMessege(newMessageDto, user.getId());
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Messege updateMessege(@PathVariable Long id, @RequestBody Messege messege) {
-        return messegeServiceInt.updateMessege(id, messege);
+        try {
+            return messegeServiceInt.updateMessege(id, messege);
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteMessege(@PathVariable Long id) {
-        messegeServiceInt.deleteMessege(id);
+        try {
+            messegeServiceInt.deleteMessege(id);
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/between/{senderId}/{receiverId}")
-    public Page<Messege> getMessegesBetweenSenderAndReceiver(
-            @PathVariable Long senderId,
-            @PathVariable Long receiverId,
+    public Page<Messege> getMessegesBetweenSenderAndReceiver(@PathVariable Long senderId, @PathVariable Long receiverId,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return messegeServiceInt.getMessegesBetweenSenderAndReceiver(senderId, receiverId);
+        try {
+            return messegeServiceInt.getMessegesBetweenSenderAndReceiver(senderId, receiverId);
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/newChatSuggestions/{param}")
-    public Page<User> getSuggestions(
-        @PathVariable String param,
-        @RequestParam(required = false, defaultValue = "0") int page,
-        @RequestParam(required = false, defaultValue = "10") int size,
-        @AuthenticationPrincipal UserDetailsImpl user
-    ) {
-        return messegeServiceInt.getSuggestions(param.trim(),user.getId(),page,size);
+    public Page<User> getSuggestions(@PathVariable String param,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            return messegeServiceInt.getSuggestions(param.trim(), user.getId(), page, size);
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/newChat")
-    public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids,@RequestParam(required = false) Long imageId, @AuthenticationPrincipal UserDetailsImpl user) {
-        return messegeServiceInt.newChat(name,ids,imageId, user.getId());
+    public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids,
+            @RequestParam(required = false) Long imageId, @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            return messegeServiceInt.newChat(name, ids, imageId, user.getId());
+        } catch (Exception e) {
+            System.out.println("MessegeController: " + e.getMessage());
+            return null;
+        }
     }
-    
-    
-
 }

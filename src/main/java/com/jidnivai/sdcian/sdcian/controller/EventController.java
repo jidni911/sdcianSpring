@@ -34,7 +34,12 @@ public class EventController {
 
     @GetMapping("/{id}")
     public Event getEvent(@PathVariable Long id) {
-        return eventServiceInt.getEvent(id);
+        try {
+            return eventServiceInt.getEvent(id);
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping
@@ -42,7 +47,12 @@ public class EventController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        return eventServiceInt.getEvents(user.getId(), PageRequest.of(page, size));
+        try {
+            return eventServiceInt.getEvents(user.getId(), PageRequest.of(page, size));
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
@@ -50,36 +60,65 @@ public class EventController {
         @RequestBody EventCreateDto eventCreateDto,
         @AuthenticationPrincipal UserDetailsImpl user
     ) {
-        return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto, user.getId()));
+        try {
+            return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto, user.getId()));
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Event updateEvent(@PathVariable Long id, @RequestBody Event event) {
-        return eventServiceInt.updateEvent(id, event);
+        try {
+            return eventServiceInt.updateEvent(id, event);
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteEvent(@PathVariable Long id) {
-        eventServiceInt.deleteEvent(id);
+        try {
+            eventServiceInt.deleteEvent(id);
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+        }
     }
 
     @PostMapping("/requestSponsor")
     public Sponsor requestToBeSponsor(@RequestBody User sponsor) {
-        return eventServiceInt.requestToBeSponsor(sponsor);
+        try {
+            return eventServiceInt.requestToBeSponsor(sponsor);
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/future")
     public Page<Event> getFutureEvents(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+        try {
+            return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/past")
     public Page<Event> getPastEvents(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+        try {
+            return eventServiceInt.getFutureEvents(PageRequest.of(page, size));
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
     
@@ -88,7 +127,13 @@ public class EventController {
             @PathVariable Long id,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return eventServiceInt.getEventsByUser(id, PageRequest.of(page, size));
+        try {
+            return eventServiceInt.getEventsByUser(id, PageRequest.of(page, size));
+        } catch (Exception e) {
+            System.out.println("EventController: " + e.getMessage());
+            return null;
+        }
     }
 
 }
+

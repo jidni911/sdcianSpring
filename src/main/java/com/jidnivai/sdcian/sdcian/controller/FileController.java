@@ -24,21 +24,26 @@ public class FileController {
     @PostMapping("/uploadImage")
     public ImageUploadResponse uploadFile(@RequestParam MultipartFile image,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        return fileServiceInt.uploadImage(image, user);
+        try {
+            return fileServiceInt.uploadImage(image, user);
+        } catch (Exception e) {
+            System.out.println("FileController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/uploadVideo")//TODO update 
     public VideoUploadResponse uploadVideo(@RequestParam MultipartFile video,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        // Implement the method in FileServiceInt interface and service class
-        return fileServiceInt.uploadVideo(video, user);
+        try {
+            return fileServiceInt.uploadVideo(video, user);
+        } catch (Exception e) {
+            System.out.println("FileController: " + e.getMessage());
+            return null;
+        }
     }
 
-    // @GetMapping("/test")
-    // public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl
-    // user) {
-    // System.out.println(user);
-    // return user;
-    // }
+   
 
 }
+

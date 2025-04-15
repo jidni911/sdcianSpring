@@ -1,6 +1,5 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,60 +30,98 @@ public class PostController {
     }
 
     @GetMapping
-    public Page<Post> getPosts(
-            @RequestParam(required = false, defaultValue = "0") int page,
+    public Page<Post> getPosts(@RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return postServiceInt.getPosts(page, size);
+        try {
+            return postServiceInt.getPosts(page, size);
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
-    public Post savePost(@RequestBody NewPostDto newPostDto,@AuthenticationPrincipal UserDetailsImpl user) {
+    public Post savePost(@RequestBody NewPostDto newPostDto, @AuthenticationPrincipal UserDetailsImpl user) {
         // System.out.println(newPostDto);
         // return null;
+
         try {
             return postServiceInt.savePost(newPostDto, user.getId());
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("PostController: " + e.getMessage());
             return null;
         }
     }
 
     @PutMapping("/{id}")
     public Post updatePost(@PathVariable Long id, @RequestBody Post post) {
-        return updatePost(id, post);
+        try {
+            return updatePost(id, post);
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            return null;
+        }
     }
 
-    
-
     @GetMapping("/search/{name}")
-    public Page<Post> search(@PathVariable String name,
-            @RequestParam(required = false, defaultValue = "0") int page,
+    public Page<Post> search(@PathVariable String name, @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return postServiceInt.search(name, page, size);
+        try {
+            return postServiceInt.search(name, page, size);
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/user/{id}")
     public Page<Post> getPostsByUser(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return postServiceInt.getPostsByUser(id, page, size);
+        try {
+            return postServiceInt.getPostsByUser(id, page, size);
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            return null;
+        }
     }
 
-    
     @PostMapping("/like/{postId}")
-    public Post likePost(@PathVariable Long postId,@AuthenticationPrincipal UserDetailsImpl user){
-        return postServiceInt.likePost(postId,user.getId());
+    public Post likePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            return postServiceInt.likePost(postId, user.getId());
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("delete/{id}")
-    public void delete(@PathVariable Long id,@AuthenticationPrincipal UserDetailsImpl user) {
-        postServiceInt.deletePost(id,user.getId());
+    public void delete(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            postServiceInt.deletePost(id, user.getId());
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            // return null;
+        }
     }
 
     @GetMapping("report/{id}")
-    public void report(@PathVariable Long id,@AuthenticationPrincipal UserDetailsImpl user) {
-        postServiceInt.reportPost(id,user.getId());
+    public void report(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            postServiceInt.reportPost(id, user.getId());
+
+        } catch (Exception e) {
+            System.out.println("PostController: " + e.getMessage());
+            // return null;
+        }
     }
-    
-    
+
 }

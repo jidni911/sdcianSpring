@@ -131,31 +131,6 @@ public class AuthController {
         role.setName("ROLE_USER");
         roles.add(roleRepository.save(role));
 
-        // if (strRoles == null) {
-        //     Role userRole = roleRepository.findById(ERole.ROLE_USER.toString())
-        //             .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        //     roles.add(userRole);
-        // } else {
-        //     strRoles.forEach(role -> {
-        //         switch (role) {
-        //             case "admin":
-        //                 Role adminRole = roleRepository.findById(ERole.ROLE_ADMIN.toString())
-        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        //                 roles.add(adminRole);
-        //                 break;
-        //             case "mod":
-        //                 Role modRole = roleRepository.findById(ERole.ROLE_MODERATOR.toString())
-        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        //                 roles.add(modRole);
-        //                 break;
-        //             default:
-        //                 Role userRole = roleRepository.findById(ERole.ROLE_USER.toString())
-        //                         .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        //                 roles.add(userRole);
-        //         }
-        //     });
-        // }
-
         user = userRepository.save(user);
         user.setRoles(roles);
         userRepository.save(user);

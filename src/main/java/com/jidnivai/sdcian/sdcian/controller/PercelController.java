@@ -24,36 +24,65 @@ public class PercelController {
 
     @GetMapping("/{id}")
     public Percel getPercel(@PathVariable Long id) {
-        return percelServiceInt.getPercel(id);
+        try {
+            return percelServiceInt.getPercel(id);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping
     public Page<Percel> getPercels(
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return percelServiceInt.getPercels(page, size);
+        try {
+            return percelServiceInt.getPercels(page, size);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
     public Percel createPercel(@RequestBody Percel percel) {
-        return percelServiceInt.createPercel(percel);
+        try {
+            return percelServiceInt.createPercel(percel);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Percel updatePercel(@PathVariable Long id, @RequestBody Percel percel) {
-        return percelServiceInt.updatePercel(id, percel);
+        try {
+            return percelServiceInt.updatePercel(id, percel);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deletePercel(@PathVariable Long id) {
-        percelServiceInt.deletePercel(id);
+        try {
+            percelServiceInt.deletePercel(id);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/search/{name}")
     public Page<Percel> search(@PathVariable String name,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return percelServiceInt.search(name, page, size);
+        try {
+            return percelServiceInt.search(name, page, size);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
         
     }
 
@@ -61,14 +90,25 @@ public class PercelController {
     public Page<Percel> getPercelsBySender(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return percelServiceInt.getPercelsBySender(id, page, size);
+        try {
+            return percelServiceInt.getPercelsBySender(id, page, size);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/rider/{id}")
     public Page<Percel> getPercelsByRider(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return percelServiceInt.getPercelsByRider(id, page, size);
+        try {
+            return percelServiceInt.getPercelsByRider(id, page, size);
+        } catch (Exception e) {
+            System.out.println("PercelController: " + e.getMessage());
+            return null;
+        }
     }
 
 }
+

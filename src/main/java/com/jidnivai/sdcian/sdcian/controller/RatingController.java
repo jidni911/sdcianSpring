@@ -29,39 +29,74 @@ public class RatingController {
 
     @GetMapping
     public org.springframework.data.domain.Page<Rating> getRatings(
-        @RequestParam(required = false, defaultValue = "0") int page,
-        @RequestParam(required = false, defaultValue = "10") int size
-    ) {
-        return ratingService.getRatings(page, size);
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size) {
+        try {
+            return ratingService.getRatings(page, size);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
     public Rating createRating(@RequestBody Rating rating) {
-        return ratingService.createRating(rating);
+        try {
+            return ratingService.createRating(rating);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Rating updateRating(@PathVariable Long id, @RequestBody Rating rating) {
-        return ratingService.updateRating(id, rating);
+        try {
+            return ratingService.updateRating(id, rating);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteRating(@PathVariable Long id) {
-        ratingService.deleteRating(id);
+        try {
+            ratingService.deleteRating(id);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            // return null;
+        }
     }
 
     @GetMapping("/product/{id}")
     public Page<Rating> getRatingsByProduct(@PathVariable Long id,
-        @RequestParam(required = false, defaultValue = "0") int page,
-        @RequestParam(required = false, defaultValue = "10") int size) {
-        return ratingService.getRatingsByProduct(id, page, size);
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size) {
+        try {
+            return ratingService.getRatingsByProduct(id, page, size);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/user/{userId}")
     public Page<Rating> getRatingsByUser(@PathVariable Long userId,
-        @RequestParam(required = false, defaultValue = "0") int page,
-        @RequestParam(required = false, defaultValue = "10") int size) {
-        return ratingService.getRatingsByUser(userId, page, size);
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size) {
+        try {
+            return ratingService.getRatingsByUser(userId, page, size);
+
+        } catch (Exception e) {
+            System.out.println("RatingController: " + e.getMessage());
+            return null;
+        }
     }
 
 }

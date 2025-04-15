@@ -27,28 +27,58 @@ public class RoleController {
         @PathVariable String roleName,
         @RequestParam(required = false, defaultValue = "0") int page,
         @RequestParam(required = false, defaultValue = "10") int size) {
-        return roleService.getUsersByRoleName(roleName, page, size);
+            try {
+            return roleService.getUsersByRoleName(roleName, page, size);
+            
+        } catch (Exception e) {
+            System.out.println("RoleController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/roleOf/{id}")
     public Set<Role> getRole(@PathVariable Long id) {
         // System.out.println(id);
-        return roleService.getRolesOfUser(id);
+        try {
+            return roleService.getRolesOfUser(id); 
+            
+        } catch (Exception e) {
+            System.out.println("RoleController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/assign/{roleName}/to/{id}")
     public Set<Role> assignRole(@PathVariable String roleName, @PathVariable Long id) {
-        return roleService.assignRole(roleName, id);
+        try {
+            return roleService.assignRole(roleName, id);
+            
+        } catch (Exception e) {
+            System.out.println("RoleController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/remove/{roleName}/from/{id}")
     public Set<Role> removeRole(@PathVariable String roleName, @PathVariable Long id) {
-        return roleService.removeRole(roleName, id);
+        try {
+            return roleService.removeRole(roleName, id);
+            
+        } catch (Exception e) {
+            System.out.println("RoleController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping
     public List<Role> getRoles() {
-        return roleService.getRoles();
+        try {
+            return roleService.getRoles();
+            
+        } catch (Exception e) {
+            System.out.println("RoleController: " + e.getMessage());
+            return null;
+        }
     }
 
 }

@@ -29,49 +29,103 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
-        return userService.getUser(id, user.getId());
+        try {
+            return userService.getUser(id, user.getId());
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping
     public List<User> getUsers() {
-        return userService.getUsers();
+        try {
+            return userService.getUsers();
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+        try {
+            
+            return userService.createUser(user);
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+        try {
+            return userService.updateUser(id, user);
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+        try {
+            userService.deleteUser(id);
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            // return null;
+        }
     }
 
     @GetMapping("/getProfilePictureOf/{id}")
     public Image getProfilePictureOf(@PathVariable Long id) {
-        return userService.getProfilePictureOf(id);
+        try {
+            return userService.getProfilePictureOf(id);
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/changeProfilePicture")
     public Image changeProfilePicture(@RequestParam MultipartFile image,
             @AuthenticationPrincipal UserDetailsImpl user) {
-        return userService.changeProfilePicture(user, image);
+                try {
+            return userService.changeProfilePicture(user, image);
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/changeCoverPicture")
     public Image changeCoverPicture(@RequestParam MultipartFile image, @AuthenticationPrincipal UserDetailsImpl user) {
-        return userService.changeCoverPicture(user, image);
+        try {
+            return userService.changeCoverPicture(user, image);
+            
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/me")
     public User getMySelf(@AuthenticationPrincipal UserDetailsImpl user) {
-        if (user == null) return null;
-        return userService.getUser(user.getId(), user.getId());
+        try {
+            if (user == null)
+                return null;
+            return userService.getUser(user.getId(), user.getId());
+        } catch (Exception e) {
+            System.out.println("UserController: " + e.getMessage());
+            return null;
+        }
     }
 
 }

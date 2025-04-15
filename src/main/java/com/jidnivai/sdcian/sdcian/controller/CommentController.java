@@ -28,25 +28,44 @@ public class CommentController {
 
     @GetMapping("/{id}")
     public Comment getComment(@PathVariable Long id) {
-        return commentServiceInt.getComment(id);
+        try {
+            return commentServiceInt.getComment(id);
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
     public Comment saveComment(
         @RequestBody NewCommentDto newCommentDto,
         @AuthenticationPrincipal UserDetailsImpl user) {
-        return commentServiceInt.saveComment(newCommentDto, user.getId());
+        try {
+            return commentServiceInt.saveComment(newCommentDto, user.getId());
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Comment updateComment(@PathVariable Long id, @RequestBody Comment comment) {
-        comment.setId(id);
-        return commentServiceInt.updateComment(comment);
+        try {
+            comment.setId(id);
+            return commentServiceInt.updateComment(comment);
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteComment(@PathVariable Long id) {
-        commentServiceInt.deleteComment(id);
+        try {
+            commentServiceInt.deleteComment(id);
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/post/{postId}")
@@ -55,7 +74,12 @@ public class CommentController {
         @RequestParam(required = false, defaultValue = "0") int page,
         @RequestParam(required = false, defaultValue = "10") int size
         ) {
-        return commentServiceInt.getCommentsByPost(postId, page, size);
+        try {
+            return commentServiceInt.getCommentsByPost(postId, page, size);
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/user/{userId}")
@@ -63,7 +87,13 @@ public class CommentController {
         @PathVariable Long userId,
         @RequestParam(required = false, defaultValue = "0") int page,
         @RequestParam(required = false, defaultValue = "10") int size) {
-        return commentServiceInt.getCommentsByUser(userId, page, size);
+        try {
+            return commentServiceInt.getCommentsByUser(userId, page, size);
+        } catch (Exception e) {
+            System.out.println("CommentController: " + e.getMessage());
+            return null;
+        }
     }
 
 }
+

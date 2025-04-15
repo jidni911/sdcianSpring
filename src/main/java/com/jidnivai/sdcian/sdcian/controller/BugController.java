@@ -21,39 +21,58 @@ public class BugController {
 
     @Autowired
     private BugServiceInt bugServiceInt;
-    
 
-    
     @GetMapping
     public Page<Bug> getAllBugs(
-        @RequestParam(required = false,defaultValue = "0") int page,
-        @RequestParam(required = false,defaultValue = "10") int size
-    ){
-        return bugServiceInt.getAllBugs(page,size);
+        @RequestParam(required = false, defaultValue = "0") int page,
+        @RequestParam(required = false, defaultValue = "10") int size
+    ) {
+        try {
+            return bugServiceInt.getAllBugs(page, size);
+        } catch (Exception e) {
+            System.out.println("BugController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/{id}")
-    public Bug getBugById(@PathVariable Long id){
-        return bugServiceInt.getBugById(id);
+    public Bug getBugById(@PathVariable Long id) {
+        try {
+            return bugServiceInt.getBugById(id);
+        } catch (Exception e) {
+            System.out.println("BugController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
-    public Bug addBug(@RequestBody Bug bug){
-        return bugServiceInt.addBug(bug);
+    public Bug addBug(@RequestBody Bug bug) {
+        try {
+            return bugServiceInt.addBug(bug);
+        } catch (Exception e) {
+            System.out.println("BugController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
-    public Bug updateBug(@RequestBody Bug bug, @PathVariable Long id){
-        return bugServiceInt.updateBug(bug, id);
+    public Bug updateBug(@RequestBody Bug bug, @PathVariable Long id) {
+        try {
+            return bugServiceInt.updateBug(bug, id);
+        } catch (Exception e) {
+            System.out.println("BugController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBug(@PathVariable Long id){
-        bugServiceInt.deleteBug(id);
+    public void deleteBug(@PathVariable Long id) {
+        try {
+            bugServiceInt.deleteBug(id);
+        } catch (Exception e) {
+            System.out.println("BugController: " + e.getMessage());
+        }
     }
 
-    
 }
-
-
 

@@ -38,14 +38,23 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public Order getOrder(@PathVariable Long id) {
-        return orderServiceInt.getOrder(id);
+        try {
+            return orderServiceInt.getOrder(id);
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("memo/{orderItemId}")
     public List<OrderItem> getOrderItems(@PathVariable Long orderItemId, @AuthenticationPrincipal UserDetailsImpl user) {
-        return orderServiceInt.getOrderItems(orderItemId, user.getId());
+        try {
+            return orderServiceInt.getOrderItems(orderItemId, user.getId());
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
-    
 
     @GetMapping("/seller")
     public Page<OrderItem> getOrdersForSeller(
@@ -53,30 +62,54 @@ public class OrderController {
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = true) OrderStatus status,
             @AuthenticationPrincipal UserDetailsImpl user
-            ) {
-        return orderServiceInt.getOrdersForSeller(page, size, status, user.getId());
+    ) {
+        try {
+            return orderServiceInt.getOrdersForSeller(page, size, status, user.getId());
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
-    public ResponseEntity<byte[]> createOrder(@RequestBody NewOrderDto newOrderDto,@AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
-        return orderServiceInt.createOrder(newOrderDto, user.getId());
+    public ResponseEntity<byte[]> createOrder(@RequestBody NewOrderDto newOrderDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
+        try {
+            return orderServiceInt.createOrder(newOrderDto, user.getId());
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public Order updateOrder(@PathVariable Long id, @RequestBody Order orderEntity) {
-        return orderServiceInt.updateOrder(id, orderEntity);
+        try {
+            return orderServiceInt.updateOrder(id, orderEntity);
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteOrder(@PathVariable Long id) {
-        orderServiceInt.deleteOrder(id);
+        try {
+            orderServiceInt.deleteOrder(id);
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/user/{userId}")
     public Page<Order> getOrdersByUser(@PathVariable Long userId,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size) {
-        return orderServiceInt.getOrdersByUser(userId, page, size);
+        try {
+            return orderServiceInt.getOrdersByUser(userId, page, size);
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("updateStatus")
@@ -84,14 +117,22 @@ public class OrderController {
             @RequestBody(required = true) OrderItemStatusDto orderItemStatusDto,
             @AuthenticationPrincipal UserDetailsImpl user
     ) {
-        // System.out.println(orderItemStatusDto);
-        return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getId());
+        try {
+            return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getId());
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
 
-    
     @PostMapping("/confirm")
-    public ResponseEntity<byte[]> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException  {
-        return orderServiceInt.confirmOrder(confirmOrderRequestDto, user.getId());
+    public ResponseEntity<byte[]> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
+        try {
+            return orderServiceInt.confirmOrder(confirmOrderRequestDto, user.getId());
+        } catch (Exception e) {
+            System.out.println("OrderController: " + e.getMessage());
+            return null;
+        }
     }
-    
 }
+

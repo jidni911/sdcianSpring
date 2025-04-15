@@ -34,29 +34,52 @@ public class MemoController {
     @GetMapping
     public Page<Memo> getAllMemos(@RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.getAllMemos(page, size, userDetails.getId());
+        try {
+            return memoServiceInt.getAllMemos(page, size, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/{id}")
     public MemoDto getMemo(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.getMemo(id, userDetails.getId());
+        try {
+            return memoServiceInt.getMemo(id, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping
     public MemoDto addMemo(@RequestBody NewMemoDto newMemoDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-        return memoServiceInt.addMemo(newMemoDto, userDetails.getId());
+        try {
+            return memoServiceInt.addMemo(newMemoDto, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PutMapping("/{id}")
     public MemoDto updateMemo(@PathVariable Long id, @RequestBody MemoDto memoDto,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.updateMemo(id, memoDto, userDetails.getId());
+        try {
+            return memoServiceInt.updateMemo(id, memoDto, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @DeleteMapping("/{id}")
     public void deleteMemo(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        memoServiceInt.deleteMemo(id, userDetails.getId());
+        try {
+            memoServiceInt.deleteMemo(id, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+        }
     }
 
     @GetMapping("/search/{name}")
@@ -64,24 +87,45 @@ public class MemoController {
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "20") int size,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.searchMemos(name, page, size, userDetails.getId());
+        try {
+            return memoServiceInt.searchMemos(name, page, size, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     
     @GetMapping("/nextMemoNumber")
     public Integer nextMemoNumber(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.nextMemoNumber(userDetails.getId());
+        try {
+            return memoServiceInt.nextMemoNumber(userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/execute")
     public MemoDto execute(@RequestBody NewMemoDto newMemoDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return memoServiceInt.execute(newMemoDto, userDetails.getId());
+        try {
+            return memoServiceInt.execute(newMemoDto, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
     @PostMapping("/print")
     public ResponseEntity<byte[]> print(@RequestBody NewMemoDto newMemoDto, @AuthenticationPrincipal UserDetailsImpl userDetails)  throws JRException, IOException {
-        return memoServiceInt.print(newMemoDto, userDetails.getId());
+        try {
+            return memoServiceInt.print(newMemoDto, userDetails.getId());
+        } catch (Exception e) {
+            System.out.println("MemoController: " + e.getMessage());
+            return null;
+        }
     }
 
 
 }
+
