@@ -79,6 +79,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                     .requestMatchers("/intro/**").permitAll()
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/videos/**").permitAll()
+                        .requestMatchers("/homeImages/**").permitAll()
                         .requestMatchers("/invoice/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/**").permitAll()
