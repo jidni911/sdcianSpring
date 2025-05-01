@@ -1,6 +1,7 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.storage;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,21 +17,27 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Video {
+public class Audio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String path;
-    private String name;
-    private String url;
-    @Transient
-    protected byte[] videoBytes;
-    private String description;
-
     @ManyToOne
-    @ToString.Exclude
-    @JsonIgnore
     private User user;
+    
+    private String path;
+
+    private String url;//TODO controller, Service, DTO
+
+    private String name;
+
+    @Transient
+    protected byte[] audioBytes;
+
+    private String description;
+    
+    // @ManyToOne
+    // private Post post;
+
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.jidnivai.sdcian.sdcian.entity.Image;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 
 @Getter
 @Setter

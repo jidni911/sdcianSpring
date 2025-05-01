@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

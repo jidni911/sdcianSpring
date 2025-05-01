@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 public interface UserServiceInt {

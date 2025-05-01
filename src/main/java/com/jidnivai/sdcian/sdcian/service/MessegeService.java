@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewMessageDto;
 import com.jidnivai.sdcian.sdcian.entity.Chat;
-import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Messege;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ChatRepository;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;

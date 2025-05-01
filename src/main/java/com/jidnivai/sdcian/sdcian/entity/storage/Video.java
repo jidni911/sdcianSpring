@@ -1,6 +1,7 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.storage;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,27 +17,21 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Image {
+public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
-    private User user;
-    
     private String path;
-
-    private String url;
-
     private String name;
-
+    private String url;
     @Transient
-    @ToString.Exclude
-    protected byte[] imageBytes;
-
+    protected byte[] videoBytes;
     private String description;
 
+    @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
+    private User user;
 }

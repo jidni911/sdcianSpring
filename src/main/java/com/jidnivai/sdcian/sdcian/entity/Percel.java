@@ -2,7 +2,7 @@ package com.jidnivai.sdcian.sdcian.entity;
 
 import java.util.List;
 
-
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.enums.PercelStatus;
 
 import jakarta.persistence.Entity;

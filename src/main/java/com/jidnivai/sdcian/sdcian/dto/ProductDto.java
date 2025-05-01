@@ -3,8 +3,7 @@ package com.jidnivai.sdcian.sdcian.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.jidnivai.sdcian.sdcian.entity.Image;
-
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 
 import lombok.Getter;
 import lombok.Setter;

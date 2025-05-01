@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jidnivai.sdcian.sdcian.dto.ImageUploadResponse;
 import com.jidnivai.sdcian.sdcian.dto.VideoUploadResponse;
-import com.jidnivai.sdcian.sdcian.entity.Image;
-import com.jidnivai.sdcian.sdcian.entity.Video;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
+import com.jidnivai.sdcian.sdcian.entity.storage.Video;
 import com.jidnivai.sdcian.sdcian.interfaces.FileServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.VideoRepository;

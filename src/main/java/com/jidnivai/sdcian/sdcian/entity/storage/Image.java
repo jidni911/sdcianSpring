@@ -1,5 +1,7 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.storage;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,27 +17,27 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Audio {
+public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
+    @ToString.Exclude
     private User user;
     
     private String path;
 
-    private String url;//TODO controller, Service, DTO
+    private String url;
 
     private String name;
 
     @Transient
-    protected byte[] audioBytes;
+    @ToString.Exclude
+    protected byte[] imageBytes;
 
     private String description;
-    
-    // @ManyToOne
-    // private Post post;
 
 }

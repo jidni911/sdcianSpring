@@ -3,6 +3,8 @@ package com.jidnivai.sdcian.sdcian.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
+import com.jidnivai.sdcian.sdcian.entity.storage.Video;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Sponsor;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

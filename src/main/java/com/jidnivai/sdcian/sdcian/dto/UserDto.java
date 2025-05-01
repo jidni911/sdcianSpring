@@ -3,8 +3,8 @@ package com.jidnivai.sdcian.sdcian.dto;
 import java.time.LocalDate;
 import java.util.Set;
 
-import com.jidnivai.sdcian.sdcian.entity.Image;
 import com.jidnivai.sdcian.sdcian.entity.Role;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
 import com.jidnivai.sdcian.sdcian.enums.UserStatus;
 

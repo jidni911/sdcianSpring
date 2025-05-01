@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import java.util.List;
 
-import com.jidnivai.sdcian.sdcian.entity.Image;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 
 @Getter
 @Setter

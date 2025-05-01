@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jidnivai.sdcian.sdcian.dto.UserDto;
+import com.jidnivai.sdcian.sdcian.entity.storage.Audio;
+import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.enums.Gender;
 import com.jidnivai.sdcian.sdcian.enums.UserStatus;
 
