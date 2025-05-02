@@ -17,5 +17,7 @@ public interface JerseyServiceInt {
     JerseyOrder placeOrder(JerseyOrder jerseyOrder, User user);
 
     List<JerseyOrder> getJerseyOrders(User user);
+
+    JerseyOrder makePayment(JerseyOrder entity, User user);
     
 }

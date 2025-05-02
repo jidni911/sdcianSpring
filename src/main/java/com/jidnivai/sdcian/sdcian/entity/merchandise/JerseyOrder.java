@@ -34,12 +34,14 @@ public class JerseyOrder {
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<JerseyOrderItem> items;
     private double deliveryCharge;
+    private String deliveryOption;
     private String address;
     @JsonIgnore
-    private boolean pending = true;
-    // private String paymentMethod;
-    // private String paymentNumber;
-    // private String transactionId;
+    private boolean pending;
+    private boolean paid;
+    private String paymentMethod;
+    private String accountNumber;
+    private String trxId;
     // private int payment;
     
     private LocalDateTime createdAt;

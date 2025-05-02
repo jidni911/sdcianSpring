@@ -82,7 +82,9 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                         .requestMatchers("/homeImages/**").permitAll()
                         .requestMatchers("/invoice/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
-                        // .requestMatchers("/**").permitAll()
+                        .requestMatchers("/error").permitAll()
+                        .requestMatchers("/index.html").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/jersey/**").permitAll()
 

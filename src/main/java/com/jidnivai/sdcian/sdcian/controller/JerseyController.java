@@ -91,7 +91,18 @@ public class JerseyController {
         }
     }
 
-
+    @PostMapping("/payment")
+    public JerseyOrder makePayment(@RequestBody JerseyOrder entity, @AuthenticationPrincipal UserDetailsImpl user) {
+        try {
+            return jerseyService.makePayment(entity,user.getUser());
+        } catch (Exception e) {
+            System.out.println("JerseyController: " + e.getMessage());
+            return null;
+        }
+        
+        // return entity;
+    }
+    
 
 
 
