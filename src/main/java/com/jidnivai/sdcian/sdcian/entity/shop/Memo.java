@@ -1,4 +1,4 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.shop;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import com.jidnivai.sdcian.sdcian.dto.MemoDto;
 import com.jidnivai.sdcian.sdcian.dto.NewMemoDto;
 import com.jidnivai.sdcian.sdcian.dto.NewMemoItemDto;
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

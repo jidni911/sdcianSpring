@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jidnivai.sdcian.sdcian.entity.Rating;
+import com.jidnivai.sdcian.sdcian.entity.shop.Rating;
 import com.jidnivai.sdcian.sdcian.interfaces.RatingServiceInt;
 
 @RestController

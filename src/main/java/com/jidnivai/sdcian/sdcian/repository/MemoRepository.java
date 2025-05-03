@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.jidnivai.sdcian.sdcian.entity.Memo;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
 
 @Repository
 public interface MemoRepository extends JpaRepository<Memo, Long> {

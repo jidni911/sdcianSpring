@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jidnivai.sdcian.sdcian.entity.Order;
+import com.jidnivai.sdcian.sdcian.entity.shop.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {

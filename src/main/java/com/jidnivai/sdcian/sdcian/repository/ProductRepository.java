@@ -5,8 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jidnivai.sdcian.sdcian.entity.Product;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.shop.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.dto.CartDto;
-import com.jidnivai.sdcian.sdcian.entity.CartItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.CartItem;
 
 public interface CartServiceInt {
 

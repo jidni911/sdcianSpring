@@ -14,11 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.jidnivai.sdcian.sdcian.entity.Memo;
-import com.jidnivai.sdcian.sdcian.entity.MemoItem;
-import com.jidnivai.sdcian.sdcian.entity.Order;
-import com.jidnivai.sdcian.sdcian.entity.OrderItem;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
+import com.jidnivai.sdcian.sdcian.entity.shop.MemoItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.Order;
+import com.jidnivai.sdcian.sdcian.entity.shop.OrderItem;
 import com.jidnivai.sdcian.sdcian.payload.OrderItemField;
 
 import net.sf.jasperreports.engine.JRException;

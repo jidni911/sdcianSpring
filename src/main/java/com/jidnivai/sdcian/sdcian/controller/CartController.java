@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.CartDto;
-import com.jidnivai.sdcian.sdcian.entity.CartItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.CartItem;
 import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 

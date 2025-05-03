@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.jidnivai.sdcian.sdcian.dto.MemoDto;
 import com.jidnivai.sdcian.sdcian.dto.NewMemoDto;
-import com.jidnivai.sdcian.sdcian.entity.Memo;
+import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
 
 import net.sf.jasperreports.engine.JRException;
 

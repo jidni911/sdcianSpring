@@ -3,7 +3,7 @@ package com.jidnivai.sdcian.sdcian.interfaces;
 
 import org.springframework.data.domain.Page;
 
-import com.jidnivai.sdcian.sdcian.entity.Rating;
+import com.jidnivai.sdcian.sdcian.entity.shop.Rating;
 
 public interface RatingServiceInt {
 

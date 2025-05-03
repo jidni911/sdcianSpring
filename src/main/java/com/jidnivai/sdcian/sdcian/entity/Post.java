@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.jidnivai.sdcian.sdcian.entity.shop.Product;
 import com.jidnivai.sdcian.sdcian.entity.storage.Image;
 import com.jidnivai.sdcian.sdcian.entity.storage.Video;
 

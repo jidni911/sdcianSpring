@@ -1,4 +1,6 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.shop;
+
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

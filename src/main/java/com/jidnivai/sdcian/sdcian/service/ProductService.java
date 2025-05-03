@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewProductDto;
 import com.jidnivai.sdcian.sdcian.dto.ProductDto;
-import com.jidnivai.sdcian.sdcian.entity.Product;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.shop.Product;
 import com.jidnivai.sdcian.sdcian.interfaces.ProductServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;

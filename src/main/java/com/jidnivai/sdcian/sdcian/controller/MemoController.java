@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jidnivai.sdcian.sdcian.dto.MemoDto;
 import com.jidnivai.sdcian.sdcian.dto.NewMemoDto;
-import com.jidnivai.sdcian.sdcian.entity.Memo;
+import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
 import com.jidnivai.sdcian.sdcian.interfaces.MemoServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 

@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
-import com.jidnivai.sdcian.sdcian.entity.Memo;
-import com.jidnivai.sdcian.sdcian.entity.MemoItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
+import com.jidnivai.sdcian.sdcian.entity.shop.MemoItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

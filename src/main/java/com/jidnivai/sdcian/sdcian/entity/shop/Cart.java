@@ -1,6 +1,8 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.shop;
 
 import java.util.List;
+
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

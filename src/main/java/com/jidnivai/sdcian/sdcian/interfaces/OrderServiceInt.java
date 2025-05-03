@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import com.jidnivai.sdcian.sdcian.dto.ConfirmOrderRequestDto;
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
-import com.jidnivai.sdcian.sdcian.entity.Order;
-import com.jidnivai.sdcian.sdcian.entity.OrderItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.Order;
+import com.jidnivai.sdcian.sdcian.entity.shop.OrderItem;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 import com.jidnivai.sdcian.sdcian.payload.response.OperationResult;
 

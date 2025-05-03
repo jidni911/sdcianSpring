@@ -1,7 +1,8 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.shop;
 
 import java.time.LocalDateTime;
 
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
 
 import jakarta.persistence.Entity;

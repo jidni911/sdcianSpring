@@ -2,7 +2,7 @@ package com.jidnivai.sdcian.sdcian.dto;
 
 import java.util.List;
 
-import com.jidnivai.sdcian.sdcian.entity.OrderItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.OrderItem;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -5,7 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.jidnivai.sdcian.sdcian.entity.Rating;
+
+import com.jidnivai.sdcian.sdcian.entity.shop.Rating;
 import com.jidnivai.sdcian.sdcian.interfaces.RatingServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.RatingRepository;
 

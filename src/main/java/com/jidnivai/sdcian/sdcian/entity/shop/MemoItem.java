@@ -1,4 +1,4 @@
-package com.jidnivai.sdcian.sdcian.entity;
+package com.jidnivai.sdcian.sdcian.entity.shop;
 
 import org.springframework.beans.BeanUtils;
 

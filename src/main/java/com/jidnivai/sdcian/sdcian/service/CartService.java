@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.jidnivai.sdcian.sdcian.dto.CartDto;
 import com.jidnivai.sdcian.sdcian.dto.UserDto;
-import com.jidnivai.sdcian.sdcian.entity.Cart;
-import com.jidnivai.sdcian.sdcian.entity.CartItem;
-import com.jidnivai.sdcian.sdcian.entity.Product;
 import com.jidnivai.sdcian.sdcian.entity.User;
+import com.jidnivai.sdcian.sdcian.entity.shop.Cart;
+import com.jidnivai.sdcian.sdcian.entity.shop.CartItem;
+import com.jidnivai.sdcian.sdcian.entity.shop.Product;
 import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.CartRepository;
 import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
