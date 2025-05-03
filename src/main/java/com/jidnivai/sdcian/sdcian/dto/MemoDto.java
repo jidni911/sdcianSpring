@@ -25,7 +25,6 @@ public class MemoDto {
         BeanUtils.copyProperties(memo, this);
         this.sellerId = memo.getSeller().getId();
         if (memo.getBuyer() != null) {
-            
             this.buyerId = memo.getBuyer().getId();
         }
     }

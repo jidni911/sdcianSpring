@@ -57,7 +57,7 @@ public class MemoService implements MemoServiceInt {
         if(memo.getSeller().getId().equals(user.getId())) {
             permission = true;
         }
-        if(memo.getBuyer().getId().equals(user.getId())) {
+        if(memo.getBuyer() != null && memo.getBuyer().getId().equals(user.getId())) {
             permission = true;
         }
         if(permission) {

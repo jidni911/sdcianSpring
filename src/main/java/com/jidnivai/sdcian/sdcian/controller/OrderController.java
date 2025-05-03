@@ -54,7 +54,7 @@ public class OrderController {
             System.out.println("OrderController: " + e.getMessage());
             return null;
         }
-    }
+    }//TODO obsolete
 
     @GetMapping("/seller")
     public Page<OrderItem> getOrdersForSeller(

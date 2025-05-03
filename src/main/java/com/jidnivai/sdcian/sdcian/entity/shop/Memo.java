@@ -78,7 +78,7 @@ public class Memo {
     private Float serviceCharge;
     private Float total;
 
-    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany( cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<MemoItem> memoItems;
 
 }
