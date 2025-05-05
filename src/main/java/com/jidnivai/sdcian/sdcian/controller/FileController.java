@@ -117,7 +117,7 @@ public class FileController {
         try (InputStream in = Files.newInputStream(filePath)) {
             if (isImage && !original) {
                 BufferedImage originalImage = ImageIO.read(in);
-                int targetWidth = 800;
+                int targetWidth = 200;
                 int targetHeight = (originalImage.getHeight() * targetWidth) / originalImage.getWidth();
 
                 BufferedImage resizedImage = resizeImage(originalImage, targetWidth, targetHeight);

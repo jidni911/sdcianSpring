@@ -3,6 +3,7 @@ package com.jidnivai.sdcian.sdcian.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ public class UserController {
     public User getUser(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
             return userService.getUser(id, user.getId());
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -42,7 +43,7 @@ public class UserController {
     public List<User> getUsers() {
         try {
             return userService.getUsers();
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -52,7 +53,7 @@ public class UserController {
     @PostMapping
     public User createUser(@RequestBody User user) {
         try {
-            
+
             return userService.createUser(user);
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
@@ -64,7 +65,7 @@ public class UserController {
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         try {
             return userService.updateUser(id, user);
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -75,7 +76,7 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUser(id);
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             // return null;
@@ -86,7 +87,7 @@ public class UserController {
     public Image getProfilePictureOf(@PathVariable Long id) {
         try {
             return userService.getProfilePictureOf(id);
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -96,9 +97,9 @@ public class UserController {
     @PostMapping("/changeProfilePicture")
     public Image changeProfilePicture(@RequestParam MultipartFile image,
             @AuthenticationPrincipal UserDetailsImpl user) {
-                try {
+        try {
             return userService.changeProfilePicture(user, image);
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -109,7 +110,7 @@ public class UserController {
     public Image changeCoverPicture(@RequestParam MultipartFile image, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
             return userService.changeCoverPicture(user, image);
-            
+
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;
@@ -117,6 +118,7 @@ public class UserController {
     }
 
     @GetMapping("/me")
+    // @PreAuthorize("permitAll()")
     public User getMySelf(@AuthenticationPrincipal UserDetailsImpl user) {
         try {
             if (user == null)
