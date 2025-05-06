@@ -47,6 +47,24 @@ public class AuthService implements AuthServiceInt {
     public List<String> getAllUserNames() {
         return userRepository.findAllUsernames();
     }
+
+    @Override
+    public User getUserByIdentifier(String identifier) {
+        User realUser = userRepository.findByUsername(identifier).orElse(null);
+        if (realUser == null) {
+            realUser = userRepository.findByEmail(identifier).orElse(null);
+        }
+        if (realUser == null) {
+            return null;
+        } else {
+            User user = new User();
+            user.setUsername(realUser.getUsername());
+            user.setFullName(realUser.getFullName());
+            user.setProfilePicture(realUser.getProfilePicture());
+            user.setProfileMusic(realUser.getProfileMusic());
+            return user;
+        }
+    }
     
 }
 

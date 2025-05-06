@@ -1,7 +1,6 @@
 package com.jidnivai.sdcian.sdcian.controller;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -163,22 +161,23 @@ public class AuthController {
         return authServiceInt.checkEmailAvailability(email);
     }
 
-    @GetMapping("/test")
-    public UserDetailsImpl testAuth(@AuthenticationPrincipal UserDetailsImpl user) { 
-        System.out.println(user);
-        return user;
-    }
+   
 
-    @GetMapping("/allUserNames")
-    public List<String> getMethodName() {
-        return authServiceInt.getAllUserNames();
-    }
+  
 
     @GetMapping("/echo")
     public ResponseEntity<Boolean> echo() {
         return ResponseEntity.ok(true);
     }
     
-
+    @GetMapping("/getUserByIdentifier")
+    public User getUserByIdentifier(@RequestParam String identifier) {
+        try{
+            return authServiceInt.getUserByIdentifier(identifier);
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
 
 }

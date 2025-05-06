@@ -18,5 +18,7 @@ public interface AuthServiceInt {
 
     public List<String> getAllUserNames();
 
+    public User getUserByIdentifier(String identifier);
+
     
 }
