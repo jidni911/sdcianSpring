@@ -52,4 +52,17 @@ public class EmailService {
     
         mailSender.send(message);
     }
+
+    public void sendOtp(String to, String otp) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+    
+        // helper.setFrom("your_email@gmail.com");
+        helper.setTo(to);
+        helper.setSubject("OTP for SDCian Registration");
+        String htmlBody = "<p>Here is your OTP: <b>" + otp + "</b></p>";
+        helper.setText(htmlBody, true);
+    
+        mailSender.send(message);
+    }
 }

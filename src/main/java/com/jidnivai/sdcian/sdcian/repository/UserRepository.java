@@ -35,6 +35,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findByFullNameContainingOrUsernameContainingOrEmailContaining(String query, String query2, String query3,
             PageRequest of);
 
+    boolean existsByUsernameIgnoreCaseAndEmailVerifiedIsTrue(String username);
+
+    boolean existsByUsernameIgnoreCaseAndEmailVerifiedIsFalse(String username);
+
+    boolean existsByEmailIgnoreCaseAndEmailVerifiedIsTrue(String email);
+
    
 
 }

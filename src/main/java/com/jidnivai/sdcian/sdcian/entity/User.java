@@ -1,6 +1,7 @@
 package com.jidnivai.sdcian.sdcian.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
@@ -73,6 +74,10 @@ public class User {
 
     @ManyToOne
     private Audio profileMusic;
+
+    private String emailOTP;
+    private LocalDateTime emailOtpExpiryTime;
+    private Boolean emailVerified = false;
 
     private String about;
     private String website;

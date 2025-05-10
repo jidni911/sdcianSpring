@@ -1,24 +1,37 @@
 package com.jidnivai.sdcian.sdcian.interfaces;
 
-import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.jidnivai.sdcian.sdcian.dto.EmailVerificationDto;
+import com.jidnivai.sdcian.sdcian.dto.LoginRequest;
+import com.jidnivai.sdcian.sdcian.dto.ResetPasswordDto;
+import com.jidnivai.sdcian.sdcian.dto.UserSignupDto;
 import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface AuthServiceInt {
 
-    public User login(String username, String password);
 
-    public String forgotPassword(String email);
+    public String forgotPassword(String username);
 
-    public String signup(User user);
 
     public Boolean checkUsernameAvailability(String username);
 
     public Boolean checkEmailAvailability(String email);
 
-    public List<String> getAllUserNames();
-
     public User getUserByIdentifier(String identifier);
+
+    public Boolean verifyEmail(EmailVerificationDto emailVerificationDto);
+
+    public ResponseEntity<?> login(LoginRequest loginRequest);
+
+    public Boolean signup(UserSignupDto signUpRequest, MultipartFile profilePicture);
+
+    public ResponseEntity<?> signout();
+
+
+    public Boolean resetPassword(ResetPasswordDto resetPasswordDto);
 
     
 }
