@@ -47,7 +47,7 @@ public class PostController {
         // return null;
 
         try {
-            return postServiceInt.savePost(newPostDto, user.getId());
+            return postServiceInt.savePost(newPostDto, user.getUser());
 
         } catch (Exception e) {
             System.out.println("PostController: " + e.getMessage());
@@ -94,7 +94,7 @@ public class PostController {
     @PostMapping("/like/{postId}")
     public Post likePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return postServiceInt.likePost(postId, user.getId());
+            return postServiceInt.likePost(postId, user.getUser());
 
         } catch (Exception e) {
             System.out.println("PostController: " + e.getMessage());
@@ -105,7 +105,7 @@ public class PostController {
     @GetMapping("delete/{id}")
     public void delete(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            postServiceInt.deletePost(id, user.getId());
+            postServiceInt.deletePost(id, user.getUser());
 
         } catch (Exception e) {
             System.out.println("PostController: " + e.getMessage());
@@ -116,7 +116,7 @@ public class PostController {
     @GetMapping("report/{id}")
     public void report(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            postServiceInt.reportPost(id, user.getId());
+            postServiceInt.reportPost(id, user.getUser());
 
         } catch (Exception e) {
             System.out.println("PostController: " + e.getMessage());

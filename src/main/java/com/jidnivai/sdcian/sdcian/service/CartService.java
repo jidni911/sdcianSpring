@@ -32,9 +32,8 @@ public class CartService implements CartServiceInt {
     @Autowired
     ProductRepository productRepository;
     @Override
-    public Page<CartDto> getAllCarts(int page, int size, Long userId) {
+    public Page<CartDto> getAllCarts(int page, int size, User user) {
 
-        User user = userRepository.findById(userId).orElseThrow(); 
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))){ 
             Page<Cart> carts = cartRepository.findAll(PageRequest.of(page, size));
             return carts.map(cart -> {
@@ -53,9 +52,9 @@ public class CartService implements CartServiceInt {
     }
 
     @Override
-    public CartDto getCartById(Long id) {
-        User user = userRepository.findById(id).orElseThrow();
-        Optional<Cart> optionalCart = cartRepository.findById(id);
+    public CartDto getCartById(User user) {
+        // User user = userRepository.findById(id).orElseThrow();
+        Optional<Cart> optionalCart = cartRepository.findById(user.getId());
         if (optionalCart.isPresent()) {
             Cart cart = optionalCart.get();
             CartDto cartDto = new CartDto();
@@ -66,7 +65,7 @@ public class CartService implements CartServiceInt {
             return cartDto;
         } else {
             Cart cart = new Cart();
-            cart.setId(id);
+            cart.setId(user.getId());
             cart.setUser(user);
             cart =  cartRepository.save(cart);
             CartDto cartDto = new CartDto();
@@ -79,8 +78,8 @@ public class CartService implements CartServiceInt {
 
     }
     @Override
-    public CartDto addtoCart(Long productId, Long id) {
-        Cart cart = cartRepository.findById(id).orElseThrow();// Getting the cart
+    public CartDto addtoCart(Long productId, User user) {
+        Cart cart = cartRepository.findById(user.getId()).orElseThrow();// Getting the cart
         CartItem cartItem = new CartItem();
         cartItem.setProduct(productRepository.findById(productId).orElseThrow());
         cartItem.setQuantity(1);
@@ -96,8 +95,8 @@ public class CartService implements CartServiceInt {
     }
 
     @Override
-    public void deleteFromCart(Long[] itemids, Long id) {
-        Cart cart = cartRepository.findById(id).orElseThrow();
+    public void deleteFromCart(Long[] itemids, User user) {
+        Cart cart = cartRepository.findById(user.getId()).orElseThrow();
         for (Long itemid : itemids) {
             cart.getItems().removeIf(item -> item.getId().equals(itemid));
         }
@@ -105,14 +104,14 @@ public class CartService implements CartServiceInt {
     }
 
     @Override
-    public void checkout(Long[] productIds, Long id) {
+    public void checkout(Long[] productIds, User user) {
         //TODO generate order
-        deleteFromCart(productIds, id);
+        deleteFromCart(productIds, user);
     }
 
     @Override
-    public CartDto setQuantity(Long itemId, int quantity, Long id) {
-        Cart cart = cartRepository.findById(id).orElseThrow();
+    public CartDto setQuantity(Long itemId, int quantity, User user) {
+        Cart cart = cartRepository.findById(user.getId()).orElseThrow();
         CartItem cartItem = cart.getItems().stream().filter(item -> item.getId().equals(itemId)).findFirst().orElseThrow();
         Product product = cartItem.getProduct();
         if (quantity >0 && quantity < product.getQuantity()) {
@@ -128,8 +127,8 @@ public class CartService implements CartServiceInt {
     }
 
     @Override
-    public List<CartItem> getCartItems(List<Long> itemIds, Long id) {
-        Cart cart = cartRepository.findById(id).orElseThrow();
+    public List<CartItem> getCartItems(List<Long> itemIds, User user) {
+        Cart cart = cartRepository.findById(user.getId()).orElseThrow();
         return cart.getItems().stream().filter(item -> itemIds.contains(item.getId())).toList();
     }
 

@@ -2,11 +2,11 @@ package com.jidnivai.sdcian.sdcian.service;
 
 import com.jidnivai.sdcian.sdcian.dto.NewCommentDto;
 import com.jidnivai.sdcian.sdcian.entity.Comment;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.interfaces.CommentServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.CommentRepository;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.PostRepository;
-import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 import com.jidnivai.sdcian.sdcian.repository.VideoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +28,10 @@ public class CommentService implements CommentServiceInt {
     @Autowired
     private VideoRepository videoRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private PostRepository postRepository;
 
     @Override
-    public Comment saveComment(NewCommentDto newCommentDto, Long userId) {
+    public Comment saveComment(NewCommentDto newCommentDto, User user) {
         Comment comment = new Comment();
         comment.setCommentText(newCommentDto.getCommentText());
         if (newCommentDto.getImageIds() != null && newCommentDto.getImageIds().size() > 0) {
@@ -50,7 +48,7 @@ public class CommentService implements CommentServiceInt {
         } else {
             return null;
         }
-        comment.setUser(userRepository.findById(userId).orElse(null));
+        comment.setUser(user);
         return commentRepository.save(comment);
     }
 

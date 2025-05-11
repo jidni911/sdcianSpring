@@ -10,13 +10,13 @@ import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 public interface UserServiceInt {
     
-    public User getUser(Long id, Long userId);
-
+    public User getUser(Long id, User user);
+    
     public List<User> getUsers();
 
     public User createUser(User user);
 
-    public User updateUser(Long id, User user);
+    // public User updateUser(Long id, User user);
 
     public void deleteUser(Long id);
 
@@ -25,5 +25,7 @@ public interface UserServiceInt {
     public Image changeProfilePicture(UserDetailsImpl user, MultipartFile image);
 
     public Image changeCoverPicture(UserDetailsImpl user, MultipartFile image);
+
+    public User updateUser(Long id, User user);
 
 }

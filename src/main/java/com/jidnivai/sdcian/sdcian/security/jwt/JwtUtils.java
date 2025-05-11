@@ -96,7 +96,7 @@ public class JwtUtils {
     //   roles.add(authority.getAuthority());
     // }
     claims.put("roles", roles);
-    claims.put("id", user.getId()!=null?user.getId():0);
+    claims.put("id", user.getUser().getId()!=null?user.getUser().getId():0);
     claims.put("user_name", user.getUsername()!=null?user.getUsername():"0");
 //    claims.put("email", user.getEmail()!=null?user.getEmail():"");
     return Jwts.builder()

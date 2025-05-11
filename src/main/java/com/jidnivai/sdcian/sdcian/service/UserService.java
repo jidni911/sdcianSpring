@@ -31,12 +31,8 @@ public class UserService implements UserServiceInt {
     private ImageRepository imageRepository;
 
     @Override
-    public User getUser(Long id, Long userId) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user.getId() != userId) {
-            user.setPassword(null);
-        }
-        return user;
+    public User getUser(Long id, User user) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -51,7 +47,7 @@ public class UserService implements UserServiceInt {
 
     @Override
     public User updateUser(Long id, User user) {
-        User existingUser = getUser(id, user.getId());
+        User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
             existingUser.setFullName(user.getFullName());
             existingUser.setUsername(user.getUsername());
@@ -89,13 +85,13 @@ public class UserService implements UserServiceInt {
 
     @Override
     public Image getProfilePictureOf(Long id) {
-        User user = getUser(id, id);
+        User user = userRepository.findById(id).orElseThrow();
         return user.getProfilePicture();
     }
 
     @Override
     public Image changeProfilePicture(UserDetailsImpl userImpl, MultipartFile image) {
-        User user = getUser(userImpl.getId(), userImpl.getId());
+        User user = userImpl.getUser();
         String userFolder = imageFolder + user.getUsername() + "/";
         String fileName = user.getUsername() + "_" + System.currentTimeMillis() + "_" + image.getOriginalFilename();
 
@@ -129,7 +125,7 @@ public class UserService implements UserServiceInt {
 
     @Override
     public Image changeCoverPicture(UserDetailsImpl userImpl, MultipartFile image) {
-        User user = getUser(userImpl.getId(), userImpl.getId());
+        User user = userImpl.getUser();
         String userFolder = imageFolder + user.getUsername() + "/";
         String fileName = user.getUsername() + "_" + System.currentTimeMillis() + "_" + image.getOriginalFilename();
 

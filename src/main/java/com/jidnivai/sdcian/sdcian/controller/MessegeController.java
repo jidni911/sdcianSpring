@@ -36,7 +36,7 @@ public class MessegeController {
             return null;
         }
         try {
-            Page<Chat> messeges = messegeServiceInt.getMesseges(user.getId(), page, size);
+            Page<Chat> messeges = messegeServiceInt.getMesseges(user.getUser(), page, size);
             return messeges;
         } catch (Exception e) {
             System.out.println("MessegeController: " + e.getMessage());
@@ -49,7 +49,7 @@ public class MessegeController {
             @RequestParam(defaultValue = "100") int size, @PathVariable Long id,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id, user.getId(), page, size);
+            Page<Messege> messeges = messegeServiceInt.getMessagesInChat(id, user.getUser(), page, size);
             return messeges;
         } catch (Exception e) {
             System.out.println("MessegeController: " + e.getMessage());
@@ -71,7 +71,7 @@ public class MessegeController {
     public Messege createMessege(@RequestBody NewMessageDto newMessageDto,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return messegeServiceInt.createMessege(newMessageDto, user.getId());
+            return messegeServiceInt.createMessege(newMessageDto, user.getUser());
         } catch (Exception e) {
             System.out.println("MessegeController: " + e.getMessage());
             return null;
@@ -115,7 +115,7 @@ public class MessegeController {
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return messegeServiceInt.getSuggestions(param.trim(), user.getId(), page, size);
+            return messegeServiceInt.getSuggestions(param.trim(), user.getUser(), page, size);
         } catch (Exception e) {
             System.out.println("MessegeController: " + e.getMessage());
             return null;
@@ -126,7 +126,7 @@ public class MessegeController {
     public Chat newChat(@RequestParam String name, @RequestParam List<Long> ids,
             @RequestParam(required = false) Long imageId, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return messegeServiceInt.newChat(name, ids, imageId, user.getId());
+            return messegeServiceInt.newChat(name, ids, imageId, user.getUser());
         } catch (Exception e) {
             System.out.println("MessegeController: " + e.getMessage());
             return null;

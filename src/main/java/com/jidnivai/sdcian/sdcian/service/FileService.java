@@ -61,7 +61,7 @@ public class FileService implements FileServiceInt {
 
             // Save to database
             Image img = new Image();
-            img.setUser(userService.getUser(user.getId(), user.getId()));
+            img.setUser(user.getUser());
             img.setName(fileName);
             img.setPath(userFolder + fileName);
             img.setUrl("/images/" + user.getUsername() + "/" + fileName);
@@ -95,7 +95,7 @@ public class FileService implements FileServiceInt {
 
             // Save to database
             Video vid = new Video();
-            vid.setUser(userService.getUser(user.getId(), user.getId()));
+            vid.setUser(user.getUser());
             vid.setName(fileName);
             vid.setPath(userFolder + fileName);
             vid.setUrl("/videos/" + user.getUsername() + "/" + fileName);

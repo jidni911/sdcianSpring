@@ -24,8 +24,6 @@ public class ProductService implements ProductServiceInt {
 	@Autowired
 	private ProductRepository productRepository;
 
-	@Autowired
-	private UserService userService;
 
 	@Autowired
 	private FileService fileService;
@@ -68,7 +66,7 @@ public class ProductService implements ProductServiceInt {
 
 		product.setMainImage(fileService.getImage(newProductDto.getMainImageId()));
 		product.setGalleryImages(fileService.getImages(newProductDto.getGalleryImagesId()));
-		product.setSeller(userService.getUser(user.getId(), user.getId()));
+		product.setSeller(user.getUser());
 		product.setAddedDate(LocalDateTime.now());
 		product =  productRepository.save(product);
 
@@ -135,8 +133,7 @@ public class ProductService implements ProductServiceInt {
 
 
 	@Override
-	public Page<ProductDto> sellerSearch(String name, int page, int size, Long id) {
-		User user = userService.getUser(id, id);
+	public Page<ProductDto> sellerSearch(String name, int page, int size, User user) {
 		Pageable pageable = PageRequest.of(page, size);
         // return productRepository.findByNameContaining(name, pageable);
 

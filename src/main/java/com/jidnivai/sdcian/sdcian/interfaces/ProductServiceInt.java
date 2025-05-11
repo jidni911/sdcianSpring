@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.dto.NewProductDto;
 import com.jidnivai.sdcian.sdcian.dto.ProductDto;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 public interface ProductServiceInt {
@@ -24,7 +25,7 @@ public interface ProductServiceInt {
 
     Page<ProductDto> search(String name, int page, int size);
 
-    Page<ProductDto> sellerSearch(String name, int page, int size, Long id);
+    Page<ProductDto> sellerSearch(String name, int page, int size, User user);
 
 
 }

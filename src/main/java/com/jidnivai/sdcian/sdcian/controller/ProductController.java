@@ -101,7 +101,7 @@ public class ProductController {
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return productService.sellerSearch(name, page, size, user.getId());
+            return productService.sellerSearch(name, page, size, user.getUser());
 
         } catch (Exception e) {
             System.out.println("ProductController: " + e.getMessage());

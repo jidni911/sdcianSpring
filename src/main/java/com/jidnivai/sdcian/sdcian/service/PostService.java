@@ -7,7 +7,6 @@ import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
 import com.jidnivai.sdcian.sdcian.repository.ImageRepository;
 import com.jidnivai.sdcian.sdcian.repository.PostRepository;
 import com.jidnivai.sdcian.sdcian.repository.ProductRepository;
-import com.jidnivai.sdcian.sdcian.repository.UserRepository;
 import com.jidnivai.sdcian.sdcian.repository.VideoRepository;
 
 import org.springframework.beans.BeanUtils;
@@ -24,8 +23,6 @@ public class PostService implements PostServiceInt {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     ImageRepository imageRepository;
@@ -42,10 +39,10 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public Post savePost(NewPostDto newPostDto, Long userId) {
+    public Post savePost(NewPostDto newPostDto, User user) {
         Post post = new Post();
         BeanUtils.copyProperties(newPostDto, post);
-        post.setCreator(userRepository.findById(userId).orElseThrow());
+        post.setCreator(user);
         post.setPostImage(imageRepository.findAllById(newPostDto.getPostImage()));
         post.setPostVideo(videoRepository.findAllById(newPostDto.getPostVideo()));
         post.setProducts(productRepository.findAllById(newPostDto.getProducts()));
@@ -59,9 +56,9 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public void deletePost(Long id, Long userId) {
+    public void deletePost(Long id, User user) {
         Post post = postRepository.findById(id).orElseThrow();
-        if (post.getCreator().getId() != userId) {
+        if (post.getCreator().getId() != user.getId()) {
             return;
         }
         post.setDeleted(true);
@@ -87,8 +84,7 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public Post likePost(Long postId, Long id) {
-        User user = userRepository.findById(id).orElseThrow();
+    public Post likePost(Long postId, User user) {
         Post post = postRepository.findById(postId).orElseThrow();
         if (post.getLikers().contains(user)) {
             post.getLikers().remove(user);
@@ -99,9 +95,8 @@ public class PostService implements PostServiceInt {
     }
 
     @Override
-    public void reportPost(Long id, Long userId) {
+    public void reportPost(Long id, User user) {
         Post post = postRepository.findById(id).orElseThrow();
-        User user = userRepository.findById(userId).orElseThrow();
         post.getReporter().add(user);
         postRepository.save(post);
     }

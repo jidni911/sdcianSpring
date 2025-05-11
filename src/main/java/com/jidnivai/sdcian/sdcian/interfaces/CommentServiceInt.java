@@ -5,12 +5,13 @@ import org.springframework.data.domain.Page;
 
 import com.jidnivai.sdcian.sdcian.dto.NewCommentDto;
 import com.jidnivai.sdcian.sdcian.entity.Comment;
+import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface CommentServiceInt {
 
     Comment getComment(Long id);
 
-    Comment saveComment(NewCommentDto newCommentDto, Long userId);
+    Comment saveComment(NewCommentDto newCommentDto, User user);
 
     Comment updateComment(Comment comment);
 

@@ -56,11 +56,11 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, Long userId) throws JRException, IOException {
+    public ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, User user) throws JRException, IOException {
         Order order = new Order();
         BeanUtils.copyProperties(newOrderDto, order);
-        order.setUser(userRepository.findById(userId).orElseThrow());
-        List<CartItem> cartItems = cartService.getCartItems(newOrderDto.getOrderItemIds(), userId);
+        order.setUser(user);
+        List<CartItem> cartItems = cartService.getCartItems(newOrderDto.getOrderItemIds(), user);
         List<OrderItem> orderItems = new ArrayList<>();
         for (CartItem cartItem : cartItems) {
             OrderItem orderItem = new OrderItem();
@@ -96,8 +96,7 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public Page<OrderItem> getOrdersForSeller(int page, int size, OrderStatus status, Long sellerId) {
-        User seller = userRepository.findById(sellerId).orElseThrow();
+    public Page<OrderItem> getOrdersForSeller(int page, int size, OrderStatus status, User seller) {
         Page<OrderItem> orderItems = orderItemRepository.findBySellerAndStatus(seller, status,
                 (PageRequest.of(page, size)));
         return orderItems;
@@ -109,14 +108,14 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, Long userId) {
+    public OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, User user) {
 
         OrderItem orderItem = orderItemRepository.findById(orderItemStatusDto.getId()).orElse(null);
         if (orderItem == null) {
 
             return new OperationResult(false, "Order item not found");
         }
-        if (!orderItem.getSeller().getId().equals(userId) && !orderItem.getCustomer().getId().equals(userId)) {
+        if (!orderItem.getSeller().getId().equals(user.getId()) && !orderItem.getCustomer().getId().equals(user.getId())) {
             return new OperationResult(false, "Not authorized");
         }
         if (orderItemStatusDto.getCurrentStatus() != orderItem.getStatus()) {
@@ -126,14 +125,14 @@ public class OrderService implements OrderServiceInt {
         switch (orderItemStatusDto.getCurrentStatus()) {
         case PENDING:
             if (orderItemStatusDto.isContinuation()) {
-                if (userId.equals(orderItem.getSeller().getId())) {
+                if (user.getId().equals(orderItem.getSeller().getId())) {
                     orderItem.setStatus(OrderStatus.PROCESSING);
                     orderItemRepository.save(orderItem);
                 } else {
                     return new OperationResult(false, "Not Permitted");
                 }
             } else {
-                if (userId.equals(orderItem.getSeller().getId())) {
+                if (user.getId().equals(orderItem.getSeller().getId())) {
                     orderItem.setStatus(OrderStatus.REJECTED);
                     orderItemRepository.save(orderItem);
                 } else {
@@ -143,7 +142,7 @@ public class OrderService implements OrderServiceInt {
             }
             break;
         case PROCESSING:
-            if (userId.equals(orderItem.getSeller().getId())) {
+            if (user.getId().equals(orderItem.getSeller().getId())) {
                 if (orderItemStatusDto.isContinuation()) {
                     Product product = orderItem.getProduct();
                     if(product.getQuantity() - orderItem.getQuantity() >= 0){
@@ -163,7 +162,7 @@ public class OrderService implements OrderServiceInt {
 
             break;
         case OUT_FOR_DELIVERY:
-            if (userId.equals(orderItem.getSeller().getId())) {
+            if (user.getId().equals(orderItem.getSeller().getId())) {
                 if (orderItemStatusDto.isContinuation()) {
                     orderItem.setStatus(OrderStatus.COMPLETED);
                 } else {
@@ -191,8 +190,7 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public List<OrderItem> getOrderItems(Long orderItemId, Long sellerId) {
-        User seller = userRepository.findById(sellerId).orElseThrow();
+    public List<OrderItem> getOrderItems(Long orderItemId, User seller) {
         OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow();
         Order order = orderItem.getOrder();
         List<OrderItem> orderItems = orderItemRepository.findByOrderAndSellerAndStatus(order, seller, OrderStatus.PROCESSING);
@@ -200,8 +198,7 @@ public class OrderService implements OrderServiceInt {
     }
 
     @Override
-    public ResponseEntity<byte[]> confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto, Long id) throws JRException, IOException {
-        User seller = userRepository.findById(id).orElseThrow();
+    public ResponseEntity<byte[]> confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto, User seller) throws JRException, IOException {
         Order order = null;
         Float subTotal = 0f;
         // System.out.println(confirmOrderRequestDto);

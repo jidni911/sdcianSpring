@@ -13,9 +13,9 @@ public interface EventServiceInt {
 
     Event getEvent(Long id);
 
-    Page<Event> getEvents( Long userId, PageRequest of);
+    Page<Event> getEvents( User user, PageRequest of);
 
-    EventDto addEvent(EventCreateDto eventCreateDto, Long userId);
+    EventDto addEvent(EventCreateDto eventCreateDto, User user);
 
     Event updateEvent(Long id, Event event);
 

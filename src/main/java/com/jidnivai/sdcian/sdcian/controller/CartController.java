@@ -31,7 +31,7 @@ public class CartController {
             @RequestParam(required = false, defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return cartService.getAllCarts(page, size, user.getId());
+            return cartService.getAllCarts(page, size, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
             return null;
@@ -41,7 +41,7 @@ public class CartController {
     @GetMapping
     public CartDto getCartById(@AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return cartService.getCartById(user.getId());
+            return cartService.getCartById(user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
             return null;
@@ -51,7 +51,7 @@ public class CartController {
     @PostMapping("/add/{productId}")
     public CartDto addtoCart(@PathVariable Long productId, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return cartService.addtoCart(productId, user.getId());
+            return cartService.addtoCart(productId, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
             return null;
@@ -61,7 +61,7 @@ public class CartController {
     @DeleteMapping("/remove")
     public void removeFromCart(@RequestParam Long[] itemid, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            cartService.deleteFromCart(itemid, user.getId());
+            cartService.deleteFromCart(itemid, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
         }
@@ -71,7 +71,7 @@ public class CartController {
     public CartDto setQuantity(@PathVariable Long itemId, @PathVariable int quantity,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return cartService.setQuantity(itemId, quantity, user.getId());
+            return cartService.setQuantity(itemId, quantity, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
             return null;
@@ -81,7 +81,7 @@ public class CartController {
     @PostMapping("/checkout")
     public void checkout(@RequestBody Long[] productIds, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            cartService.checkout(productIds, user.getId());
+            cartService.checkout(productIds, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
         }
@@ -92,7 +92,7 @@ public class CartController {
             @RequestParam List<Long> itemIds,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return cartService.getCartItems(itemIds, user.getId());
+            return cartService.getCartItems(itemIds, user.getUser());
         } catch (Exception e) {
             System.out.println("CartController: " + e.getMessage());
             return null;

@@ -36,15 +36,15 @@ public class EventService implements EventServiceInt {
     }
 
     @Override
-    public Page<Event> getEvents(Long userId, PageRequest of) {
+    public Page<Event> getEvents(User user, PageRequest of) {
         return eventRepository.findAll(of);
     }
 
     @Override
-    public EventDto addEvent(EventCreateDto eventCreateDto, Long userId) {
+    public EventDto addEvent(EventCreateDto eventCreateDto, User user) {
         Event event = new Event();
         BeanUtils.copyProperties(eventCreateDto, event);
-        event.setOrganiser(userRepository.findById(userId).orElseThrow());
+        event.setOrganiser(user);
         if(eventCreateDto.getCoverImage() != null) {
             Image image = imageRepository.findById(eventCreateDto.getCoverImage()).orElseThrow();
             event.setCoverImage(image);

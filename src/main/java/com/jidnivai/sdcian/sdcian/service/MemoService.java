@@ -33,9 +33,8 @@ public class MemoService implements MemoServiceInt {
     @Autowired
     JasperService jasperService;
     @Override
-    public Page<Memo> getAllMemos(int page, int size, Long id) {
+    public Page<Memo> getAllMemos(int page, int size, User user) {
         // developer gets all memos, seller gets memos of their own, others are same
-        User user = userRepository.findById(id).orElseThrow();
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
             return memoRepository.findAll(PageRequest.of(page, size));
         } else if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_SELLER"))) {
@@ -47,9 +46,8 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public MemoDto getMemo(Long id, Long userId) {
+    public MemoDto getMemo(Long id, User user) {
         boolean permission = false;
-        User user = userRepository.findById(userId).orElseThrow();
         Memo memo = memoRepository.findById(id).orElseThrow();
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
             permission = true;
@@ -68,9 +66,8 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public MemoDto addMemo(NewMemoDto newMemoDto, Long id) {
+    public MemoDto addMemo(NewMemoDto newMemoDto, User user) {
         // Only Developer and Seller can add memos
-        User user = userRepository.findById(id).orElseThrow();
         User buyer = null ;
         if(newMemoDto.getBuyerId() != null) {
             userRepository.findById(newMemoDto.getBuyerId()).orElse(null);
@@ -88,9 +85,8 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public MemoDto updateMemo(Long id, MemoDto memoDto, Long userId) {
+    public MemoDto updateMemo(Long id, MemoDto memoDto, User user) {
         //Only Developer and Seller can update memos
-        User user = userRepository.findById(userId).orElseThrow();
         User buyer = userRepository.findById(memoDto.getBuyerId()).orElse(null);
         User seller = userRepository.findById(memoDto.getSellerId()).orElse(user);
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
@@ -103,9 +99,8 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public void deleteMemo(Long id, Long id2) {
+    public void deleteMemo(Long id, User user) {
         // Only Developer and Seller can delete memos
-        User user = userRepository.findById(id2).orElseThrow();
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
             memoRepository.deleteById(id);
         } else if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_SELLER"))) {
@@ -114,8 +109,7 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public Page<Memo> searchMemos(String name, int page, int size, Long id) {
-        User user = userRepository.findById(id).orElseThrow();
+    public Page<Memo> searchMemos(String name, int page, int size, User user) {
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
             return memoRepository.findByMemoNumberContainingOrBuyerNameContainingOrBuyerAddressContainingOrBuyerPhoneNumberContainingOrBuyerEmailContaining(name, name, name, name, name, PageRequest.of(page, size));
         } else if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_SELLER"))) {
@@ -126,8 +120,7 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public Integer nextMemoNumber(Long id) {
-        User user = userRepository.findById(id).orElseThrow();
+    public Integer nextMemoNumber(User user) {
         if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_DEV"))) {
             return memoRepository.findMaxMemoNumberBySeller(user).orElse(0) + 1;
         } else if (user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_SELLER"))) {
@@ -138,9 +131,8 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public MemoDto execute(NewMemoDto newMemoDto, Long id) {
+    public MemoDto execute(NewMemoDto newMemoDto, User user) {
         Boolean permission = true;
-        User user = userRepository.findById(id).orElseThrow();
         User buyer = null ;
         if(newMemoDto.getBuyerId() != null) {
             userRepository.findById(newMemoDto.getBuyerId()).orElse(null);
@@ -172,8 +164,7 @@ public class MemoService implements MemoServiceInt {
     }
 
     @Override
-    public ResponseEntity<byte[]> print(NewMemoDto newMemoDto, Long id) throws JRException, IOException {
-        User user = userRepository.findById(id).orElseThrow();
+    public ResponseEntity<byte[]> print(NewMemoDto newMemoDto, User user) throws JRException, IOException {
         User buyer = null ;
         if(newMemoDto.getBuyerId() != null) {
             userRepository.findById(newMemoDto.getBuyerId()).orElse(null);

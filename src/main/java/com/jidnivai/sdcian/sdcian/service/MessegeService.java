@@ -37,8 +37,7 @@ public class MessegeService implements MessegeServiceInt {
     ImageRepository imageRepository;
 
     @Override
-    public Page<Chat> getMesseges(Long userId, int page, int size) {
-        User user = userRepository.findById(userId).orElse(null);
+    public Page<Chat> getMesseges(User user, int page, int size) {
         if (user == null) {
             return null;
         }
@@ -86,8 +85,7 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Messege createMessege(NewMessageDto newMessageDto, Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
+    public Messege createMessege(NewMessageDto newMessageDto, User user) {
         if (user == null) {
             return null;
         }
@@ -130,8 +128,7 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Page<Messege> getMessagesInChat(Long chatId, Long userId, int page, int size) {
-        User user = userRepository.findById(userId).orElse(null);
+    public Page<Messege> getMessagesInChat(Long chatId, User user, int page, int size) {
         if (user == null) {
             return null;
         }
@@ -150,8 +147,7 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Page<User> getSuggestions(String query, Long id, int page, int size) {
-        User user = userRepository.findById(id).orElse(null);
+    public Page<User> getSuggestions(String query, User user, int page, int size) {
         if (user == null) {
             return null;
         }
@@ -162,8 +158,7 @@ public class MessegeService implements MessegeServiceInt {
     }
 
     @Override
-    public Chat newChat(String name, List<Long> ids,Long imageId, Long userId) {
-        User user = userRepository.findById(userId).orElse(null);
+    public Chat newChat(String name, List<Long> ids,Long imageId, User user) {
         if (user == null) {
             return null;
         }

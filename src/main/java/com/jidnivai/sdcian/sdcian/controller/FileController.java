@@ -64,9 +64,10 @@ public class FileController {
     // ========== Serve Images ========== 
     @GetMapping("/images/**")
     public void serveImage(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(defaultValue = "false") boolean original)  {
+            @RequestParam(defaultValue = "false") boolean original,
+            @RequestParam(defaultValue = "200") int width)  {
         try {
-            serveMediaFile(request, response, imageFolder, "/images/", true, original);
+            serveMediaFile(request, response, imageFolder, "/images/", true, original,width);
         } catch (Exception e) {
             System.out.println("FileController serveImage: " + e.getMessage());
             System.out.println(e.getStackTrace()[0].toString());
@@ -75,9 +76,10 @@ public class FileController {
 
     @GetMapping("/homeImages/**")
     public void serveHomeImage(HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(defaultValue = "false") boolean original) {
+            @RequestParam(defaultValue = "false") boolean original,
+            @RequestParam(defaultValue = "200") int width) {
         try {
-            serveMediaFile(request, response, homeImageFolder, "/homeImages/", true, original);
+            serveMediaFile(request, response, homeImageFolder, "/homeImages/", true, original,width);
         } catch (Exception e) {
             System.out.println("FileController serveHomeImage: " + e.getMessage());
         }
@@ -86,7 +88,7 @@ public class FileController {
     @GetMapping("/videos/**")
     public void serveVideo(HttpServletRequest request, HttpServletResponse response) {
         try {
-            serveMediaFile(request, response, videoFolder, "/videos/", false, true);
+            serveMediaFile(request, response, videoFolder, "/videos/", false, true,200);
         } catch (Exception e) {
             System.out.println("FileController serveVideo: " + e.getMessage());
             
@@ -95,7 +97,7 @@ public class FileController {
 
     // ========== Common Handler ========== 
     private void serveMediaFile(HttpServletRequest request, HttpServletResponse response, String baseFolder,
-            String baseUrl, boolean isImage, boolean original) throws Exception {
+            String baseUrl, boolean isImage, boolean original, int width) throws Exception {
 
         // Fixing the issue with spaces (%20)
         String requestURI = request.getRequestURI();
@@ -117,7 +119,7 @@ public class FileController {
         try (InputStream in = Files.newInputStream(filePath)) {
             if (isImage && !original) {
                 BufferedImage originalImage = ImageIO.read(in);
-                int targetWidth = 200;
+                int targetWidth = width;
                 int targetHeight = (originalImage.getHeight() * targetWidth) / originalImage.getWidth();
 
                 BufferedImage resizedImage = resizeImage(originalImage, targetWidth, targetHeight);

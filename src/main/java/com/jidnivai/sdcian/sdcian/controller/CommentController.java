@@ -41,7 +41,7 @@ public class CommentController {
         @RequestBody NewCommentDto newCommentDto,
         @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return commentServiceInt.saveComment(newCommentDto, user.getId());
+            return commentServiceInt.saveComment(newCommentDto, user.getUser());
         } catch (Exception e) {
             System.out.println("CommentController: " + e.getMessage());
             return null;

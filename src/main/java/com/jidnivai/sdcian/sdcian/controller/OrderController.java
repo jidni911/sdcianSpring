@@ -49,7 +49,7 @@ public class OrderController {
     @GetMapping("memo/{orderItemId}")
     public List<OrderItem> getOrderItems(@PathVariable Long orderItemId, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return orderServiceInt.getOrderItems(orderItemId, user.getId());
+            return orderServiceInt.getOrderItems(orderItemId, user.getUser());
         } catch (Exception e) {
             System.out.println("OrderController: " + e.getMessage());
             return null;
@@ -64,7 +64,7 @@ public class OrderController {
             @AuthenticationPrincipal UserDetailsImpl user
     ) {
         try {
-            return orderServiceInt.getOrdersForSeller(page, size, status, user.getId());
+            return orderServiceInt.getOrdersForSeller(page, size, status, user.getUser());
         } catch (Exception e) {
             System.out.println("OrderController: " + e.getMessage());
             return null;
@@ -74,7 +74,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<byte[]> createOrder(@RequestBody NewOrderDto newOrderDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
         try {
-            return orderServiceInt.createOrder(newOrderDto, user.getId());
+            return orderServiceInt.createOrder(newOrderDto, user.getUser());
         } catch (Exception e) {
             System.out.println("OrderController: " + e.getMessage());
             return null;
@@ -118,7 +118,7 @@ public class OrderController {
             @AuthenticationPrincipal UserDetailsImpl user
     ) {
         try {
-            return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getId());
+            return orderServiceInt.updateOrderItemStatus(orderItemStatusDto, user.getUser());
         } catch (Exception e) {
             System.out.println("OrderController: " + e.getMessage());
             return null;
@@ -128,7 +128,7 @@ public class OrderController {
     @PostMapping("/confirm")
     public ResponseEntity<byte[]> confirmOrder(@RequestBody ConfirmOrderRequestDto confirmOrderRequestDto, @AuthenticationPrincipal UserDetailsImpl user) throws JRException, IOException {
         try {
-            return orderServiceInt.confirmOrder(confirmOrderRequestDto, user.getId());
+            return orderServiceInt.confirmOrder(confirmOrderRequestDto, user.getUser());
         } catch (Exception e) {
             System.out.println("OrderController: " + e.getMessage());
             return null;

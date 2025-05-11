@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import com.jidnivai.sdcian.sdcian.dto.ConfirmOrderRequestDto;
 import com.jidnivai.sdcian.sdcian.dto.NewOrderDto;
 import com.jidnivai.sdcian.sdcian.dto.OrderItemStatusDto;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.entity.shop.Order;
 import com.jidnivai.sdcian.sdcian.entity.shop.OrderItem;
 import com.jidnivai.sdcian.sdcian.enums.OrderStatus;
@@ -20,9 +21,9 @@ public interface OrderServiceInt {
 
     Order getOrder(Long id);
 
-    Page<OrderItem> getOrdersForSeller(int page, int size,  OrderStatus status, Long userId);
+    Page<OrderItem> getOrdersForSeller(int page, int size,  OrderStatus status, User user);
 
-    ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, Long userId) throws JRException, IOException;
+    ResponseEntity<byte[]> createOrder(NewOrderDto newOrderDto, User user) throws JRException, IOException;
 
     Order updateOrder(Long id, Order orderEntity);
 
@@ -30,10 +31,10 @@ public interface OrderServiceInt {
 
     Page<Order> getOrdersByUser(Long userId, int page, int size);
 
-    OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, Long userId);
+    OperationResult updateOrderItemStatus(OrderItemStatusDto orderItemStatusDto, User user);
 
-    List<OrderItem> getOrderItems(Long orderItemId, Long id);
+    List<OrderItem> getOrderItems(Long orderItemId, User user);
 
-    ResponseEntity<byte[]> confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto, Long id) throws JRException, IOException ;
+    ResponseEntity<byte[]> confirmOrder(ConfirmOrderRequestDto confirmOrderRequestDto, User user) throws JRException, IOException ;
 
 }

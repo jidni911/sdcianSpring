@@ -48,7 +48,7 @@ public class EventController {
             @RequestParam(defaultValue = "10") int size,
             @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return eventServiceInt.getEvents(user.getId(), PageRequest.of(page, size));
+            return eventServiceInt.getEvents(user.getUser(), PageRequest.of(page, size));
         } catch (Exception e) {
             System.out.println("EventController: " + e.getMessage());
             return null;
@@ -61,7 +61,7 @@ public class EventController {
         @AuthenticationPrincipal UserDetailsImpl user
     ) {
         try {
-            return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto, user.getId()));
+            return ResponseEntity.ok(eventServiceInt.addEvent(eventCreateDto, user.getUser()));
         } catch (Exception e) {
             System.out.println("EventController: " + e.getMessage());
             return null;

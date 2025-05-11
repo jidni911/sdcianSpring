@@ -30,7 +30,7 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            return userService.getUser(id, user.getId());
+            return userService.getUser(id, user.getUser());
 
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
@@ -120,9 +120,7 @@ public class UserController {
     // @PreAuthorize("permitAll()")
     public User getMySelf(@AuthenticationPrincipal UserDetailsImpl user) {
         try {
-            if (user == null)
-                return null;
-            return userService.getUser(user.getId(), user.getId());
+            return user.getUser();
         } catch (Exception e) {
             System.out.println("UserController: " + e.getMessage());
             return null;

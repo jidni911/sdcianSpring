@@ -50,9 +50,8 @@ public class HomeService {
    
 
 
-    public Home update(String welcomeText, MultipartFile welcomeImage, Long id) {
-        User user = userRepository.findById(id).orElse(null);
-        if(user == null) return null;
+    public Home update(String welcomeText, MultipartFile welcomeImage, User user) {
+        if (user == null) return null;
         if (!user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) return null;
         Image image = uploadImage(welcomeImage, user);
         if (image == null) {
@@ -99,8 +98,7 @@ public class HomeService {
 
 
 
-    public Home addSpecial(Long id, String title, String description, MultipartFile[] images, Long id2) {
-        User user = userRepository.findById(id2).orElse(null);
+    public Home addSpecial(Long id, String title, String description, MultipartFile[] images, User user) {
         if(user == null) return null;
         if (!user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) return null;
         Home homeToUpdate = get();

@@ -11,11 +11,11 @@ import com.jidnivai.sdcian.sdcian.entity.User;
 
 public interface MessegeServiceInt {
 
-    Page<Chat> getMesseges(Long userId, int page, int size);
+    Page<Chat> getMesseges(User user, int page, int size);
 
     Messege getMessege(Long id);
 
-    Messege createMessege(NewMessageDto newMessageDto, Long userId);
+    Messege createMessege(NewMessageDto newMessageDto, User user);
 
     Messege updateMessege(Long id, Messege messege);
 
@@ -23,10 +23,10 @@ public interface MessegeServiceInt {
 
     Page<Messege> getMessegesBetweenSenderAndReceiver(Long senderId, Long receiverId);
 
-    Page<Messege> getMessagesInChat(Long id, Long id2, int page, int size);
+    Page<Messege> getMessagesInChat(Long id, User user, int page, int size);
 
-    Page<User> getSuggestions(String param, Long id, int page, int size);
+    Page<User> getSuggestions(String param, User user, int page, int size);
 
-    Chat newChat(String name,List<Long> ids,Long imageId, Long userId);
+    Chat newChat(String name,List<Long> ids,Long imageId, User user);
 
 }

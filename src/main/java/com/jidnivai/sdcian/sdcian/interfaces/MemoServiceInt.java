@@ -7,28 +7,29 @@ import org.springframework.http.ResponseEntity;
 
 import com.jidnivai.sdcian.sdcian.dto.MemoDto;
 import com.jidnivai.sdcian.sdcian.dto.NewMemoDto;
+import com.jidnivai.sdcian.sdcian.entity.User;
 import com.jidnivai.sdcian.sdcian.entity.shop.Memo;
 
 import net.sf.jasperreports.engine.JRException;
 
 public interface MemoServiceInt {
 
-    Page<Memo> getAllMemos(int page, int size, Long id);
+    Page<Memo> getAllMemos(int page, int size, User user);
 
-    MemoDto getMemo(Long id, Long id2);
+    MemoDto getMemo(Long id, User user);
 
-    MemoDto addMemo(NewMemoDto newMemoDto, Long id);
+    MemoDto addMemo(NewMemoDto newMemoDto, User user);
 
-    MemoDto updateMemo(Long id, MemoDto memoDto, Long id2);
+    MemoDto updateMemo(Long id, MemoDto memoDto, User user);
 
-    void deleteMemo(Long id, Long id2);
+    void deleteMemo(Long id, User user);
 
-    Page<Memo> searchMemos(String name, int page, int size, Long id);
+    Page<Memo> searchMemos(String name, int page, int size, User user);
 
-    Integer nextMemoNumber(Long id);
+    Integer nextMemoNumber(User user);
 
-    MemoDto execute(NewMemoDto newMemoDto, Long id);
+    MemoDto execute(NewMemoDto newMemoDto, User user);
 
-    ResponseEntity<byte[]> print(NewMemoDto newMemoDto, Long id) throws JRException, IOException;
+    ResponseEntity<byte[]> print(NewMemoDto newMemoDto, User user) throws JRException, IOException;
 
 }

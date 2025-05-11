@@ -45,7 +45,7 @@ public class HomeController {
         try {
             // System.out.println("Text: " + welcomeText);
             // System.out.println("Image Name: " + welcomeImage.getOriginalFilename());
-            return homeService.update(welcomeText, welcomeImage, userDetails.getId());
+            return homeService.update(welcomeText, welcomeImage, userDetails.getUser());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -64,7 +64,7 @@ public class HomeController {
             System.out.println("Title: " + title);
             System.out.println("Description: " + description);
             System.out.println("Images: " + images.length);
-            return homeService.addSpecial(id, title, description, images, userDetails.getId());
+            return homeService.addSpecial(id, title, description, images, userDetails.getUser());
             // return null;
         } catch (Exception e) {
             System.out.println(e.getMessage());
