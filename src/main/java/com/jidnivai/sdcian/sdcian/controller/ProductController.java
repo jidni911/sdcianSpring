@@ -19,7 +19,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.ProductServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired

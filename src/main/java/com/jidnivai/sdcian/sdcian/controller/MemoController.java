@@ -25,7 +25,7 @@ import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 import net.sf.jasperreports.engine.JRException;
 
 @RestController
-@RequestMapping("/memo")
+@RequestMapping("/api/memo")
 public class MemoController {
 
     @Autowired

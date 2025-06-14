@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Link Button Manager</title>
+    <style>
+        :root {
+            --bg-light: #e6f9ff;
+            --bg-dark: #1c1c1e;
+            --text-light: #000;
+            --text-dark: #fff;
+            --card-light: #fff;
+            --card-dark: #2c2c2e;
+            --primary: #00bfff;
+            --primary-dark: #007acc;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        body.dark {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .container {
+            background-color: var(--card-light);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        body.dark .container {
+            background-color: var(--card-dark);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+            font-family: monospace;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .multi-link-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .multi-link-row button {
+            flex-grow: 1;
+            min-width: 120px;
+            font-size: 15px;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .toggle {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        #jsonExport {
+            width: 100%;
+            height: 100px;
+            font-family: monospace;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+
+        .row-actions {
+            margin-left: 10px;
+        }
+
+        .row-actions button {
+            margin-left: 5px;
+        }
+
+        .url-buttons {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .url-buttons button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+
+        /* Dark Mode Specific Changes */
+        body.dark .button-group button,
+        body.dark .row-actions button {
+            background-color: #333;
+            color: white;
+        }
+
+        body.dark .url-buttons button {
+            background-color: #555;
+            color: white;
+        }
+
+        body.dark textarea,
+        body.dark input[type="text"] {
+            background-color: #333;
+            border-color: #444;
+            color: white;
+        }
+
+        body.dark .toggle {
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+
+        <!-- Dark Mode Toggle -->
+        <button id="darkModeToggle" style="margin-left:79%">🌙 Dark Mode</button>
+        <h1>Multi-Link Button Manager</h1>
+
+        <form id="multiLinkForm">
+            <input type="text" id="groupName" placeholder="Button Name (e.g. Research Sites)" required />
+            <textarea id="urlsInput" placeholder="Enter URLs separated by commas..." required></textarea>
+            <button type="submit">Add Multi-Link Button</button>
+        </form>
+
+        <div class="button-group" id="buttonContainer"></div>
+
+        <div class="actions">
+            <button onclick="exportJSON()">⬇️ Export JSON</button>
+            <button onclick="importJSON()">⬆️ Import JSON</button>
+        </div>
+        <textarea id="jsonExport" placeholder="Paste JSON here for import or view exported buttons..."></textarea>
+    </div>
+
+    <script>
+        const form = document.getElementById('multiLinkForm');
+        const nameInput = document.getElementById('groupName');
+        const urlsInput = document.getElementById('urlsInput');
+        const container = document.getElementById('buttonContainer');
+        const jsonExport = document.getElementById('jsonExport');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Check for dark mode preference in localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark');
+            darkModeToggle.textContent = "🌞 Light Mode";
+        }
+
+        // Toggle dark mode
+        darkModeToggle.onclick = () => {
+            const isDarkMode = document.body.classList.toggle('dark');
+            darkModeToggle.textContent = isDarkMode ? "🌞 Light Mode" : "🌙 Dark Mode";
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        };
+
+        function getButtons() {
+            return JSON.parse(localStorage.getItem('multiLinkButtons') || '[]');
+        }
+
+        function saveButtons(data) {
+            localStorage.setItem('multiLinkButtons', JSON.stringify(data));
+        }
+
+        function renderButtons() {
+            container.innerHTML = '';
+            const buttons = getButtons();
+            buttons.forEach(({ name, urls }, index) => {
+                const row = document.createElement('div');
+                row.className = 'multi-link-row';
+
+                const openBtn = document.createElement('button');
+                openBtn.textContent = name;
+                openBtn.onclick = () => toggleUrlButtons(index);
+
+                const actions = document.createElement('div');
+                actions.className = 'row-actions';
+
+                const editBtn = document.createElement('button');
+                editBtn.textContent = '✏️';
+                editBtn.onclick = () => {
+                    nameInput.value = name;
+                    urlsInput.value = urls.join(', ');
+                    deleteButton(index);
+                };
+
+                const delBtn = document.createElement('button');
+                delBtn.textContent = '🗑️';
+                delBtn.onclick = () => deleteButton(index);
+
+                actions.appendChild(editBtn);
+                actions.appendChild(delBtn);
+
+                row.appendChild(openBtn);
+                row.appendChild(actions);
+
+                // Create the URL buttons for each URL under the "Open" button
+                const urlButtonsContainer = document.createElement('div');
+                urlButtonsContainer.className = 'url-buttons';
+                urls.forEach(url => {
+                    const urlBtn = document.createElement('button');
+                    urlBtn.textContent = `Open: ${url}`;
+                    urlBtn.onclick = () => openInBackground(url);
+                    urlButtonsContainer.appendChild(urlBtn);
+                });
+
+                row.appendChild(urlButtonsContainer);
+                container.appendChild(row);
+            });
+        }
+
+        function deleteButton(index) {
+            const buttons = getButtons();
+            buttons.splice(index, 1);
+            saveButtons(buttons);
+            renderButtons();
+        }
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            const urls = urlsInput.value
+                .split(',')
+                .map(url => url.trim())
+                .filter(url => url);
+
+            if (!name || urls.length === 0) return;
+
+            const buttons = getButtons();
+            buttons.push({ name, urls });
+            saveButtons(buttons);
+            nameInput.value = '';
+            urlsInput.value = '';
+            renderButtons();
+        };
+
+        function toggleUrlButtons(index) {
+            const buttons = getButtons();
+            const urlButtonsContainer = container.querySelectorAll('.url-buttons')[index];
+            urlButtonsContainer.style.display = urlButtonsContainer.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function openInBackground(url) {
+            window.open(url, '_blank');
+        }
+
+        function exportJSON() {
+            jsonExport.value = JSON.stringify(getButtons(), null, 2);
+        }
+
+        function importJSON() {
+            try {
+                const data = JSON.parse(jsonExport.value);
+                if (Array.isArray(data)) {
+                    saveButtons(data);
+                    renderButtons();
+                    alert("Imported successfully!");
+                } else {
+                    alert("Invalid JSON");
+                }
+            } catch (e) {
+                alert("Invalid JSON format");
+            }
+        }
+
+        renderButtons();
+    </script>
+</body>
+</html>

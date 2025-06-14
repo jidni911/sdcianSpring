@@ -21,7 +21,7 @@ import com.jidnivai.sdcian.sdcian.dto.EmailVerificationDto;
 import com.jidnivai.sdcian.sdcian.payload.response.MessageResponse;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired

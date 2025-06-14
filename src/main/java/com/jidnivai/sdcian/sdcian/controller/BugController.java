@@ -16,7 +16,7 @@ import com.jidnivai.sdcian.sdcian.entity.Bug;
 import com.jidnivai.sdcian.sdcian.interfaces.BugServiceInt;
 
 @RestController
-@RequestMapping("/bugs")
+@RequestMapping("/api/bugs")
 public class BugController {
 
     @Autowired

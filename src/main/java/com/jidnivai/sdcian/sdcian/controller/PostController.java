@@ -18,7 +18,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.PostServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
 
     @Autowired

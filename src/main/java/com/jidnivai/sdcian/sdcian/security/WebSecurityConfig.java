@@ -85,6 +85,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/index.html").permitAll()
+                        .requestMatchers("/api/tempfile/**").permitAll()
+                        .requestMatchers("/api/uploads/tempFile/**").permitAll()
                         .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/jersey/**").permitAll()
@@ -109,13 +111,13 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         return new SecurityScheme().type(SecurityScheme.Type.HTTP).bearerFormat("JWT").scheme("bearer");
     }
 
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title("My REST API").description("JWT Test API").version("1.0")
-                        .contact(new Contact().name("Saiful").email("https://www.linkedin.com/in/saiful93/")
-                                .url("gmsaiful71@gmail.com"))
-                        .license(new License().name("License of API").url("API license URL")));
-    }
+    // @Bean
+    // public OpenAPI openAPI() {
+    //     return new OpenAPI().addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+    //             .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
+    //             .info(new Info().title("My REST API").description("JWT Test API").version("1.0")
+    //                     .contact(new Contact().name("Saiful").email("https://www.linkedin.com/in/saiful93/")
+    //                             .url("gmsaiful71@gmail.com"))
+    //                     .license(new License().name("License of API").url("API license URL")));
+    // }
 }

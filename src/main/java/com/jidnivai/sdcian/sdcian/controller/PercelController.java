@@ -16,7 +16,7 @@ import com.jidnivai.sdcian.sdcian.entity.Percel;
 import com.jidnivai.sdcian.sdcian.interfaces.PercelServiceInt;
 
 @RestController
-@RequestMapping("/percel")
+@RequestMapping("/api/percel")
 public class PercelController {
 
     @Autowired

@@ -20,7 +20,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.CommentServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 public class CommentController {
 
     @Autowired

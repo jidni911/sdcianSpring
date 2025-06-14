@@ -30,7 +30,7 @@ import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 import net.sf.jasperreports.engine.JRException;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 public class OrderController {
 
     @Autowired

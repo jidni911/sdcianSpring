@@ -20,7 +20,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.CartServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/carts")
+@RequestMapping("/api/carts")
 public class CartController {
 
     @Autowired

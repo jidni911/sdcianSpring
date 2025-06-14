@@ -16,7 +16,7 @@ import com.jidnivai.sdcian.sdcian.entity.shop.Rating;
 import com.jidnivai.sdcian.sdcian.interfaces.RatingServiceInt;
 
 @RestController
-@RequestMapping("/rating")
+@RequestMapping("/api/rating")
 public class RatingController {
 
     @Autowired

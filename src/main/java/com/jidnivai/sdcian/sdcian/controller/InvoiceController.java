@@ -10,7 +10,7 @@ import com.jidnivai.sdcian.sdcian.service.JasperService;
 
 
 @Controller
-@RequestMapping("/invoice")
+@RequestMapping("/api/invoice")
 public class InvoiceController {
 
     @Autowired

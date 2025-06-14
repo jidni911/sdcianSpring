@@ -28,5 +28,8 @@ public class WebConfig implements WebMvcConfigurer {
 
         // registry.addResourceHandler("/homeImages/**")
         //         .addResourceLocations("file:" + homeImageFolder);
+        registry
+        .addResourceHandler("/api/uploads/tempFile/**")
+        .addResourceLocations("file:uploads/tempFile/");
     }
 }

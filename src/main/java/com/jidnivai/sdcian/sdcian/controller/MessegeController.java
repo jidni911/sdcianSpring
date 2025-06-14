@@ -23,7 +23,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.MessegeServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/messege")
+@RequestMapping("/api/messege")
 public class MessegeController {
 
     @Autowired

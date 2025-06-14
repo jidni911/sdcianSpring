@@ -25,7 +25,7 @@ import com.jidnivai.sdcian.sdcian.interfaces.EventServiceInt;
 import com.jidnivai.sdcian.sdcian.security.services.UserDetailsImpl;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/api/event")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EventController {
 

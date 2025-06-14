@@ -28,6 +28,7 @@ public class JerseyService implements JerseyServiceInt {
 
     @Override
     public Jersey addJersey(Jersey jersey, User user) {
+        System.out.println(user);
         if (user != null && user.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) {
 
             jersey.setCreatedBy(user);

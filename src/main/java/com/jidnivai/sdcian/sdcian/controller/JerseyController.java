@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/jersey")
+@RequestMapping("/api/jersey")
 public class JerseyController {
     
     @Autowired

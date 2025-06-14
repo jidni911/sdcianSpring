@@ -24,6 +24,7 @@ import java.net.URLDecoder;
 import java.nio.file.*;
 
 @RestController
+@RequestMapping("/api")
 public class FileController {
 
     @Autowired
