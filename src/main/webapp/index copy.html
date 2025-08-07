@@ -1,0 +1,1836 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>SDCian</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body data-bs-theme="dark">
+    <span class="text-sm " style="position: fixed;bottom: 0;right: 0; margin: 10px;">
+        <button
+            type="button"
+            class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#modalBug"
+        >
+            <i class="bi bi-bug"></i>
+        </button>
+        
+    </span>
+
+
+
+    <div class="modal fade" id="modalBug" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Found any Issue?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    for any error, message 01719987447(Whatsapp only)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <a href="https://wa.me/8801719987447" class="btn btn-primary">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar navbar-expand d-sm-none d-block">
+
+            <a class="navbar-brand " href="#" onclick="toggleTheme()">SDC Official Jersey v26</a>
+        </nav>
+        <nav class="navbar navbar-expand">
+            <div class="w-100 d-flex align-items-center">
+
+
+                <ul class=" navbar-nav nav-tabs w-100 px-2 align-items-center" id="myTab" role="tablist">
+                    <a class="navbar-brand d-none d-sm-block" href="#" onclick="toggleTheme()">SDC Official Jersey v26</a>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">
+                            <i class="bi bi-images"> Gallery</i>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            <i class="bi bi-person-square"> Profile</i>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" id="jerseyitem-nav">
+                        <button class="nav-link" id="jerseyitem-tab" data-bs-toggle="tab" data-bs-target="#jerseyitem"
+                            type="button" role="tab" aria-controls="jerseyitem" aria-selected="false">
+                            <i class="bi bi-gear"> Jersey</i>
+
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation" id="buyer-nav">
+                        <button class="nav-link" id="buyer-tab" data-bs-toggle="tab" data-bs-target="#buyer"
+                            type="button" role="tab" aria-controls="buyer" aria-selected="false">
+                            <i class="bi bi-people"> Buyer</i>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders"
+                            type="button" role="tab" aria-controls="orders" aria-selected="false">
+                            <i class="bi bi-cart"> Orders</i>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment"
+                            type="button" role="tab" aria-controls="payment" aria-selected="false">
+                            <i class="bi bi-wallet2"> Payment</i>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="status-tab" data-bs-toggle="tab" data-bs-target="#status"
+                            type="button" role="tab" aria-controls="status" aria-selected="false">
+                            <i class="bi bi-question-circle"> Status</i>
+                        </button>
+                    </li>
+                </ul>
+                <style>
+  .nav-tabs .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .nav-tabs .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--bs-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .nav-tabs .nav-link.active::after {
+    width: 70%;
+  }
+
+  .nav-tabs .nav-link.active {
+    transform: scale(1.05);
+    font-weight: bold;
+  }
+</style>
+
+
+
+                <script>
+                    
+                    function toggleTheme() {
+                        if (document.body.getAttribute('data-bs-theme') === 'dark') {
+                            document.body.setAttribute('data-bs-theme', 'light');
+                        } else {
+                            document.body.setAttribute('data-bs-theme', 'dark');
+                        }
+                    }
+                </script>
+
+
+            </div>
+        </nav>
+
+
+    </header>
+    <main>
+
+        <!-- Nav tabs -->
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div id="jerseyCarousel" class="carousel slide d-flex justify-content-center my-2"
+                    data-bs-ride="carousel">
+                    <div class="carousel-inner mx-auto" style="width: 350px">
+
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#jerseyCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#jerseyCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+
+                </div>
+
+                <div class="glider-contain">
+                    <div class="glider" id="glider-1">
+                    </div>
+
+                    <!-- <button aria-label="Previous" class="glider-prev">«</button>
+                    <button aria-label="Next" class="glider-next">»</button> -->
+                    <div role="tablist" class="dots"></div>
+                </div>
+                <img class="img-fluid" src="/api/uploads/sdcianjersey/v25/756f3cb4-df80-4a84-81fe-f443e9fcaed9.jpg"
+                    alt="">
+                <script>
+                    const getImages = async () => {
+
+                        const response = await fetch('/bkashpayment/allImagesList');
+                        const imageList = await response.json();
+                        const carouselInner = document.querySelector('.carousel-inner');
+                        const glider = document.querySelector('#glider-1');
+                        carouselInner.innerHTML = '';
+                        glider.innerHTML = '';
+
+
+                        imageList.forEach((image, i) => {
+                            const carouselItem = document.createElement('div');
+                            carouselItem.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                            const imageElement = document.createElement('img');
+                            imageElement.src = `${image}`;
+                            imageElement.className = 'd-block';
+                            // imageElement.style.width = '300px';
+                            imageElement.style.height = '400px';
+                            imageElement.alt = image;
+                            imageElement.loading = 'lazy';
+                            carouselItem.appendChild(imageElement);
+                            carouselInner.appendChild(carouselItem);
+
+                            const gliderItem = document.createElement('div');
+                            const imageElement2 = document.createElement('img');
+                            imageElement2.src = `${image}`;
+                            // imageElement.style.width = '300px';
+                            imageElement2.style.height = '100px';
+                            imageElement2.loading = 'lazy';
+                            // imageElement2.alt = image;
+                            gliderItem.appendChild(imageElement2);
+
+                            gliderItem.setAttribute('data-bs-target', '#jerseyCarousel');
+                            gliderItem.setAttribute('data-bs-slide-to', `${i}`);
+                            gliderItem.classList.add('text-center');
+                            glider.appendChild(gliderItem);
+
+
+                        });
+                    };
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        getImages().then(() => {
+                            new Glider(document.querySelector('.glider'), {
+                                // slidesToScroll: 1,
+                                slidesToShow: 12,
+                                draggable: true,
+                                dots: '.dots',
+                                arrows: {
+                                    prev: '.glider-prev',
+                                    next: '.glider-next'
+                                }
+                            });
+                        })
+                    });
+
+
+                </script>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="min-vh-100 d-flex align-items-center justify-content-center bg-body" id="login-screen">
+
+                    <div class="card shadow  w-100 overflow-hidden" style="max-width: 700px; border-radius: 1rem">
+                        <div class="card-body-wrapper position-relative overflow-hidden">
+
+                            <div class="card-slide-content d-sm-flex w-100 d-none" id="card-slide-content">
+
+                                <!-- ─── SLIDE 1: Username/Email Form ─── -->
+                                <div class="slide px-3 py-4 ">
+                                    <ng-container>
+                                        <h4 class="mb-3">Welcome Back</h4>
+                                        <div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Phone Number</label>
+                                                <input type="text" class="form-control " id="loginNumberInput"
+                                                    placeholder="01xxxxxxxxx" />
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid phone number.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Password</label>
+                                                <input type="password" class="form-control " id="loginPasswordInput"
+                                                    placeholder="Enter your password" />
+                                                <div class="invalid-feedback">
+                                                    Please provide a password.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary w-100" onclick="loginUser()">
+                                                Login
+                                            </button>
+                                        </div>
+                                        <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-info"
+                                                onclick="loadSignupForm()">
+                                                Sign Up
+                                            </button>
+
+                                            <button type="button" class="btn btn-outline-warning">
+                                                Forgot Pass
+                                            </button>
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                                <!-- ─── SLIDE 2: Single Logo ─── -->
+                                <div class="slide text-center p-5 align-items-center border-start border-end">
+                                    <img src="https://sdcian.com/assets/logo/logo2.png" alt="App Logo"
+                                        class="img-fluid text-center mb-3 px-5" id="app-logo" />
+                                    <p class="text-muted small">South Dhaka Cyclists</p>
+                                </div>
+
+                                <!-- ─── SLIDE 3: Password Form ─── -->
+                                <div class="slide px-3 py-4">
+                                    <ng-container>
+                                        <div class="text-center mb-3">
+                                            <img src='https://sdcian.com/assets/logo/logo2.png'
+                                                class="rounded-circle mb-2" width="100" height="100" alt="Profile" />
+                                            <h5 class="mb-0">SDCian</h5>
+                                            <small class="text-muted">Registration form</small>
+                                        </div>
+                                        <div>
+                                            <label class="form-label">Name</label>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" id="registrationNameInput"
+                                                    placeholder="Enter your name" />
+                                                <div class="invalid-feedback">
+                                                    Atleast 5 characters
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+                                            <label class="form-label">Phone Number</label>
+                                            <div class="mb-3">
+                                                <input type="number" class="form-control" id="registrationNumberInput"
+                                                    required placeholder="Enter your phone number" />
+                                                <div class="invalid-feedback">
+                                                    Atleast 11 digits
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+
+                                            <label class="form-label">Password</label>
+                                            <div class="mb-3 input-group">
+                                                <input type='password' class="form-control"
+                                                    id="registrationPasswordInput" required
+                                                    placeholder="Enter your password" />
+                                                <!-- <span class="input-group-text" (click)="showPassword = !showPassword">
+                                    <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
+                                </span> -->
+                                                <div class="invalid-feedback">
+                                                    Atleast 8 characters
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-success w-100" onclick="registerUser()">
+                                                Register
+                                            </button>
+                                        </div>
+
+                                        <button class="btn btn-outline-info mt-3 w-100" onclick="loadSigninForm()">
+                                            Back to login
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+
+                            <div class="card d-sm-none w-100">
+                                <div class="text-center p-4 align-items-center border-bottom">
+                                    <img src="https://sdcian.com/assets/logo/logo2.png" alt="App Logo"
+                                        class="img-fluid text-center mb-3 px-5 icon-translate-step2" id="app-logo-sm" />
+                                    <p class="text-muted small">South Dhaka Cyclists</p>
+                                </div>
+                                <div class="card-body p-0 d-flex"
+                                    style="width: 200%; transition: transform 1.5s ease-in-out;"
+                                    id="card-slide-content-2">
+                                    <div class="w-50 p-3">
+                                        <ng-container>
+                                            <h4 class="mb-3">Welcome Back</h4>
+                                            <div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="text" class="form-control " id="loginNumberInputsm"
+                                                        placeholder="01xxxxxxxxx" />
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid phone number.
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="password" class="form-control "
+                                                        id="loginPasswordInputsm" placeholder="Enter your password" />
+                                                    <div class="invalid-feedback">
+                                                        Please provide a password.
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary w-100" onclick="loginUsersm()">
+                                                    Login
+                                                </button>
+                                            </div>
+                                            <div class="btn-group w-100 mt-2" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-outline-info"
+                                                    onclick="loadSignupForm()">
+                                                    Sign Up
+                                                </button>
+
+                                                <button type="button" class="btn btn-outline-warning">
+                                                    Forgot Pass
+                                                </button>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div class="w-50 p-3">
+                                        <ng-container>
+                                            <div>
+                                                <label class="form-label">Name</label>
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" id="registrationNameInputsm"
+                                                        placeholder="Enter your name" />
+                                                    <div class="invalid-feedback">
+                                                        Atleast 5 characters
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <label class="form-label">Phone Number</label>
+                                                <div class="mb-3">
+                                                    <input type="number" class="form-control"
+                                                        id="registrationNumberInputsm" required
+                                                        placeholder="Enter your phone number" />
+                                                    <div class="invalid-feedback">
+                                                        Atleast 11 digits
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+
+                                                <label class="form-label">Password</label>
+                                                <div class="mb-3 input-group">
+                                                    <input type='password' class="form-control"
+                                                        id="registrationPasswordInputsm"
+                                                        placeholder="Enter your password" />
+                                                    <!-- <span class="input-group-text" (click)="showPassword = !showPassword">
+                                    <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
+                                </span> -->
+                                                    <div class="invalid-feedback">
+                                                        Atleast 8 characters
+                                                    </div>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-success w-100" onclick="registerUsersm()">
+                                                    Register
+                                                </button>
+                                            </div>
+
+                                            <button class="btn btn-outline-info mt-3 w-100" onclick="loadSigninForm()">
+                                                Back to login
+                                            </button>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function loadSignupForm() {
+                                    document.getElementById("card-slide-content").classList.add("translate-step2");
+                                    document.getElementById("card-slide-content").classList.remove("translate-step1");
+                                    document.getElementById("app-logo").classList.add("icon-translate-step2");
+                                    document.getElementById("app-logo").classList.remove("icon-translate-step1");
+                                    document.getElementById("app-logo-sm").classList.remove("icon-translate-step2");
+                                    document.getElementById("app-logo-sm").classList.add("icon-translate-step1");
+
+                                    document.getElementById("card-slide-content-2").classList.add("translate-step2");
+                                }
+                                function loadSigninForm() {
+                                    document.getElementById("card-slide-content").classList.remove("translate-step2");
+                                    document.getElementById("card-slide-content").classList.add("translate-step1");
+                                    document.getElementById("app-logo").classList.remove("icon-translate-step2");
+                                    document.getElementById("app-logo").classList.add("icon-translate-step1");
+
+                                    document.getElementById("app-logo-sm").classList.add("icon-translate-step2");
+                                    document.getElementById("app-logo-sm").classList.remove("icon-translate-step1");
+                                    document.getElementById("card-slide-content-2").classList.remove("translate-step2");
+
+                                }
+
+                                function registerUser() {
+                                    let name = document.getElementById("registrationNameInput").value;
+                                    let number = document.getElementById("registrationNumberInput").value;
+                                    let password = document.getElementById("registrationPasswordInput").value;
+                                    if (name.trim().length < 5) {
+                                        document.getElementById("registrationNameInput").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationNameInput").classList.remove("is-invalid");
+                                    }
+                                    if (number.trim().length < 11) {
+                                        document.getElementById("registrationNumberInput").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationNumberInput").classList.remove("is-invalid");
+                                    }
+                                    if (password.trim().length < 8) {
+                                        document.getElementById("registrationPasswordInput").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationPasswordInput").classList.remove("is-invalid");
+                                    }
+                                    if (name.trim().length < 5 || number.trim().length < 11 || password.trim().length < 8) {
+                                        return;
+                                    }
+                                    registerUserApi(name, number, password);
+
+                                }
+
+                                function registerUsersm() {
+                                    let name = document.getElementById("registrationNameInputsm").value;
+                                    let number = document.getElementById("registrationNumberInputsm").value;
+                                    let password = document.getElementById("registrationPasswordInputsm").value;
+                                    if (name.trim().length < 5) {
+                                        document.getElementById("registrationNameInputsm").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationNameInputsm").classList.remove("is-invalid");
+                                    }
+                                    if (number.trim().length < 11) {
+                                        document.getElementById("registrationNumberInputsm").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationNumberInputsm").classList.remove("is-invalid");
+                                    }
+                                    if (password.trim().length < 8) {
+                                        document.getElementById("registrationPasswordInputsm").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("registrationPasswordInputsm").classList.remove("is-invalid");
+                                    }
+                                    if (name.trim().length < 5 || number.trim().length < 11 || password.trim().length < 8) {
+                                        return;
+                                    }
+                                    registerUserApi(name, number, password);
+
+                                }
+
+                                function registerUserApi(name, number, password) {
+                                    fetch('/bkashpayment/signup', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        body: new URLSearchParams({
+                                            name: name,
+                                            number: number,
+                                            password: password
+                                        })
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data == true) {
+                                                alert("Registration successful!");
+                                                loadSigninForm();
+                                                document.getElementById("loginNumberInput").value = number;
+                                                document.getElementById("loginPasswordInput").value = password;
+                                                document.getElementById("loginNumberInputsm").value = number;
+                                                document.getElementById("loginPasswordInputsm").value = password;
+                                            } else {
+                                                alert("Registration failed. Please try again.");
+                                            }
+                                        })
+                                        .catch(error => console.error('Error:', error));
+
+                                }
+
+                                function loginUser() {
+                                    let number = document.getElementById("loginNumberInput").value;
+                                    let password = document.getElementById("loginPasswordInput").value;
+                                    if (number.trim().length < 11) {
+                                        document.getElementById("loginNumberInput").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("loginNumberInput").classList.remove("is-invalid");
+                                    }
+                                    if (password.trim().length < 8) {
+                                        document.getElementById("loginPasswordInput").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("loginPasswordInput").classList.remove("is-invalid");
+                                    }
+                                    if (number.trim().length < 11 || password.trim().length < 8) {
+                                        return;
+                                    }
+                                    loginUserApi(number, password);
+                                }
+
+                                function loginUsersm() {
+                                    let number = document.getElementById("loginNumberInputsm").value;
+                                    let password = document.getElementById("loginPasswordInputsm").value;
+                                    if (number.trim().length < 11) {
+                                        document.getElementById("loginNumberInputsm").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("loginNumberInputsm").classList.remove("is-invalid");
+                                    }
+                                    if (password.trim().length < 8) {
+                                        document.getElementById("loginPasswordInputsm").classList.add("is-invalid");
+                                    } else {
+                                        document.getElementById("loginPasswordInputsm").classList.remove("is-invalid");
+                                    }
+                                    if (number.trim().length < 11 || password.trim().length < 8) {
+                                        return;
+                                    }
+                                    loginUserApi(number, password);
+                                }
+
+                                function loginUserApi(number, password) {
+                                    fetch('/bkashpayment/login', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                        },
+                                        body: new URLSearchParams({
+                                            number: number,
+                                            password: password
+                                        })
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data != null) {
+                                                data.password = password;
+                                                localStorage.setItem('user', JSON.stringify(data));
+                                                loadUserFromStorage();
+                                            } else {
+                                                alert("Login failed. Please try again.");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert("Login failed. Please try again.");
+                                        });
+                                }
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center w-100" id="user-info">
+                    <div class="card text-center mx-auto" style="max-width: 18rem;">
+                        <img class="card-img-top mx-auto d-block p-3" src="https://sdcian.com/assets/logo/logo2.png"
+                            alt="Title" />
+                        <div class="card-body">
+                            <h4 class="card-title" id="user-name"></h4>
+                            <p class="card-text" id="user-number"></p>
+                            <p>You are logged in</p>
+                            <button class="btn btn-outline-danger w-100" onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <style>
+                    /* signin.component.scss */
+                    .card-body-wrapper {
+                        position: relative;
+                        overflow: hidden;
+                        min-height: 320px;
+                        /* adjust as needed */
+                    }
+
+                    .card-slide-content {
+                        display: flex;
+                        width: 150%;
+                        transition: transform 1.5s ease-in-out;
+                    }
+
+                    .slide {
+                        flex: 0 0 50%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: 1.5rem;
+                    }
+
+                    /* When userFetched === true, slide left by exactly one panel */
+                    .translate-step2 {
+                        transform: translateX(-50%);
+                    }
+
+                    .icon-translate-step2 {
+                        transition: transform 1.5s ease-in-out;
+                        transform: rotate(-360deg);
+                    }
+
+                    .icon-translate-step1 {
+                        transform: rotate(0deg);
+                        transition: transform 1.5s ease-in-out;
+                    }
+                </style>
+            </div>
+            <div class="tab-pane fade" id="jerseyitem" role="tabpanel" aria-labelledby="jerseyitem-tab">
+                <div class="container my-5">
+                    <h2 class="mb-4">Jersey Items</h2>
+
+                    <!-- Add / Edit Jersey Form -->
+                    <form id="jerseyForm">
+                        <input type="hidden" id="id" name="id">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Name</span>
+                            <input type="text" class="form-control" id="jerseyName" name="name" aria-label="Name"
+                                aria-describedby="basic-addon1">
+
+                            <input type="checkbox" class="btn-check" id="namedEdition" name="namedEdition" value="true"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="namedEdition">Named Edition</label>
+
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Image URLs</span>
+                            <input type="text" class="form-control" id="jerseyImages" name="imageUrlList"
+                                placeholder="comma-separated">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon4">Sizes</span>
+                            <input type="checkbox" class="btn-check" id="allSizes" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="allSizes">All Sizes</label>
+                            <input type="checkbox" class="btn-check" id="xsSize" name="sizes" value="XS"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="xsSize">XS</label>
+
+                            <input type="checkbox" class="btn-check" id="sSize" name="sizes" value="S"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="sSize">S</label>
+
+                            <input type="checkbox" class="btn-check" id="mSize" name="sizes" value="M"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="mSize">M</label>
+
+                            <input type="checkbox" class="btn-check" id="lSize" name="sizes" value="L"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="lSize">L</label>
+
+                            <input type="checkbox" class="btn-check" id="xlSize" name="sizes" value="XL"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="xlSize">XL</label>
+
+                            <input type="checkbox" class="btn-check" id="xxlSize" name="sizes" value="XXL"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="xxlSize">XXL</label>
+
+                            <input type="checkbox" class="btn-check" id="xxxlSize" name="sizes" value="XXXL"
+                                autocomplete="off">
+                            <label class="btn btn-outline-primary" for="xxxlSize">XXXL</label>
+
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon2">Regular Price</span>
+                            <input type="number" class="form-control" id="jerseyRegularPrice" name="regularPrice"
+                                aria-label="Regular Price" aria-describedby="basic-addon2">
+
+                            <input type="checkbox" class="btn-check" id="isCustomSizeAvailable"
+                                name="isCustomSizeAvailable" autocomplete="off" value="true">
+                            <label class="btn btn-outline-primary" for="isCustomSizeAvailable">Custom Size?</label>
+
+                            <span class="input-group-text" id="basic-addon3">Custom Size Price</span>
+                            <input type="number" name="customSizePrice" class="form-control" id="jerseyCustomSizePrice"
+                                name="customSizePrice" aria-label="Custom Size Price" aria-describedby="basic-addon3">
+
+                        </div>
+
+
+
+                        <button type="button" class="btn btn-primary" onclick="addJerseyItem()">Add Jersey</button>
+                        <button type="submit" class="btn btn-primary">Save Jersey</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </form>
+
+
+                    <hr class="my-5">
+
+                    <!-- Jersey List -->
+                    <h3>Existing Jerseys</h3>
+                    <table class="table table-bordered mt-3" id="jerseyTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Image URLs</th>
+                                <th>Regular Price</th>
+                                <th>Sizes</th>
+                                <th>Custom Size Available</th>
+                                <th>Custom Size Price</th>
+                                <th>Named Edition</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jerseyTableBody">
+
+                        </tbody>
+                    </table>
+                    <script>
+                        let allSizes = document.getElementById("allSizes");
+                        allSizes.addEventListener("change", function () {
+                            if (!allSizes.checked) {
+                                document.getElementById("xsSize").checked = false;
+                                document.getElementById("sSize").checked = false;
+                                document.getElementById("mSize").checked = false;
+                                document.getElementById("lSize").checked = false;
+                                document.getElementById("xlSize").checked = false;
+                                document.getElementById("xxlSize").checked = false;
+                                document.getElementById("xxxlSize").checked = false;
+                            } else {
+                                document.getElementById("xsSize").checked = true;
+                                document.getElementById("sSize").checked = true;
+                                document.getElementById("mSize").checked = true;
+                                document.getElementById("lSize").checked = true;
+                                document.getElementById("xlSize").checked = true;
+                                document.getElementById("xxlSize").checked = true;
+                                document.getElementById("xxxlSize").checked = true;
+                            }
+                        })
+
+                        let jerseyForm = document.getElementById("jerseyForm");
+                        function addJerseyItemApi() {
+                            if (localStorage.getItem("user") == null || JSON.parse(localStorage.getItem("user")) == null || JSON.parse(localStorage.getItem("user")).role != "admin") {
+                                alert("Please login first");
+                                return;
+                            }
+
+                            let formData = new FormData(jerseyForm);
+                            let jerseyItem = Object.fromEntries(formData);
+                            let sizes = Array.from(document.querySelectorAll('input[name="sizes"]:checked')).map(input => input.value);
+                            jerseyItem.sizes = sizes;
+                            let urls = jerseyItem.imageUrlList.split(",").map(url => url.trim()).filter(url => url);
+                            jerseyItem.imageUrlList = urls;
+                            console.log(jerseyItem);
+                            jerseyItem.isCustomSizeAvailable = jerseyItem.isCustomSizeAvailable == "true" ? true : false;
+                            jerseyItem.namedEdition = jerseyItem.namedEdition == "true" ? true : false;
+                            jerseyItem.regularPrice = jerseyItem.regularPrice === "" ? 0 : jerseyItem.regularPrice;
+                            jerseyItem.customSizePrice = jerseyItem.customSizePrice === "" ? 0 : jerseyItem.customSizePrice;
+
+
+
+                            fetch("/bkashpayment/jerseyitem", {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'number': JSON.parse(localStorage.getItem("user")).number,
+                                    'password': JSON.parse(localStorage.getItem("user")).password
+                                },
+                                body: JSON.stringify(jerseyItem)
+                            }).then(res => res.json()).then(data => {
+                                console.log(data);
+                                updateJerseyTable();
+                            }).catch(err => {
+                                console.error(err);
+                            });
+                        }
+                        jerseyForm.addEventListener("submit", function (event) {
+                            event.preventDefault();
+                            addJerseyItemApi();
+                        });
+                        function addJerseyItem() {
+                            document.getElementById("id").value = "";
+                            addJerseyItemApi();
+                        }
+                        function updateJerseyTable() {
+                            document.getElementById("jerseyTableBody").innerHTML = "";
+                            fetch("/bkashpayment/jerseyitem").then(res => res.json()).then(dataArray => {
+                                dataArray.forEach(data => {
+                                    let jerseyTableRow = document.createElement("tr");
+                                    jerseyTableRow.innerHTML = `<td><button class="btn btn-outline-info" onclick="editJersey(${data.id})">${data.id}</button></td><td>${data.name}</td><td>${data.imageUrlList.join(", ")}</td><td>${data.regularPrice}</td><td>${data.sizes.join(", ")}</td><td>${data.isCustomSizeAvailable}</td><td>${data.customSizePrice}</td><td>${data.namedEdition}</td><td><button class="btn btn-danger" onclick="deleteJersey(${data.id})">Delete</button></td>`;
+                                    document.getElementById("jerseyTableBody").appendChild(jerseyTableRow);
+                                });
+                            })
+                        }
+                        updateJerseyTable();
+                        function deleteJersey(id) {
+                            fetch("/bkashpayment/jerseyitem/" + id, {
+                                method: "DELETE",
+                                headers: {
+                                    'number': JSON.parse(localStorage.getItem("user")).number,
+                                    'password': JSON.parse(localStorage.getItem("user")).password
+                                }
+                            }).then(res => res.json()).then(data => {
+                                console.log(data);
+                                updateJerseyTable();
+                            }).catch(err => {
+                                console.error(err);
+                            });
+                        }
+
+                        function editJersey(id) {
+                            fetch("/bkashpayment/jerseyitem/" + id).then(res => res.json()).then(data => {
+                                console.log(data);
+                                document.getElementById("jerseyForm").id.value = data.id;
+                                document.getElementById("jerseyForm").name.value = data.name;
+                                document.getElementById("jerseyForm").imageUrlList.value = data.imageUrlList.join(",");
+                                document.getElementById("jerseyForm").regularPrice.value = data.regularPrice;
+                                document.getElementById("isCustomSizeAvailable").checked = data.isCustomSizeAvailable;
+                                document.getElementById('namedEdition').checked = data.namedEdition;
+                                document.getElementById("jerseyForm").customSizePrice.value = data.customSizePrice;
+                                // document.getElementById("jerseyForm").sizes.value = data.sizes.join(", ");
+                                document.getElementsByName("sizes").forEach(input => {
+                                    if (data.sizes.includes(input.value)) {
+                                        input.checked = true;
+                                    }
+                                })
+                            }).catch(err => {
+                                console.error(err);
+                            });
+                        }
+                    </script>
+                    <h3>Jersey Orders</h3>
+                    <table id="TableToExport" class="table table-bordered mt-3">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Jersey Buyer Number</th>
+                                <th>Paid</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Paid To</th>
+                                <th>Payment Method</th>
+                                <th>Buyer Address</th>
+                                <th>Buyer Name</th>
+                                <th>Buyer Phone Number</th>
+                                <th>Delivery Charge</th>
+                                <th>Free Pickup Point</th>
+                                <th>Payment ID</th>
+                                <th>Trx ID</th>
+                                <th>Delivery Method</th>
+                                <th>Quantity</th>
+                                <th>Rate</th>
+                                <th>Size</th>
+                                <th>Jersey Item ID</th>
+                                <th>Name on Jersey</th>
+                            </tr>
+                        </thead>
+                        <tbody id="TableToExportBody"></tbody>
+                    </table>
+                    <div class="text-center">
+                        <div class="btn-group" role="group" aria-label="Table to Export controls">
+                            <button id="TableToExportLoadButton" type="button" class="btn btn-secondary"
+                                onclick="loadTableToExport()"><b>Load data</b></button>
+                            <button id="sheetjsexport" type="button"
+                                class="btn btn-secondary"><b>Export as XLSX</b></button>
+                        </div>
+                    </div>
+                    <script>
+                        function loadTableToExport() {
+                            fetch("/bkashpayment", {
+                                method: "GET",
+                                headers: {
+                                    'number': JSON.parse(localStorage.getItem("user")).number,
+                                    'password': JSON.parse(localStorage.getItem("user")).password
+                                }
+                            }
+                            ).then(res => res.json()).then(dataArray => {
+                                if (dataArray == null) return;
+                                document.getElementById("TableToExportBody").innerHTML = "";
+                                dataArray.forEach(order => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+        <td>${order.id}</td>
+        <td>${order.jerseyBuyerNumber}</td>
+        <td>${order.paid}</td>
+        <td>${order.total}</td>
+        <td>${order.status}</td>
+        <td>${order.paidTo}</td>
+        <td>${order.paymentMethod}</td>
+        <td>${order.buyerAddress}</td>
+        <td>${order.buyerName}</td>
+        <td>${order.buyerPhoneNumber}</td>
+        <td>${order.deleveryCharge}</td>
+        <td>${order.freePickupPoint}</td>
+        <td>${order.paymentId}</td>
+        <td>${order.trxId}</td>
+        <td>${order.deliveryMethod}</td>
+        <td>${order.quantity}</td>
+        <td>${order.rate}</td>
+        <td>${order.size}</td>
+        <td>${order.jerseyItemId}</td>
+        <td>${order.nameOnJersey}</td>
+    `;
+                                    document.getElementById('TableToExportBody').appendChild(row);
+                                });
+
+                            })
+                        }
+                        document.getElementById("sheetjsexport").addEventListener('click', function () {
+                            /* Create worksheet from HTML DOM TABLE */
+                            var wb = XLSX.utils.table_to_book(document.getElementById("TableToExport"));
+                            /* Export to file (start a download) */
+                            console.log("downloading data");
+                            XLSX.writeFile(wb, "SheetJSTable.xlsx");
+                        });
+                    </script>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="buyer" role="tabpanel" aria-labelledby="buyer-tab">
+                <div class="w-100 text-center">
+                    <button class="btn btn-primary" onclick="updateBuyerTable()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                            <path
+                                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.89.207.132.1704 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-borderless align-middle">
+                        <thead class="">
+                            <caption>
+                                Buyers
+                            </caption>
+                            <tr>
+                                <th>Number</th>
+                                <th>Name</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Active</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider" id="buyerTableBody">
+                            <tr class="">
+                                <td scope="row">Number</td>
+                                <td>Name</td>
+                                <td>Password</td>
+                                <td>Role</td>
+                                <td>Active</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <script>
+                                function updateBuyerTable() {
+                                    document.getElementById("buyerTableBody").innerHTML = "";
+                                    fetch("/bkashpayment/buyer", {
+                                        method: "GET",
+                                        headers: {
+                                            'number': JSON.parse(localStorage.getItem("user")).number,
+                                            'password': JSON.parse(localStorage.getItem("user")).password
+                                        }
+                                    }).then(res => res.json()).then(dataArray => {
+                                        if (dataArray == null) return;
+                                        dataArray.forEach(data => {
+                                            let buyerTableRow = document.createElement("tr");
+                                            buyerTableRow.innerHTML = `<td>${data.number}</td><td>${data.name}</td><td><button class="btn btn-outline-info" onclick="resetPassword('${data.number}')">Reset</button></td><td><button class="btn btn-outline-info" onclick="changeRole('${data.number}')">${data.role}</button></td><td><button class="btn btn-outline-info" onclick="changeActive('${data.number}')">${data.active}</button></td>`;
+                                            document.getElementById("buyerTableBody").appendChild(buyerTableRow);
+                                        });
+                                    })
+                                }
+                                function resetPassword(number) {
+                                    let newPassword = window.prompt("Enter new password");
+                                    fetch("/bkashpayment/buyer/" + number + "/resetPassword", {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                            'number': JSON.parse(localStorage.getItem("user")).number,
+                                            'password': JSON.parse(localStorage.getItem("user")).password
+                                        },
+                                        body: new URLSearchParams({
+                                            newPassword: newPassword
+                                        })
+                                    }).then(res => res.json()).then(data => {
+                                        console.log(data);
+                                        if (data == true) {
+                                            alert("Password reset successfully");
+                                        }
+                                        updateBuyerTable();
+                                    }).catch(err => {
+                                        console.error(err);
+                                    });
+                                }
+
+                                function changeRole(number) {
+                                    fetch("/bkashpayment/buyer/" + number + "/changeRole", {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                            'number': JSON.parse(localStorage.getItem("user")).number,
+                                            'password': JSON.parse(localStorage.getItem("user")).password
+                                        }
+                                    }).then(res => res.json()).then(data => {
+                                        console.log(data);
+                                        if (data == true) {
+                                            alert("Role changed successfully");
+                                        }
+                                        updateBuyerTable();
+                                    }).catch(err => {
+                                        console.error(err);
+                                    });
+                                }
+
+                                function changeActive(number) {
+                                    fetch("/bkashpayment/buyer/" + number + "/changeActive", {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/x-www-form-urlencoded',
+                                            'number': JSON.parse(localStorage.getItem("user")).number,
+                                            'password': JSON.parse(localStorage.getItem("user")).password
+                                        }
+                                    }).then(res => res.json()).then(data => {
+                                        console.log(data);
+                                        if (data == true) {
+                                            alert("Active status changed successfully");
+                                        }
+                                        updateBuyerTable();
+                                    }).catch(err => {
+                                        console.error(err);
+                                    });
+                                }
+                            </script>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <div class="container" id="ordertabwarningdiv">
+                    Log in to see your orders
+                </div>
+                <div class="w-100" id="ordertabdiv">
+                    <h1 class="text-center text-info">New Order</h1>
+                    <div>
+                        <h4>Order Form</h4>
+                        <img class="img-fluid"
+                            src="/api/uploads/sdcianjersey/v25/41ba519b-db78-4a32-82d8-4e1877cb1a73.jpg" alt="">
+
+                        <div class="">
+                            <table class="table table-striped table-hover table-borderless align-middle"
+                                style="min-width: 700px;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 255px !important;">Jersey Name</th>
+                                        <th scope="col" style="width: 160px !important;">Size</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Rate</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderTableBody">
+                                </tbody>
+                            </table>
+
+                            <div style="min-width: 700px;">
+                                <div class="input-group mb-3">
+                                    <div id="jerseyImage" class="d-flex flex-row flex-wrap justify-content-around"
+                                        style="gap: 10px;">
+                                        <!-- <img src="https://sdcian.com/assets/logo/logo2.png" width="100" height="100"
+                                            class="d-inline-block align-top" alt="SDCian Logo"> -->
+                                    </div>
+
+                                    <span class="input-group-text">Name</span>
+                                    <input style="width: 250px;" disabled type="text" class="form-control"
+                                        id="nameOnJersey" aria-describedby="helpId" placeholder="name on jersey" />
+                                    <button type="button" class="btn btn-success" onclick="addOrderItem()">Add
+                                    </button>
+
+                                </div>
+
+                            </div>
+                            <style>
+                                .jersey-img {
+                                    width: 100px;
+                                    height: 100px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                    opacity: 0;
+                                    transform: scale(0.8);
+                                    transition: all 0.4s ease;
+                                }
+
+                                .jersey-img.animate {
+                                    opacity: 1;
+                                    transform: scale(1);
+                                }
+                            </style>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Order Details</h4>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Buyer Name</span>
+                            <input type="text" class="form-control" id="buyerName" name="buyerName"
+                                aria-label="Buyer Name" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Buyer Phone Number</span>
+                            <input type="tel" class="form-control" id="buyerPhoneNumber" name="buyerPhoneNumber"
+                                aria-label="Buyer Phone Number" aria-describedby="basic-addon3">
+                        </div>
+                        <div class="input-group mb-3" style="min-width: 700px;">
+                            <span class="input-group-text" id="basic-addon4">Delivery Option</span>
+                            <select class="form-select" aria-label="Delivery Option" id="deliveryOptionSelection"
+                                oninput="updateDeliveryCharge()">
+                                <option value="Pickup Point">Free Pickup Point</option>
+                                <option value="Inside Dhaka">Home Delivery: Inside Dhaka</option>
+                                <option value="Dhaka Sub-Urbar">Courier: Dhaka Sub-Urbar</option>
+                                <option value="Outside Dhaka">Courier: Outside Dhaka</option>
+                            </select>
+                            <div class="btn-group" id="deliveryOptionDropdownBtn">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Choose one
+                                </button>
+                                <div class="dropdown-menu" id="deliveryOptionDropdownOptions">
+                                    <button class="dropdown-item"
+                                        data-value="Dhaka - SDC BikeWala - খিলগাঁও, 139/2/A, প্রভাতিবাগ সোসাইটি - তৃষাত ভাই- 01913036979 (গোড়ান, হাড়ভাঙ্গা মোড়, মুক্তার বিরিয়ানি)"
+                                        onclick="updateBuyerAddress('Dhaka - SDC BikeWala - খিলগাঁও, 139/2/A, প্রভাতিবাগ সোসাইটি - তৃষাত ভাই- 01913036979 (গোড়ান, হাড়ভাঙ্গা মোড়, মুক্তার বিরিয়ানি)')">
+                                        Dhaka - SDC BikeWala - খিলগাঁও, 139/2/A, প্রভাতিবাগ সোসাইটি - তৃষাত ভাই-
+                                        01913036979 (গোড়ান, হাড়ভাঙ্গা মোড়, মুক্তার বিরিয়ানি)
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="DHAKA-তেজগাঁও রেলগেইট- CYCLE Valley, রায়হান ভাই- 01683019107"
+                                        onclick="updateBuyerAddress('DHAKA-তেজগাঁও রেলগেইট- CYCLE Valley, রায়হান ভাই- 01683019107')">
+                                        DHAKA-তেজগাঁও রেলগেইট- CYCLE Valley, রায়হান ভাই- 01683019107
+                                    </button>
+                                    <!-- <button class="dropdown-item"
+                                        data-value="DHAKA-তেজগাঁও -বাবুল সাইকেল-ফারুক ভাই -01727-362427"
+                                        onclick="updateBuyerAddress('DHAKA-তেজগাঁও -বাবুল সাইকেল-ফারুক ভাই -01727-362427')">
+                                        DHAKA-তেজগাঁও -বাবুল সাইকেল-ফারুক ভাই -01727-362427
+                                    </button> -->
+                                    <button class="dropdown-item"
+                                        data-value="Dhaka - মিরপুর ৬০ফিট- Cycle Mechanix, 60 Feet Road, Mirpur 2, মারুফ ভাই- +8801964041722"
+                                        onclick="updateBuyerAddress('Dhaka - মিরপুর ৬০ফিট- Cycle Mechanix, 60 Feet Road, Mirpur 2, মারুফ ভাই- +8801964041722')">
+                                        Dhaka - মিরপুর ৬০ফিট- Cycle Mechanix, 60 Feet Road, Mirpur 2, মারুফ ভাই-
+                                        +8801964041722
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="DHAKA-শনির আখড়া, CYCLE EXPERT BD দনিয়া পোস্ট অফিসের বিপরীত গলি, শনির আখড়া, যাত্রাবাড়ি,ঢাকা-১২৩৬ Mobile: 01712-201442"
+                                        onclick="updateBuyerAddress('DHAKA-শনির আখড়া, CYCLE EXPERT BD দনিয়া পোস্ট অফিসের বিপরীত গলি, শনির আখড়া, যাত্রাবাড়ি,ঢাকা-১২৩৬ Mobile: 01712-201442')">
+                                        DHAKA-শনির আখড়া, CYCLE EXPERT BD দনিয়া পোস্ট অফিসের বিপরীত গলি, শনির আখড়া,
+                                        যাত্রাবাড়ি,ঢাকা-১২৩৬ Mobile: 01712-201442
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="Dhaka- উত্তরা, সেক্টর ১৩- RT Cycle Shop -নোবেল ভাই - 01855333547"
+                                        onclick="updateBuyerAddress('Dhaka- উত্তরা, সেক্টর ১৩- RT Cycle Shop -নোবেল ভাই - 01855333547')">
+                                        Dhaka- উত্তরা, সেক্টর ১৩- RT Cycle Shop -নোবেল ভাই - 01855333547
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="Dhaka- Cycle 365- 20, নিরিবিলি গেট মোহাম্মদিয়া হাউজিং মেইন রোড, মোহাম্মদপুর, ঢাকা - সাব্বির ভাই -01302-316312, 01757-037911"
+                                        onclick="updateBuyerAddress('Dhaka- Cycle 365- 20, নিরিবিলি গেট মোহাম্মদিয়া হাউজিং মেইন রোড, মোহাম্মদপুর, ঢাকা - সাব্বির ভাই -01302-316312, 01757-037911')">
+                                        Dhaka- Cycle 365- 20, নিরিবিলি গেট মোহাম্মদিয়া হাউজিং মেইন রোড, মোহাম্মদপুর,
+                                        ঢাকা - সাব্বির ভাই -01302-316312, 01757-037911
+                                    </button>
+                                    <!-- <button class="dropdown-item"
+                                        data-value="Dhaka- বংশাল- Cycle Avenue, H82, Kazi Alauddin Road- রনি ভাই -01912056926"
+                                        onclick="updateBuyerAddress('Dhaka- বংশাল- Cycle Avenue, H82, Kazi Alauddin Road- রনি ভাই -01912056926')">
+                                        Dhaka- বংশাল- Cycle Avenue, H82, Kazi Alauddin Road- রনি ভাই -01912056926
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="Dhaka -Keraniganj, পূর্ব বন ডাকপাড়া, হাইওয়ে রোড  কেরানীগঞ্জ সাইকেলিং এন্ড সার্ভিসিং সেন্টার-আকতার ভাই- 01833337976"
+                                        onclick="updateBuyerAddress('Dhaka -Keraniganj, পূর্ব বন ডাকপাড়া, হাইওয়ে রোড  কেরানীগঞ্জ সাইকেলিং এন্ড সার্ভিসিং সেন্টার-আকতার ভাই- 01833337976')">
+                                        Dhaka -Keraniganj, পূর্ব বন ডাকপাড়া, হাইওয়ে রোড কেরানীগঞ্জ সাইকেলিং এন্ড
+                                        সার্ভিসিং সেন্টার-আকতার ভাই- 01833337976
+                                    </button> -->
+                                    <!-- <button class="dropdown-item"
+                                        data-value="Cumilla-কুমিল্লা সদর-Mehedi Mozumdar-01706999093"
+                                        onclick="updateBuyerAddress('Cumilla-কুমিল্লা সদর-Mehedi Mozumdar-01706999093')">
+                                        Cumilla-কুমিল্লা সদর-Mehedi Mozumdar-01706999093
+                                    </button> -->
+                                    <!-- <button class="dropdown-item" data-value="Feni City-Star Line অথবা  Feni-Sonagazi"
+                                        onclick="updateBuyerAddress('Feni City-Star Line অথবা  Feni-Sonagazi')">
+                                        Feni City-Star Line অথবা Feni-Sonagazi
+                                    </button> -->
+                                    <button class="dropdown-item"
+                                        data-value="Chittagong, আইস ফ্যাক্টরি রোড়-  Gravity Zone- হাসিব ভাই  01856-892259"
+                                        onclick="updateBuyerAddress('Chittagong, আইস ফ্যাক্টরি রোড়-  Gravity Zone- হাসিব ভাই  01856-892259')">
+                                        Chittagong, আইস ফ্যাক্টরি রোড়- Gravity Zone- হাসিব ভাই 01856-892259
+                                    </button>
+                                    <button class="dropdown-item"
+                                        data-value="Sylhet City- BikeYard - আলাল ভাই- 01719120681 - Manikpir Road, Kumar Para, Sylhet"
+                                        onclick="updateBuyerAddress('Sylhet City- BikeYard - আলাল ভাই- 01719120681 - Manikpir Road, Kumar Para, Sylhet')">
+                                        Sylhet City- BikeYard - আলাল ভাই- 01719120681 - Manikpir Road, Kumar Para,
+                                        Sylhet
+                                    </button>
+                                </div>
+                            </div>
+
+                            <script>
+                                function updateBuyerAddress(buyerAddress) {
+                                    document.getElementById('buyerAddress').value = buyerAddress;
+                                }
+                            </script>
+
+                            <input type="text" class="form-control" id="buyerAddress" name="buyerAddress" disabled
+                                value="Dhaka - SDC BikeWala - খিলগাঁও, 139/2/A, প্রভাতিবাগ সোসাইটি - তৃষাত ভাই- 01913036979 (গোড়ান, হাড়ভাঙ্গা মোড়, মুক্তার বিরিয়ানি)"
+                                aria-label="Buyer Address" aria-describedby="basic-addon2" placeholder="Buyer Address">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon4">Delivery Charge</span>
+                            <input type="number" readonly class="form-control" id="deliveryCharge" name="deliveryCharge"
+                                value="0" aria-label="Delivery Charge" aria-describedby="basic-addon4">
+                            <span class="input-group-text" id="basic-addon4">Total</span>
+                            <input type="number" readonly class="form-control" id="total" name="total" value="0"
+                                aria-label="Total" aria-describedby="basic-addon4">
+                        </div>
+                        <script>
+
+
+                            function updateDeliveryCharge() {
+                                let deliveryOptionSelection = document.getElementById('deliveryOptionSelection');
+                                let deliveryOptionDropdownBtn = document.getElementById('deliveryOptionDropdownBtn');
+                                let deliveryCharge = 0;
+                                document.getElementById('buyerAddress').disabled = false;
+                                document.getElementById('buyerAddress').value = '';
+                                deliveryOptionDropdownBtn.style.display = "none";
+                                selectJerseyItemOrder.deliveryMethod = deliveryOptionSelection.value;
+                                
+                                if (deliveryOptionSelection.value == "Pickup Point") {
+                                    deliveryCharge = 0;
+                                    document.getElementById('buyerAddress').disabled = true;
+                                    document.getElementById('buyerAddress').value = 'Dhaka - SDC BikeWala - খিলগাঁও, 139/2/A, প্রভাতিবাগ সোসাইটি - তৃষাত ভাই- 01913036979 (গোড়ান, হাড়ভাঙ্গা মোড়, মুক্তার বিরিয়ানি)';
+                                    deliveryOptionDropdownBtn.style.display = "block";
+
+                                } else if (deliveryOptionSelection.value == "Inside Dhaka") {
+                                    deliveryCharge = 70;
+                                } else if (deliveryOptionSelection.value == "Dhaka Sub-Urbar") {
+                                    deliveryCharge = 100;
+                                } else if (deliveryOptionSelection.value == "Outside Dhaka") {
+                                    deliveryCharge = 110;
+                                }
+                                document.getElementById('deliveryCharge').value = deliveryCharge;
+                                selectJerseyItemOrder.deleveryCharge = deliveryCharge;
+
+                                updateSelectedOrderTotal();
+                            }
+                        </script>
+                        <h4>Order Items</h4>
+
+
+                        <table class="table table-striped table-hover table-borderless align-middle" id="orderTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Jersey Name</th>
+                                    <th scope="col">Jersey Size</th>
+                                    <th scope="col">Jersey Quantity</th>
+                                    <th scope="col">Jersey Rate</th>
+                                    <th scope="col">Jersey Total</th>
+                                    <th scope="col">Name on Jersey</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderItemsTableBody">
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="text-center"><button onclick="placeOrder()" class="btn btn-primary w-50">Place
+                            Order</button></div>
+                    <script>
+                        let jerseyItemOrders = [];
+                        var selectJerseyItemOrder = {
+                            id: null,
+                            jerseyBuyer: null,
+                            jerseyItemOrderItems: [],
+                            total: 0,
+                            paid: false,
+                            paidTo: "",
+                            paymentMethod: "",
+                            status: "",
+                            buyerName: "",
+                            buyerAddress: "",
+                            buyerPhoneNumber: "",
+                            deliveryMethod: "Pickup Point",
+                            deleveryCharge: 0
+                        };
+                        let allJerseyItems = [];
+                        let selectedJerseyItem = allJerseyItems[0];
+                        let selectedJerseySize = "";
+                        let selectedJerseyQuantity = 1;
+                        function updateOrderTable() {
+                            document.getElementById("orderTableBody").innerHTML = "";
+                            fetch("/bkashpayment/jerseyitem").then(res => res.json()).then(dataArray => {
+                                allJerseyItems = dataArray;
+                                selectedJerseyItem = dataArray[0];
+                                selectedJerseySize = dataArray[0].sizes[0];
+                                let jerseyTableRow = document.createElement("tr");
+                                //TODO
+                                jerseyTableRow.innerHTML = `
+                                        <td>
+                                            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                                                ${allJerseyItems.map(jerseyItem => `
+                                                        <input oninput="updateSelectedJersey(${jerseyItem.id})" type="radio" class="btn-check" id="jersey-${jerseyItem.id}" name="jersey" value="${jerseyItem.id}" autocomplete="off">
+                                                        <label class="btn btn-outline-primary" for="jersey-${jerseyItem.id}">${jerseyItem.name}</label>
+                                                    `).join("")}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div id="jerseySizeListColumn" class="btn-group-vertical">
+                                                ${selectedJerseyItem.sizes.map(size => `
+                                                    <input type="radio" class="btn-check" id="jerseySize-${size}" name="jerseySize" value="${size}" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="jerseySize-${size}">${size}</label>
+                                                    `).join('')}
+                                            </div>
+                                        </td>
+                                        <td><input oninput="updateJerseyQuantity()" type="number" id="jerseyQuantity" value="1" min="1" class="form-control" style="width: 70px;"></td>
+                                        <td id="jerseyRateColumn">Regular Size: ${selectedJerseyItem.regularPrice} <br> Custom Size: ${selectedJerseyItem.customSizePrice}</td>
+                                        <td id="jerseyTotalColumn">${selectedJerseyItem.regularPrice}</td>`;
+                                document.getElementById("orderTableBody").appendChild(jerseyTableRow);
+
+                            })
+                        }
+                        updateOrderTable();
+                        function updateSelectedJersey(jerseyItemId) {
+                            let jerseyItem = allJerseyItems.find(jerseyItem => jerseyItem.id == jerseyItemId);
+                            selectedJerseyItem = jerseyItem;
+                            document.getElementById('jerseyImage').innerHTML = jerseyItem.imageUrlList.map(imageUrl => `<img height="100px" width="100px" src="${imageUrl}" class="img-fluid jersey-img " alt="Jersey Image">`).join('');
+                            setTimeout(() => {
+                                document.querySelectorAll('.jersey-img').forEach(img => {
+                                    img.classList.add('animate');
+                                })
+                            },10)
+                            let jerseySizeListColumn = document.getElementById("jerseySizeListColumn");
+                            jerseySizeListColumn.innerHTML = selectedJerseyItem.sizes.map(size => `
+                                                    <input type="radio" class="btn-check" id="jerseySize-${size}" name="jerseySize" value="${size}" autocomplete="off">
+                                                    <label class="btn btn-outline-primary" for="jerseySize-${size}">${size}</label>
+                                                    `).join('');
+                            selectedJerseySize = selectedJerseyItem.sizes[0];
+                            updateJerseyQuantity();
+                            let jerseyRateColumn = document.getElementById("jerseyRateColumn");
+                            jerseyRateColumn.innerHTML = `Regular Size: ${selectedJerseyItem.regularPrice} <br> Custom Size: ${selectedJerseyItem.customSizePrice}`
+                            let nameOnJersey = document.getElementById("nameOnJersey");
+                            nameOnJersey.disabled = !selectedJerseyItem.namedEdition;
+                            if (jerseyItem.isCustomSizeAvailable) {
+                                //TODO
+                                jerseySizeListColumn.innerHTML += `
+                                <input type="radio" class="btn-check" id="jerseySize-Custom" name="jerseySize"
+                                    value="" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="jerseySize-Custom">
+                                    Custom <br><input style="width: 50px" type="number" oninput="updateCustomSize()" id="customJerseySizeHeight" placeholder="Height"> x <input style="width: 50px" type="number" oninput="updateCustomSize()" id="customJerseySizeWidth" placeholder="Chest">
+                                </label>`;
+                            }
+                        }
+                        function updateCustomSize() {
+                            let customJerseySizeHeight = document.getElementById('customJerseySizeHeight').value;
+                            let customJerseySizeWidth = document.getElementById('customJerseySizeWidth').value;
+                            let jerseySizeCustom = document.getElementById('jerseySize-Custom');
+                            jerseySizeCustom.checked = true;
+                            jerseySizeCustom.value = "Custom " + customJerseySizeHeight + "x" + customJerseySizeWidth;
+                        }
+                        //TODO
+
+                        function updateJerseyQuantity() {
+                            selectedJerseyQuantity = document.getElementById("jerseyQuantity").value;
+                            let jerseyTotalColumn = document.getElementById("jerseyTotalColumn");
+                            jerseyTotalColumn.innerHTML = selectedJerseyItem.regularPrice * selectedJerseyQuantity;
+                        }
+                        function addOrderItem() {
+                            let newOrderItem = {
+                                id: null,
+                                jerseyItem: selectedJerseyItem,
+                                size: document.querySelector('input[name="jerseySize"]:checked').value,
+                                quantity: selectedJerseyQuantity,
+                                rate: selectedJerseyItem.regularPrice,
+                                nameOnJersey: document.getElementById("nameOnJersey").value
+                            }
+                            newOrderItem.rate = newOrderItem.size.startsWith("Custom") ? newOrderItem.jerseyItem.customSizePrice : newOrderItem.jerseyItem.regularPrice;
+                            selectJerseyItemOrder.jerseyItemOrderItems.push(newOrderItem);
+                            updateSelectedOrderTotal();
+                            updateOrderTable();
+                            updateOrderItemsTable();
+                        }
+                        function updateOrderItemsTable() {
+                            document.getElementById("orderItemsTableBody").innerHTML = "";
+                            selectJerseyItemOrder.jerseyItemOrderItems.forEach((orderItem, index) => {
+                                let orderItemTableRow = document.createElement("tr");
+                                orderItemTableRow.innerHTML = `
+                                        <td>
+                                            <button class="btn btn-outline-info" onclick="editOrderItemAt(${index})">Edit</button>
+                                            <button class="btn btn-outline-danger" onclick="deleteOrderItemAt(${index})">Delete</button>
+                                        </td>
+                                        <td>${orderItem.jerseyItem.name}</td>
+                                        <td>${orderItem.size}</td>
+                                        <td>${orderItem.quantity}</td>
+                                        <td>${orderItem.rate}</td>
+                                        <td>${orderItem.rate * orderItem.quantity}</td>
+                                        <td>${orderItem.nameOnJersey}</td>
+                                        `;
+                                document.getElementById("orderItemsTableBody").appendChild(orderItemTableRow);
+                            })
+                        }
+                        function deleteOrderItemAt(index) {
+                            selectJerseyItemOrder.jerseyItemOrderItems.splice(index, 1);
+                            updateSelectedOrderTotal();
+                            updateOrderItemsTable();
+                        }
+                        function editOrderItemAt(index) {
+                            selectedJerseyItem = selectJerseyItemOrder.jerseyItemOrderItems[index].jerseyItem;
+                            selectedJerseyQuantity = selectJerseyItemOrder.jerseyItemOrderItems[index].quantity;
+                            selectedJerseySize = selectJerseyItemOrder.jerseyItemOrderItems[index].size;
+                            document.getElementById("buyerName").value = selectJerseyItemOrder.buyerName;
+                            updateSelectedOrderTotal();
+                            updateOrderItemsTable();
+                        }
+
+                        function updateSelectedOrderTotal() {
+                            selectJerseyItemOrder.total = selectJerseyItemOrder.jerseyItemOrderItems.reduce((total, orderItem) => total + orderItem.rate, selectJerseyItemOrder.deleveryCharge);
+                            console.log(selectJerseyItemOrder.total);
+
+                            document.getElementById("total").value = selectJerseyItemOrder.total;
+                        }
+
+                        function placeOrder() {
+                            if (localStorage.getItem('user') == null || JSON.parse(localStorage.getItem('user')) == null) {
+                                alert("Please login first");
+                                return;
+                            }
+                            if (selectJerseyItemOrder.jerseyItemOrderItems.length == 0) {
+                                alert("Please add items to your order first");
+                                return;
+                            }
+                            selectJerseyItemOrder.jerseyBuyer = JSON.parse(localStorage.getItem('user'));
+                            selectJerseyItemOrder.buyerName = document.getElementById("buyerName").value;
+                            selectJerseyItemOrder.buyerAddress = document.getElementById("buyerAddress").value;
+                            selectJerseyItemOrder.buyerPhoneNumber = document.getElementById("buyerPhoneNumber").value;
+                            selectJerseyItemOrder.status = "Pending";
+                            fetch("/bkashpayment/jerseyitemOrder", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(selectJerseyItemOrder)
+                            }).then(res => res.json()).then(data => {
+                                console.log(data);
+                                loadAllOrders();
+                            })
+                        }
+
+
+                    </script>
+                    <h1 class="text-center text-info">All Orders</h1>
+                    <table class="table table-striped table-hover table-borderless align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Buyer Name</th>
+                                <th scope="col">Buyer Address</th>
+                                <th scope="col">Buyer Phone Number</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Paid</th>
+                                <th scope="col">Paid To</th>
+                                <th scope="col">Payment Method</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Delivery Method/th>
+                                <th scope="col">Delivery Charge</th>
+                            </tr>
+                        </thead>
+                        <tbody id="AllOrderTableBody">
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button class="btn w-50 btn-primary" onclick="loadAllOrders()">Load All Orders</button>
+                    </div>
+                    <script>
+                        function loadAllOrders() {
+                            document.getElementById("AllOrderTableBody").innerHTML = "";
+                            if (localStorage.getItem('user') == null || JSON.parse(localStorage.getItem('user')) == null) {
+                                alert("Please login first");
+                                return;
+                            }
+                            fetch("/bkashpayment/jerseyitemOrder", {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "jerseyBuyerNumber": JSON.parse(localStorage.getItem('user')).number,
+                                    "jerseyBuyerPassword": JSON.parse(localStorage.getItem('user')).password
+                                }
+                            })
+                                .then(res => res.json()).then(dataArray => {
+                                    dataArray.forEach(order => {
+                                        let orderTableRow = document.createElement("tr");
+                                        orderTableRow.innerHTML = `
+                                        <td>${order.id}</td>
+                                        <td>${order.buyerName}</td>
+                                        <td>${order.buyerAddress}</td>
+                                        <td>${order.buyerPhoneNumber}</td>
+                                        <td>${order.total}</td>
+                                        <td>${order.paid}</td>
+                                        <td>${order.paidTo}</td>
+                                        <td>${order.paymentMethod}</td>
+                                        <td>${order.status}</td>
+                                        <td>${order.deliveryMethod}</td>
+                                        <td>${order.deleveryCharge}</td>
+                                        `;
+                                        document.getElementById("AllOrderTableBody").appendChild(orderTableRow);
+                                    })
+                                })
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                your Orders:
+                <table class="table table-striped table-hover table-borderless align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Buyer Name</th>
+                            <th scope="col">Buyer Address</th>
+                            <th scope="col">Buyer Phone Number</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Paid</th>
+                            <th scope="col">Paid To</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Free Pickup Point</th>
+                            <th scope="col">Delivery Charge</th>
+                        </tr>
+                    </thead>
+                    <tbody id="yourOrdersTableBody">
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button class="btn w-50 btn-primary" onclick="loadYourOrders()">Load Your Orders</button>
+                </div>
+
+
+                <!-- Modal Body -->
+                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTitleId">
+                                    Modal title
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="paymentModalOrderIdP">OrderId</p>
+                                <select class="form-select" name="payto" id="payto">
+                                    <option value="Online">Online</option>
+                                </select>
+                                <select class="form-select" name="paymentmethod" id="paymentmethod">
+                                    <option value="Bkash PGW">Bkash</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="continuePayment()">Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal trigger button -->
+                <button type="button" id="modalTriggerId" class="btn btn-primary btn-lg d-none" data-bs-toggle="modal"
+                    data-bs-target="#modalId">
+                    Launch
+                </button>
+                <script>
+                    function loadYourOrders() {
+                        if (localStorage.getItem('user') == null || JSON.parse(localStorage.getItem('user')) == null) {
+                            alert("Please login first");
+                            return;
+                        }
+                        fetch("/bkashpayment/jerseyitemOrder", {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "jerseyBuyerNumber": JSON.parse(localStorage.getItem('user')).number,
+                                "jerseyBuyerPassword": JSON.parse(localStorage.getItem('user')).password
+                            }
+                        })
+                            .then(res => res.json()).then(dataArray => {
+                                document.getElementById("yourOrdersTableBody").innerHTML = "";
+                                dataArray.forEach(order => {
+                                    let orderTableRow = document.createElement("tr");
+                                    orderTableRow.innerHTML = `
+                                    <td>${order.id}</td>
+                                    <td>${order.buyerName}</td>
+                                    <td>${order.buyerAddress}</td>
+                                    <td>${order.buyerPhoneNumber}</td>
+                                    <td>${order.total}</td>
+                                    <td>${order.paid ? `<i class="bi bi-check2-square"></i>` : `<button class="btn btn-outline-primary" onclick="payJerseyItemOrder(${order.id})">Pay</button>`}</td>
+                                    <td>${order.paidTo}</td>
+                                    <td>${order.paymentMethod}</td>
+                                    <td>${order.status}</td>
+                                    <td>${order.deliveryMethod}</td>
+                                    <td>${order.deleveryCharge}</td>
+                                    `;
+                                    document.getElementById("yourOrdersTableBody").appendChild(orderTableRow);
+                                })
+                            })
+                    }
+
+                    function payJerseyItemOrder(id) {
+                        if (localStorage.getItem('user') == null || JSON.parse(localStorage.getItem('user')) == null) {
+                            alert("Please login first");
+                            return;
+                        }
+                        fetch("/bkashpayment/jerseyitemOrder/" + id,
+                            {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "jerseyBuyerNumber": JSON.parse(localStorage.getItem('user')).number,
+                                    "jerseyBuyerPassword": JSON.parse(localStorage.getItem('user')).password
+                                }
+
+                            }).then(res => res.json()).then(data => {
+                                document.getElementById('modalTitleId').innerHTML = "Payment : " + data.total + " TK";
+                                document.getElementById('paymentModalOrderIdP').innerHTML = "Order Id : " + data.id;
+                                document.getElementById("modalTriggerId").click();
+                            })
+                    }
+                    function continuePayment() {
+                        if (localStorage.getItem('user') == null || JSON.parse(localStorage.getItem('user')) == null) {
+                            alert("Please login first");
+                            return;
+                        }
+                        let orderId = document.getElementById("paymentModalOrderIdP").innerHTML.split(" ")[3];
+                        let payto = document.getElementById("payto").value;
+                        let paymentmethod = document.getElementById("paymentmethod").value;
+                        fetch("/bkashpayment/pay/" + orderId + "/" + payto + "/" + paymentmethod,
+                            {
+                                method: "GET",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "jerseyBuyerNumber": JSON.parse(localStorage.getItem('user')).number
+                                }
+                            }).then(res => res.json()).then(data => {
+                                console.log(data);
+                                window.location.href = data.url;
+                                // document.getElementById("modalId").remove();
+                                loadYourOrders();
+                            })
+                    }
+                </script>
+            </div>
+            <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+                order status Coming Soon
+            </div>
+
+        </div>
+
+
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+    <script>
+        var user = null;
+        function loadUserFromStorage() {
+            if (localStorage.getItem('user') && JSON.parse(localStorage.getItem("user")) != null) {
+                user = JSON.parse(localStorage.getItem("user"));
+                document.getElementById("login-screen").classList.add("d-none");
+                document.getElementById("user-info").classList.remove("d-none");
+                document.getElementById("user-name").innerHTML = user.name;
+                document.getElementById("user-number").innerHTML = user.number;
+                document.getElementById('ordertabwarningdiv').classList.add('d-none');
+                document.getElementById('ordertabdiv').classList.remove('d-none');
+                if (user.role == 'admin') {
+                    document.getElementById('jerseyitem').classList.remove('d-none');
+                    document.getElementById('jerseyitem-nav').classList.remove('d-none');
+                } else {
+                    document.getElementById('jerseyitem').classList.add('d-none');
+                    document.getElementById('jerseyitem-nav').classList.add('d-none');
+                }
+                if (user.number == '01719987447') {
+                    document.getElementById('buyer').classList.remove('d-none');
+                    document.getElementById('buyer-nav').classList.remove('d-none');
+                } else {
+                    document.getElementById('buyer').classList.add('d-none');
+                    document.getElementById('buyer-nav').classList.add('d-none');
+                }
+            } else {
+                document.getElementById("login-screen").classList.remove("d-none");
+                document.getElementById("user-info").classList.add("d-none");
+                document.getElementById('ordertabwarningdiv').classList.remove('d-none');
+                document.getElementById('ordertabdiv').classList.add('d-none');
+
+                document.getElementById('buyer').classList.add('d-none');
+                document.getElementById('buyer-nav').classList.add('d-none');
+
+                document.getElementById('jerseyitem').classList.add('d-none');
+                document.getElementById('jerseyitem-nav').classList.add('d-none');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            loadUserFromStorage();
+        });
+
+        function logout() {
+            localStorage.removeItem('user');
+            loadUserFromStorage();
+        }
+        passtest();
+        function passtest() {
+            if (localStorage.getItem('user') == null) {
+                return;
+            }
+            let user = JSON.parse(localStorage.getItem('user'));
+            if (user.number == null) {
+                return
+            }
+            if (user.password == null) {
+                logout();
+                alert("Please Log in again");
+            }
+        }
+    </script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+</body>
+</html>

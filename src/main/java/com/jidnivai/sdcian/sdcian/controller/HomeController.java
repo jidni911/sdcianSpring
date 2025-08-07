@@ -24,7 +24,7 @@ public class HomeController {
         return "index.html";
     }
 
-    @GetMapping("/intro/home")
+    @GetMapping("/api/intro/home")
     @ResponseBody
     public Home getHome() {
         try {
@@ -38,7 +38,7 @@ public class HomeController {
         }
     }
 
-    @PostMapping("/introUpdate")
+    @PostMapping("/api/introUpdate")
     @ResponseBody
     public Home updateHome(@RequestParam String welcomeText, @RequestParam MultipartFile welcomeImage,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
